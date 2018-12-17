@@ -5,3 +5,4 @@ Members
   3. B5920914 Mr.Kasinan Rordthab
   4. B5900909 Miss.Sumitra Lalongsungnoen
   5. B5922482 Mr.Thaksin Charoenwai
+  6. B5903795 Mr.Thitipoom Gusolsong
