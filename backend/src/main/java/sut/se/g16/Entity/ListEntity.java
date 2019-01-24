@@ -18,22 +18,17 @@ public class ListEntity {
     @Column(name="listId",unique = true, nullable = false)
     private @NonNull Long listId;
     private @NonNull String listName;
+    private @NonNull Long priceFood;
 
     ///////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 
-    @ManyToOne(fetch = FetchType.EAGER, targetEntity = FoodOrderEntity.class)
-    @JoinColumn(name = "foodOrderId")
-    @JsonIgnore
-    private FoodOrderEntity foodOrder;
-
+    //Many To One with FoodTypeEntity
     @ManyToOne(fetch = FetchType.EAGER, targetEntity = FoodTypeEntity.class)
-    @JoinColumn(name = "foodTypeId")
-    @JsonIgnore
-    private FoodTypeEntity foodType;
+    private FoodTypeEntity newFoodTypeEntity;
 
 
     ///////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
-
+    /* get set */
 
     public Long getListId() {
         return listId;
@@ -51,22 +46,22 @@ public class ListEntity {
         this.listName = listName;
     }
 
-    ///////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
-
-    // public FoodOrderEntity getTitleName() {
-    //     return titleName;
-    // }
-
-    // public void setTitleName(FoodOrderEntity titleName) {
-    //     this.titleName = titleName;
-    // }
-
-    public FoodTypeEntity getFoodType() {
-        return foodType;
+    public Long getPriceFood() {
+        return priceFood;
     }
 
-    public void setFoodType(FoodTypeEntity foodType) {
-        this.foodType = foodType;
+    public void setPriceFood(Long priceFood) {
+        this.priceFood = priceFood;
+    }
+
+    ///////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+    /* many to one get set */
+
+    public FoodTypeEntity getNewFoodTypeEntity() {
+        return newFoodTypeEntity;
+    }
+    public void setNewFoodTypeEntity(FoodTypeEntity newFoodTypeEntity) {
+        this.newFoodTypeEntity = newFoodTypeEntity;
     }
 
 }
