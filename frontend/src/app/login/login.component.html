@@ -1,0 +1,28 @@
+<img src='/city.jpg' style='position:fixed;top:0px;left:0px;width:100%;height:100%;z-index:-1;'>
+<mat-toolbar class="tootbar">
+  <mat-toolbar-row>
+    <h1 mat-button class="menu-list" >CUSTOMER LOGIN</h1>
+  </mat-toolbar-row>
+</mat-toolbar>
+<br>
+<br>
+<br>
+<br>
+<br>
+<br>
+
+<div class = " databox ">
+  <div class="example-container">
+  <h2 class="title-name">CUSTOMER LOGIN</h2>
+    <mat-form-field>
+      <input matInput placeholder="username" [(ngModel)]  = "select.inputUserName" name = "memberHotelName"  >
+    </mat-form-field>
+
+    <mat-form-field>
+      <input matInput type="password" placeholder="password" [(ngModel)]  = "select.inputPassword" name = "memberHotelPassword" placeholder="Password">
+    </mat-form-field>
+
+    <button mat-button (click) = "login()">LOGIN</button>
+    <button mat-button routerLink='/register' routerLinkActive='active' >ลงทะเบียนลูกค้า</button>
+  </div>
+</div>
