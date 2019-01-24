@@ -1,0 +1,58 @@
+.tootbar{
+    background-color:#000000;
+    color: #FF3399;
+    opacity: .8;
+ }
+
+.menu-list{
+    float: left;
+    font-size: 30px;
+    margin-left: 40px;
+    font-weight: bold;
+    font-family: Kanit;
+ }
+
+.databox{
+    position: absolute;
+    width: 40%;
+    height: 450px;
+    left: 30%;
+    right: 30%;
+    float: left;
+    background: #000000;
+    opacity: .8;
+    color: #FF3399;
+  }
+
+  .example-container {
+    display: flex;
+    flex-direction: column;
+    color : #FFFFFF;
+  }
+
+  .example-container > * {
+      margin-top: 3%;
+      margin-left: 20%;
+      margin-right: 20%;
+  }
+  .title-name{
+      text-align : center;
+      color: #FF3399;
+      font-size: 30px;
+  }
+  .prefix{
+      width: 20%;
+  }
+  button{
+        background : #FF3399;
+        color : #FFFFFF;
+        font-size: 20px;
+    }
+  .navbarSpace {
+      font-size: 32px;
+      padding: 4px;
+      color: rgb(255, 255, 255, 0.37);
+  }
+  .spacer {
+      flex-grow: 1;
+  }
