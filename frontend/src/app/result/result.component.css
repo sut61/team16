@@ -1,0 +1,63 @@
+body{
+    background-color:hsl(0, 0%, 14%);
+ }
+
+.tootbar{
+    background-color:#000000;
+    color: #FF3399;
+    opacity: .8;
+ }
+
+.menu-list{
+    float: left;
+    font-size: 30px;
+    margin-left: 40px;
+    font-weight: bold;
+    font-family: Kanit;
+ }
+
+.databox{
+    position: absolute;
+    width: 60%;
+    height: 700px;
+    left: 20%;
+    right: 20%;
+    float: left;
+    background: #000000;
+    opacity: .8;
+    color: #FF3399;
+  }
+
+  .example-container {
+    display: flex;
+    flex-direction: column;
+    color : #FFFFFF;
+  }
+
+  .example-container > * {
+      margin-top: 3%;
+      margin-left: 20%;
+      margin-right: 20%;
+  }
+  .title-name{
+      text-align : center;
+      color: #FF3399;
+      font-size: 30px;
+  }
+  .show-tltle{
+      font-size: 20px;
+      color: #FF9900;
+  }
+  button{
+          background : #FF3399;
+          color : #FFFFFF;
+          font-size: 20px;
+  }
+  .navbarSpace {
+         font-size: 32px;
+         padding: 4px;
+         color: rgb(255, 255, 255, 0.37);
+  }
+  .spacer {
+         flex-grow: 1;
+  }
