@@ -1,0 +1,67 @@
+<img src='/Payment Food.png' style='position:fixed;top:0px;left:0px;width:100%;height:100%;z-index:-1;'>
+<mat-toolbar>
+  <mat-toolbar-row class="navbar">
+    <h1 class="leftnavbar">Total Price</h1>
+    <span class="spacer"></span>
+    <button mat-button class="textshadow" (click)="addRoom()">Add Room</button>
+    <p class="navbarSpace">|</p>
+    <button mat-button class = "textshadow" (click)="UpdateRoomStatus()">Update Room</button>
+    <p class="navbarSpace">|</p>
+    <button mat-button class="textshadow" (click)="Promotion()">Promotion</button>
+    <p class="navbarSpace">|</p>
+    <button mat-button class="active" >Payment</button>
+    <p class="navbarSpace">|</p>
+    <button mat-button class = "textshadowLogOut" [routerLink]="['']">Logout</button>
+    <span class="spaceright"></span>
+  </mat-toolbar-row>
+</mat-toolbar>
+<div class="container">
+  <div class="panelmaster2">
+      <table mat-table [dataSource]="dataSource" class="example-container mat-elevation-z8">
+          <ng-container matColumnDef="id">
+            <th mat-header-cell *matHeaderCellDef> bill </th>
+            <td mat-cell *matCellDef="let element; let i = index"> {{i+1}} </td>
+          </ng-container>
+          <ng-container matColumnDef="room">
+            <th mat-header-cell *matHeaderCellDef> Room </th>
+            <td mat-cell *matCellDef="let element"> {{element.newRoomEntity.roomNumber}} </td>
+          </ng-container> 
+          <ng-container matColumnDef="price">
+            <th mat-header-cell *matHeaderCellDef> ยอดรวม&nbsp;(บาท) </th>
+            <td mat-cell *matCellDef="let element"> {{element.totalPrice}} </td>
+          </ng-container>
+          <ng-container matColumnDef="status">
+              <th mat-header-cell *matHeaderCellDef> สถานะ </th>
+              <td mat-cell *matCellDef="let element"> {{element.newFoodPaymentEntity.foodPaymentStatus}} </td>
+            </ng-container>
+          <tr mat-header-row *matHeaderRowDef="displayedColumns; sticky: true"></tr>
+          <tr mat-row *matRowDef="let row; columns: displayedColumns;" (click)="selectRow(row)" ></tr>
+        </table>
+  </div>
+  <div class="panelmaster">
+      <br>
+      <br>
+      <br>
+       <!-- ห้องพัก -->
+    <mat-form-field class="selectInput">
+      <mat-placeholder class="placeholder">Room</mat-placeholder>
+      <mat-select class = "textBottom"[(ngModel)] = "select.roomSelect" name = "newRoomEntity.roomNumber">
+          <mat-option *ngFor="let rooms of totalPriceFood" [value]="rooms.totalPriceFoodId"  (click) = "ttPrice()">
+            {{rooms.newRoomEntity.roomNumber}}
+          </mat-option>
+        </mat-select>
+    </mat-form-field>
+    <br>
+    <br>
+
+      <!-- รวมราคาอาหาร -->
+      <p class ="selectInputText">Total Price: &nbsp;&nbsp; {{select.totalPriceFoodOutput}}</p>
+
+      <br>
+      <br>
+    <div class="button">
+      <button class = "textshadow" mat-button (click)="pay()">Pay</button>
+    </div>
+    <p class = "separate">-</p>
+  </div>
+</div>
