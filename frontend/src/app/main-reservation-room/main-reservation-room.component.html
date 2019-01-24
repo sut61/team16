@@ -1,0 +1,111 @@
+<img src='/reservation.jpg' style='position:fixed;top:0px;left:0px;width:100%;height:100%;z-index:-1;'>
+
+<mat-toolbar>
+  <mat-toolbar-row class="navbar">
+    <h1 class="leftnavbar">Booking</h1>
+    <span class="spacer"></span>
+    <button mat-button class="active">ReservationRoom</button>
+    <p class="navbarSpace">|</p>
+    <button mat-button class="textshadow" (click)="foodOrder()">Food Order</button>
+    <p class="navbarSpace">|</p>
+    <button mat-button class="textshadow" (click)="review()">Review</button>
+    <p class="navbarSpace">|</p>
+    <!-- <button mat-button class="textshadow" (click)="UpdateRoomStatus()">ReservationMeeetingRoom</button>
+    <p class="navbarSpace">|</p> -->
+    <button mat-button class="textshadow" [routerLink]="['/login']">Logout</button>
+    <span class="spaceright"></span>
+  </mat-toolbar-row>
+</mat-toolbar>
+<div class="container">
+
+  <div class="panelmaster2">
+    <mat-table [dataSource]="dataSource" class="example-container mat-elevation-z8">
+      <ng-container matColumnDef="id">
+        <mat-header-cell *matHeaderCellDef> No. </mat-header-cell>
+        <mat-cell *matCellDef="let element;let i = index;"> {{i+1}} </mat-cell>
+      </ng-container>
+      <ng-container matColumnDef="roomType">
+        <mat-header-cell *matHeaderCellDef> ประเภทห้องพัก </mat-header-cell>
+        <mat-cell *matCellDef="let element"> {{element.newRoomTypeEntity.roomTypeName}} </mat-cell>
+      </ng-container>
+      <ng-container matColumnDef="hotel">
+        <mat-header-cell *matHeaderCellDef> โรงแรม </mat-header-cell>
+        <mat-cell *matCellDef="let element"> {{element.newHotelEntity.hotelNameEng}} </mat-cell>
+      </ng-container>
+      <ng-container matColumnDef="promotion">
+        <mat-header-cell *matHeaderCellDef> โปรโมทชั่น </mat-header-cell>
+        <mat-cell *matCellDef="let element"> {{element.newPromotionEntity.promotionName}} </mat-cell>
+      </ng-container>
+      <ng-container matColumnDef="datein">
+        <mat-header-cell *matHeaderCellDef> Check In </mat-header-cell>
+        <mat-cell *matCellDef="let element"> {{element.dateIn | date:'longDate'}} </mat-cell>
+      </ng-container>
+      <ng-container matColumnDef="dateout">
+        <mat-header-cell *matHeaderCellDef> Check Out </mat-header-cell>
+        <mat-cell *matCellDef="let element"> {{element.dateOut | date:'longDate'}} </mat-cell>
+      </ng-container>
+      <mat-header-row *matHeaderRowDef="displayedColumns; "></mat-header-row>
+      <mat-row *matRowDef="let row; columns: displayedColumns;" (click)="selectRow(row)" ></mat-row>
+    </mat-table>
+  </div>
+
+  <div class="panelmaster">
+
+    <mat-form-field class="selectInput">
+      <mat-placeholder class="placeholder">Hotel</mat-placeholder>
+      <mat-select [(ngModel)]="select.hotelSelect" name="hotelNameEng">
+        <mat-option *ngFor="let hotels of hotel" [value]="hotels.hotelId" (click) = "selectHotel()">
+          {{hotels.hotelNameEng}}
+        </mat-option>
+      </mat-select>
+    </mat-form-field>
+
+    <mat-form-field class="selectInput">
+      <mat-placeholder class="placeholder">Promotion</mat-placeholder>
+      <mat-select [(ngModel)]="select.promotionSelect" name="promotionName">
+        <mat-option *ngFor="let promotions of promotion" [value]="promotions.promotionId">
+          {{promotions.promotionName}}
+        </mat-option>
+      </mat-select>
+    </mat-form-field>
+
+    <mat-form-field class="selectInput">
+      <mat-placeholder class="placeholder">RoomType</mat-placeholder>
+      <mat-select [(ngModel)]="select.roomTypeSelect" name="roomTypeName">
+        <mat-option *ngFor="let roomtypes of roomType" [value]="roomtypes.newRoomTypeEntity.roomTypeId" (click) = "selectRoomType()">
+          {{roomtypes.newRoomTypeEntity.roomTypeName}}
+        </mat-option>
+      </mat-select>
+    </mat-form-field>
+
+    <mat-form-field class="selectInput">
+      <mat-placeholder class="placeholder">Room</mat-placeholder>
+      <mat-select [(ngModel)]="select.roomSelect" name="roomNumber">
+        <mat-option *ngFor="let rooms of room" [value]="rooms.roomId">
+          {{rooms.roomNumber}}
+        </mat-option>
+      </mat-select>
+    </mat-form-field>
+    
+      <mat-form-field class="selectInput">
+          <mat-placeholder class="placeholder">Check In</mat-placeholder>
+        <input matInput [matDatepicker]="picker1" class="placeholder"[(ngModel)]="select.inputStartDate">
+        <mat-datepicker-toggle matSuffix [for]="picker1"></mat-datepicker-toggle>
+        <mat-datepicker #picker1 [startAt]="startDate" class = "textBottom"></mat-datepicker>
+      </mat-form-field>
+   
+    
+      <mat-form-field class="selectInput">
+          <mat-placeholder class="placeholder">Check Out</mat-placeholder>
+        <input matInput [matDatepicker]="picker2" class="placeholder"[(ngModel)]="select.inputEndDate">
+        <mat-datepicker-toggle matSuffix [for]="picker2"></mat-datepicker-toggle>
+        <mat-datepicker #picker2 [startAt]="endDate" class = "textBottom"></mat-datepicker>
+      </mat-form-field>
+   
+
+    <div class="button">
+      <button class="textshadow" mat-button (click)="comfirm()">Comfirm</button>
+    </div>
+    <p class="separate">-</p>
+  </div>
+</div>
