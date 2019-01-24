@@ -1,0 +1,147 @@
+body{
+  font-family: 'Raleway', sans-serif;
+}
+.navbar {
+  font-size: 32px;
+  background-color: rgb(41,64,63);
+  box-shadow: 0 6px 10px 0 rgba(0, 0, 0, 0.14), 0 1px 18px 0 rgba(0, 0, 0, 0.12), 0 3px 5px -1px rgba(0, 0, 0, 0.3);
+}
+.leftnavbar{
+  padding-top: 20px;
+  font-size: 42px;
+  margin-left: 9%;
+}
+.spaceright{
+  margin-right: 8%;
+}
+.navbarSpace {
+  font-size: 32px;
+  padding: 4px;
+  color: rgb(255, 255, 255, 0.37);
+}
+.textshadow {
+  font-size: 24px;
+  text-shadow:  2px 2px 4px black;
+}
+.active{
+  font-size: 24px;
+  background-color: rgb(53,116,90);
+  text-shadow:  2px 2px 4px black;
+}
+.spacer {
+  flex-grow: 1;
+}
+.loginbox{
+    width: 700px;
+    height: 740px;
+    background-color: rgba(114, 69, 53, 0.90);
+    font-size : 20;
+    top: 13%;
+    left:28%;
+    position: absolute;
+
+    box-sizing: border-box;
+    padding: 20px 30px;
+
+}
+.example-form {
+  width: 100%;
+  color: rgb(31, 187, 78);
+ }
+ .example-full-width {
+   width: 100%;
+}
+example1-form {
+  -webkit-text-fill-color: #000000;
+  min-width: 150px;
+  max-width: 500px;
+  width: 100%;
+  color: rgb(0, 0, 0);
+}
+.button{
+      background : #FF6633;
+      color : rgb(0, 0, 0);
+      font-size: 15px;
+      width: 640px;
+      height: 40px;
+  }
+  body{
+    background-color:#696969;
+}
+.tootbar{
+    background-color:hsl(0, 0%, 21%)
+}
+.example-icon {
+    padding: 0 14px;
+  }
+
+  .example-spacer {
+    flex: 1 1 auto;
+  }
+.menu-list{
+    float: left;
+    margin-left: 40px;
+}
+
+h1{
+      margin: 0px;
+      padding: 0 0 20px;
+      text-align: center;
+      font-size : 32px;
+      color: rgb(0, 0, 0);
+}
+.example-form {
+  font-family: 'Raleway', sans-serif;
+  min-width: 150px;
+  max-width: 500px;
+  width: 100%;
+  color: white;
+ }
+example1-form {
+  font-family: 'Raleway', sans-serif;
+  min-width: 150px;
+  max-width: 500px;
+  width: 100%;
+  color: rgb(0, 0, 0);
+}
+
+.example-full-width {
+  width: 100%;
+}
+
+.selectInput {
+  width: 90%;
+  margin-left: 4%;
+  margin-right: 4%;
+  font-size: 20px;
+}
+
+.selectInputText{
+  position: relative;
+  width: 90%;
+  margin-left: 4%;
+  margin-right: 4%;
+  font-size: 20px;
+  color: #ffffff;
+  text-align: center;
+  text-shadow:  2px 2px 4px black;
+}
+
+.textBottom{
+  -webkit-text-fill-color: #ffffff;
+  text-align: center;
+  text-shadow:  2px 2px 4px rgb(0, 0, 0); 
+}
+
+.placeholder{
+  color: #ffffff;
+  text-align: center;
+  text-shadow:  2px 2px 4px rgb(0, 0, 0); 
+}
+.textshadow {
+  text-shadow:  2px 2px 4px black;
+}
+.textshadowLogOut{
+  text-shadow:  2px 2px 4px black;
+  background-color: rgba(226, 58, 29, 0.856);
+}
