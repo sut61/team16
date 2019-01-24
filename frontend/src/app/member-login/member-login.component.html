@@ -1,0 +1,19 @@
+<div class = "container">
+  <form>
+    <h1>Login Member Hotel</h1>
+    <br>
+    <div class = "username">
+        <input matInput placeholder="Username" [(ngModel)]  = "select.inputUserName" name = "memberHotelName" >
+    </div>
+    <div class = "password">
+        <input matInput  [(ngModel)]  = "select.inputPassword" name = "memberHotelPassword" placeholder="Password">
+    </div>
+    <div class="botton">
+        <button mat-button (click) = "login()">Login</button>
+      </div>
+  </form>
+</div>
+<div class="pic">
+  <img src='/infinity_pool.jpg' style='position:fixed;top:0px;left:0px;width:100%;height:100%;z-index:-1;'>
+
+</div>
