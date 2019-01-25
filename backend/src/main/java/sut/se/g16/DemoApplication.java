@@ -33,6 +33,7 @@ public class DemoApplication {
 				rst.setRoomStatusName(roomstatus);
 				roomStatusRepository.save(rst);
 			});
+			
 
 			// Create Provinces
 			Stream.of("กรุงเทพมหานคร", "กระบี่", "กาญจนบุรี", "กาฬสินธุ์", "กำแพงเพชร", "ขอนแก่น", "จันทบุรี",
