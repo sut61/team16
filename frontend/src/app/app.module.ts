@@ -33,9 +33,10 @@ import { ViewReviewComponent } from './view-review/view-review.component';
 import { ReviewService } from './shared/review.service';
 import { ViewReviewService } from './shared/view-review.service';
 import { UpdateFoodStatusComponent } from './update-food-status/update-food-status.component';
+import { HomeComponent } from './home/home.component';
 
 const appRoutes: Routes = [
-  {path:'' , component:MemberLoginComponent},
+  {path:'' , component:HomeComponent},
   {path: 'addroom/:inputUserName', component: AddRoomComponent},
   {path: 'roomstatus/:inputUserName', component: RoomStatusComponent},
   {path: 'foodorder/:inputUserName',component: FoodOrderComponent},
@@ -66,7 +67,8 @@ const appRoutes: Routes = [
     PromotionComponent,
     ReviewComponent,
     ViewReviewComponent,
-    UpdateFoodStatusComponent
+    UpdateFoodStatusComponent,
+    HomeComponent
   ],
   imports: [
     BrowserModule,
