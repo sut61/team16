@@ -175,8 +175,8 @@ public class FoodOrderController {
         return foodOrderRepository.findAll().stream().collect(Collectors.toList());
     }
 
-    @GetMapping(path = "/foodorder/{hotel}/{room}/{list}/{customer}")
-    public Boolean newFoodOrder(@PathVariable String hotel, @PathVariable int room, @PathVariable String list, @PathVariable String customer) {
+    @GetMapping(path = "/foodorder/{hotel}/{room}/{list}/{customer}/{amount}")
+    public Boolean newFoodOrder(@PathVariable String hotel, @PathVariable int room, @PathVariable String list, @PathVariable String customer,@PathVariable int amount) {
         CustomerEntity cus = customerRepository.findByUser(customer);
         HotelEntity ho = hotelRepository.findByName(hotel);
         ListEntity li = listRepository.findListByName(list);
@@ -194,6 +194,7 @@ public class FoodOrderController {
         FoodPaymentEntity foodPay = foodPaymentRepository.findByStatus("ยังไม่จ่าย");
 
         FoodOrderEntity foodOrder = new FoodOrderEntity();
+        foodOrder.setTotalProiceOrder(li.getPriceFood() *amount);
         foodOrder.setNewCustomerEntity(cus);
         foodOrder.setNewHotelEntity(ho);
         foodOrder.setNewListEntity(li);
@@ -204,7 +205,7 @@ public class FoodOrderController {
 
             totalPrice.setNewFoodPaymentEntity(foodPay);
             totalPrice.setNewRoomEntity(rm);
-            totalPrice.setTotalPrice(li.getPriceFood());
+            totalPrice.setTotalPrice(amount * li.getPriceFood());
             totalPriceFoodRepository.save(totalPrice);
 
             FoodOrderTotalPriceFoodManyToManyEntity fopmm = new FoodOrderTotalPriceFoodManyToManyEntity();
@@ -215,7 +216,7 @@ public class FoodOrderController {
         } else {
             totalPriceFoodRepository.findById(totalPriceId).map(totalPriceEntity -> {
                 Long price = totalPriceEntity.getTotalPrice();
-                price += li.getPriceFood();
+                price += (amount * li.getPriceFood());
                 totalPriceEntity.setTotalPrice(price);
                 totalPriceFoodRepository.save(totalPriceEntity);
 

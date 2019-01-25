@@ -22,6 +22,7 @@ public class FoodOrderEntity {
     @GeneratedValue(strategy=GenerationType.SEQUENCE, generator="foodOrderSeq")
     @Column(name="foodOrderId",unique = true, nullable = false)
     private @NonNull Long foodOrderId;
+    private @NonNull Long totalProiceOrder;
 
     ///////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 
@@ -88,6 +89,14 @@ public class FoodOrderEntity {
 
     public void setNewCustomerEntity(CustomerEntity newCustomerEntity) {
         this.newCustomerEntity = newCustomerEntity;
+    }
+
+    public Long getTotalProiceOrder() {
+        return totalProiceOrder;
+    }
+
+    public void setTotalProiceOrder(Long totalProiceOrder) {
+        this.totalProiceOrder = totalProiceOrder;
     }
 
 }
