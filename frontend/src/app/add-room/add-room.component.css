@@ -1,0 +1,129 @@
+body{
+    font-family: 'Raleway', sans-serif;
+  }
+  .navbarSpace {
+    font-size: 32px;
+    padding: 4px;
+    color: rgb(255, 255, 255, 0.37);
+  }
+  .navbar {
+    background-color: rgb(41,64,63);
+    box-shadow: 0 6px 10px 0 rgba(0, 0, 0, 0.14), 0 1px 18px 0 rgba(0, 0, 0, 0.12), 0 3px 5px -1px rgba(0, 0, 0, 0.3);
+  }
+  .leftnavbar{
+    margin-left: 9%;
+  }
+  .mat-button{
+    font-size: 20px;
+    color: white;
+  }
+  .navbar h1{
+    text-shadow:  2px 2px 4px black;
+    color: white;
+    font-size: 35px;
+  }
+  .spaceright{
+    margin-right: 8%;
+  }
+  .spacer {
+    flex-grow: 1;
+  }
+  .panel1{
+    width: 50%;
+    height: 250px;
+    background-color: rgb(37,167,105);
+    text-align: left;
+    float: left;
+  }
+  .panel2{
+    width: 50%;
+    height: 250px;
+    background-color: rgb(37,167,105);
+    text-align: left;
+    float: left;
+    margin-bottom: 15px;
+  }
+  .panelmaster{
+    float: left;
+    margin-left: 10%;
+    width: 20%;
+    height:  650px;
+    background-color:rgb(37,167,105);
+    box-shadow: 5px 6px 10px 1px rgba(0, 0, 0, 0.14), 0 1px 18px 0 rgba(0, 0, 0, 0.12), 0 3px 5px -1px rgba(0, 0, 0, 0.3);
+  }
+  .panelmaster2{
+    float: right;
+    margin-right: 10%;
+    width: 60%;
+    height:  650px;
+    background-color:rgba(226, 226, 226, 0.815);
+    box-shadow: 0 6px 10px 1px rgba(0, 0, 0, 0.14), 0 1px 0px 0 rgba(0, 0, 0, 0.12), 0 3px 5px -1px rgba(0, 0, 0, 0.3);
+  }
+  .selectInput {
+    width: 90%;
+    margin-left: 4%;
+    margin-right: 4%;
+    font-size: 20px;
+  }
+  .placeholder{
+    color: #ffffff;
+    text-shadow:  2px 2px 4px black; 
+  }
+  .textshadow {
+    text-shadow:  2px 2px 4px black;
+  }
+  .button{
+    background-color:  rgb(34, 230, 116);
+    text-align: center;
+    margin-left: 35%;
+    margin-right: 35%;
+    border-radius: 5px;
+    
+  }
+  .active{
+    background-color: rgb(53,116,90);
+    text-shadow:  2px 2px 4px black;
+  }
+  .stepbar{
+    margin-left: 10%;
+    margin-right: 10%;
+  }
+  .container{
+    width: 100%;
+  }
+  .mat-header-cell{
+    background-color:  rgb(49, 175, 101);
+    font-size: 18px;
+    color: rgb(255, 255, 255);
+    text-shadow:  2px 2px 4px black;
+  }
+  .mat-row:hover{
+    background-color: rgb(191, 255, 218);
+  }
+  .separate{
+    margin-top: 0%;
+    text-align: center;
+    font-size: 32px;
+    transform: scale(22, 0.75);
+    color: rgba(0, 0, 0, 0.212);
+  }
+
+  table {
+    width: 100%; 
+  }
+  .example-container {
+    position: relative;
+  }
+  
+  .example-table-container {
+    position: relative;
+    overflow: auto;
+  }
+  .hello{
+    margin-left: 15px;
+    text-align: left;
+    color: white;
+    text-shadow:  2px 2px 4px black;
+    font-size: 28px;
+
+  }
