@@ -28,11 +28,11 @@
           </ng-container> 
           <ng-container matColumnDef="list">
             <th mat-header-cell *matHeaderCellDef> รายการอาหาร </th>
-            <td mat-cell *matCellDef="let element"> {{element.newListEntity.listName}} </td>
+            <td mat-cell *matCellDef="let element"> {{element.newListEntity.listName}}</td>
           </ng-container>
           <ng-container matColumnDef="price">
             <th mat-header-cell *matHeaderCellDef> ราคา (บาท) </th>
-            <td mat-cell *matCellDef="let element"> {{element.newListEntity.priceFood}} </td>
+            <td mat-cell *matCellDef="let element"> {{element.totalProiceOrder}}</td>
           </ng-container>
           <tr mat-header-row *matHeaderRowDef="displayedColumns; sticky: true"></tr>
           <tr mat-row *matRowDef="let row; columns: displayedColumns;" (click)="selectRow(row)" ></tr>
@@ -84,11 +84,11 @@
       <!-- ราคาอาหาร -->
       <p class ="selectInputText">Price:&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; {{select.foodPricericeOutput}}</p>
 
-      <!-- จำนวนสั่งซื้อ
+      <!-- จำนวนสั่งซื้อ -->
     <mat-form-field class="selectInput">
         <mat-placeholder class="placeholder">Amount</mat-placeholder>
-        <input matInput [(ngModel)] = "select.roomPriceInput" name = "roomPrice" [(value)] = "select.selectedRoomPrice">
-      </mat-form-field> -->
+        <input matInput class = "textBottom" [(ngModel)] = "select.amountInput" >
+      </mat-form-field> 
       <br>
     <div class="button">
       <button class = "textshadow" mat-button (click)="add()">Order</button>

@@ -6,6 +6,7 @@ import { ActivatedRoute, Router } from '@angular/router';
 import { FoodOrderService } from '../shared/food-order.service';
 export interface FoodOrderComponent {
   foodOrderId: number;
+  totalProiceOrder: number;
   newRoomEntity: {
     roomNumber: String;
   }
@@ -30,7 +31,8 @@ export class FoodOrderComponent implements OnInit {
     foodTypeSelect: '',
     listSelect: '',
     foodPricericeOutput: '',
-    customer: ''
+    customer: '',
+    amountInput: ''
 
   }
   displayedColumns: string[] = ['id', 'room', 'list', 'price'];
@@ -99,11 +101,12 @@ export class FoodOrderComponent implements OnInit {
   }
 
   add() {
-    if (this.select.hotelSelect === '' || this.select.roomSelect === '' || this.select.foodTypeSelect === '' || this.select.listSelect === '') {
+    console.log(this.select.amountInput);
+    if (this.select.hotelSelect === '' || this.select.roomSelect === '' || this.select.foodTypeSelect === '' || this.select.listSelect === ''|| this.select.amountInput === '') {
       alert('Please Enter all Data');
     }
     else {
-      this.httpClient.get('http://localhost:8080/foodorder/' + this.select.hotelSelect + '/' + this.select.roomSelect + '/' + this.select.listSelect + '/' + this.select.customer, this.select)
+      this.httpClient.get('http://localhost:8080/foodorder/' + this.select.hotelSelect + '/' + this.select.roomSelect + '/' + this.select.listSelect + '/' + this.select.customer +'/'+ this.select.amountInput, this.select)
         .subscribe(
           data => {
             console.log(data);
