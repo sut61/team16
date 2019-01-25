@@ -21,14 +21,14 @@ public class DemoApplication {
 
 	@Bean
 	ApplicationRunner init(MemberHotelRepository memberHotelRepository, RoomStatusRepository roomStatusRepository,
-			HotelRepository hotelRepository, PromotionRepository promotionRepository, ItemRepository itemRepository,
+			HotelRepository hotelRepository, PromotionRepository promotionRepository,
 			StatusPaymentRepository statusPaymentRepository, FurnitureRepository furnitureRepository,
 			RoomTypeRepository roomTypeRepository, RoomRepository roomRepository,
 			  AdminRepository adminRepository,
 			PromotionTypeRepository promotionTypeRepository,
 			RoomTypeFurnitureManyToManyRepository roomTypeFurnitureManyToManyRepository,
 			FoodOrderRepository foodOrderRepository, ListRepository listRepository,
-			ItemHotelManyToManyRepository itemHotelManyToManyRepository, FoodTypeRepository foodTypeRepository,
+		    FoodTypeRepository foodTypeRepository,
 			TotalPriceFoodRepository totalPriceFoodRepository, ProvinceRepository provinceRepository,
 			FoodPaymentRepository foodPaymentRepository,HotelRoomTypeManyToManyRepository hotelRoomTypeManyToManyRepository,
 			FoodOrderTotalPriceFoodManyToManyRepository foodOrderTotalPriceFoodManyToManyRepository,
@@ -526,29 +526,6 @@ public class DemoApplication {
 			promotionTypeRepository.save(teqi1);
 			promotionTypeRepository.save(teqi2);
 			promotionTypeRepository.save(teqi3);
-
-			// Thitipoom
-
-			// Create Item
-			Stream.of("telephone", "cloath").forEach(item -> {
-				ItemEntity items = new ItemEntity();
-				items.setItem(item);
-				itemRepository.save(items);
-			});
-			// Hotel Many to Many
-			HotelEntity phimaiIn = hotelRepository.findByhotelNameEng("PhimaiIn");
-			ItemEntity item1 = itemRepository.findByitem("telephone");
-			ItemHotelManytoManyEntity itemmm1 = new ItemHotelManytoManyEntity();
-			itemmm1.setItemHotelMany(item1);
-			itemmm1.setNewHotelEntity(phimaiIn);
-			itemHotelManyToManyRepository.save(itemmm1);
-
-			HotelEntity amthara = hotelRepository.findByhotelNameEng("Amathara");
-			ItemEntity item2 = itemRepository.findByitem("cloath");
-			ItemHotelManytoManyEntity itemmm2 = new ItemHotelManytoManyEntity();
-			itemmm2.setItemHotelMany(item2);
-			itemmm2.setNewHotelEntity(amthara);
-			itemHotelManyToManyRepository.save(itemmm2);
 
 		};
 	}
