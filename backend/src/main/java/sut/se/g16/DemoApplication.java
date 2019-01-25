@@ -1,14 +1,24 @@
-package com.example.demo;
+package sut.se.g16;
 
+import sut.se.g16.Entity.*;
+import sut.se.g16.Repository.*;
+import org.springframework.boot.ApplicationRunner;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
+import org.springframework.context.annotation.Bean;
+import org.springframework.web.bind.annotation.CrossOrigin;
 
+import java.util.Date;
+import java.util.stream.Stream;
+
+@CrossOrigin(origins = "http://localhost:4200")
 @SpringBootApplication
 public class DemoApplication {
 
 	public static void main(String[] args) {
 		SpringApplication.run(DemoApplication.class, args);
 	}
+
 	@Bean
 	ApplicationRunner init(MemberHotelRepository memberHotelRepository, RoomStatusRepository roomStatusRepository,
 			HotelRepository hotelRepository, PromotionRepository promotionRepository, ItemRepository itemRepository,
@@ -33,7 +43,6 @@ public class DemoApplication {
 				rst.setRoomStatusName(roomstatus);
 				roomStatusRepository.save(rst);
 			});
-			
 
 			// Create Provinces
 			Stream.of("กรุงเทพมหานคร", "กระบี่", "กาญจนบุรี", "กาฬสินธุ์", "กำแพงเพชร", "ขอนแก่น", "จันทบุรี",
@@ -265,6 +274,7 @@ public class DemoApplication {
 							li.setPriceFood(50L);
 							listRepository.save(li);
 						}
+
 					});
 
 				}
@@ -543,5 +553,3 @@ public class DemoApplication {
 		};
 	}
 }
-
-
