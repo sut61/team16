@@ -35,6 +35,8 @@ import { ViewReviewService } from './shared/view-review.service';
 import { UpdateFoodStatusComponent } from './update-food-status/update-food-status.component';
 import { HomeComponent } from './home/home.component';
 
+
+
 const appRoutes: Routes = [
   {path:'' , component:HomeComponent},
   {path: 'addroom/:inputUserName', component: AddRoomComponent},
