@@ -34,13 +34,18 @@ import { ReviewService } from './shared/review.service';
 import { ViewReviewService } from './shared/view-review.service';
 import { UpdateFoodStatusComponent } from './update-food-status/update-food-status.component';
 import { HomeComponent } from './home/home.component';
+import { AddMeetingEventRoomComponent, DialogOverviewExampleDialog } from './add-meeting-event-room/add-meeting-event-room.component';
+import { MeetingRoomStatusComponent } from './meeting-room-status/meeting-room-status.component';
+import { MeetingRoomService } from './shared/meeting-room.service';
 
 
 
 const appRoutes: Routes = [
   {path:'' , component:HomeComponent},
   {path: 'addroom/:inputUserName', component: AddRoomComponent},
+  {path: 'addmeetingroom/:inputUserName', component: AddMeetingEventRoomComponent},
   {path: 'roomstatus/:inputUserName', component: RoomStatusComponent},
+  {path: 'meetingroomstatus/:inputUserName', component: MeetingRoomStatusComponent},
   {path: 'foodorder/:inputUserName',component: FoodOrderComponent},
   {path: 'memberhotel/login',component: MemberLoginComponent},
   {path: 'result', component: ResultComponent},
@@ -70,7 +75,10 @@ const appRoutes: Routes = [
     ReviewComponent,
     ViewReviewComponent,
     UpdateFoodStatusComponent,
-    HomeComponent
+    HomeComponent,
+    AddMeetingEventRoomComponent,
+    MeetingRoomStatusComponent,
+    DialogOverviewExampleDialog
   ],
   imports: [
     BrowserModule,
@@ -94,8 +102,8 @@ const appRoutes: Routes = [
     MatDialogModule,
     RouterModule.forRoot(appRoutes)
   ],
-  entryComponents: [],
-  providers: [RoomService,FoodOrderService,ReservationRoomService,PromotionService,CustomerService,ReviewService,ViewReviewService],
+  entryComponents: [DialogOverviewExampleDialog],
+  providers: [RoomService,FoodOrderService,ReservationRoomService,PromotionService,CustomerService,ReviewService,ViewReviewService,MeetingRoomService],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

@@ -44,8 +44,6 @@ export class RoomStatusComponent implements OnInit {
     hotelName: '',
   }
 
-
-
   constructor(private roomService: RoomService, private httpClient: HttpClient, private route: ActivatedRoute, private router: Router) {
     this.select.inputMemberUserName = this.route.snapshot.paramMap.get('inputUserName');
   }
@@ -103,7 +101,7 @@ export class RoomStatusComponent implements OnInit {
       this.select.roomStatusInput = this.select.selectedRoomStatus;
     if (!this.select.roomTypeInput)
       this.select.roomTypeInput = this.select.selectedRoomType;
-    if (!Number.isInteger(Number(this.select.roomNumberInput)) || !Number.isInteger(Number(this.select.roomPriceInput))) {
+    if (!Number.isInteger(Number(this.select.roomPriceInput))) {
       alert('Please check room number or room number');
       this.select.selectedRoomPrice = '';
       this.select.selectedRoomNumber = '';
@@ -121,16 +119,22 @@ export class RoomStatusComponent implements OnInit {
             this.refresh(this.select.inputMemberUserName);
             alert('Cannot update room status, room number ' + this.select.roomNumberInput + ' maybe already exit!');
           }
-
         },
         error => {
           alert('Please choose room in table');
         }
       )
+      this.select.selectedHotel = '';
+      this.select.selectedRoomNumber = '';
+      this.select.selectedRoomPrice = '';
+      this.select.selectedRoomType = '';
+      this.select.selectedRoomStatus = '';
+      this.select.roomNumberInput = '';
     }
   }
+  
   addMeetingEventRoom() {
-    this.router.navigate(['/addmeetingeventroom', this.select.inputMemberUserName]);
+    this.router.navigate(['/addmeetingroom', this.select.inputMemberUserName]);
   }
   UpdateMeetingRoomStatus() {
     this.router.navigate(['/meetingroomstatus', this.select.inputMemberUserName]);
