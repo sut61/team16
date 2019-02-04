@@ -3,6 +3,7 @@ package sut.se.g16.Entity;
 
 import lombok.*;
 import javax.persistence.*;
+import javax.validation.constraints.NotNull;
 
 import org.hibernate.validator.constraints.UniqueElements;
 
@@ -15,9 +16,9 @@ public class MemberHotelEntity {
     @SequenceGenerator(name="memberHotel_seq",sequenceName="memberHotel_seq")
     @GeneratedValue(strategy=GenerationType.SEQUENCE, generator="memberHotel_seq")
     @Column(name="memberHotelId",unique = true, nullable = false)
-    private @NonNull Long memberHotelId;
-    private @NonNull String  memberHotelName;
-    private @NonNull Long  memberHotelPassword;
+    private @NotNull Long memberHotelId;
+    private @NotNull String  memberHotelName;
+    private @NotNull Long  memberHotelPassword;
 
     public void setMemberHotelName(String memberHotelName){
         this.memberHotelName = memberHotelName;

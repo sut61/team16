@@ -1,5 +1,8 @@
 package sut.se.g16.Entity;
+
 import javax.persistence.*;
+import javax.validation.constraints.NotNull;
+
 import lombok.*;
 
 @Entity
@@ -12,20 +15,20 @@ public class HotelEntity {
     @SequenceGenerator(name="hotel_seq",sequenceName="hotel_seq")
     @GeneratedValue(strategy=GenerationType.SEQUENCE, generator="hotel_seq")
     @Column(name="hotelId",unique = true, nullable = false)
-    private @NonNull Long hotelId;
-    private @NonNull String hotelNameEng;
-    private int villageNo;
+    private @NotNull Long hotelId;
+    private @NotNull String hotelNameEng;
+    private @NotNull int villageNo;
     private @NonNull String houseNo;
-    private String building ;
-    private String village;
-    private String alleyLane;
-    private String road;
-    private @NonNull String subDistrictSubArea;
-    private @NonNull String districtArea;
-    private @NonNull int postCode;
-    private @NonNull String mobilePhone;
-    private @NonNull String phone;
-    private @NonNull String fax;
+    private @NotNull String building ;
+    private @NotNull String village;
+    private @NotNull String alleyLane;
+    private @NotNull String road;
+    private @NotNull String subDistrictSubArea;
+    private @NotNull String districtArea;
+    private @NotNull int postCode;
+    private @NotNull String mobilePhone;
+    private @NotNull String phone;
+    private @NotNull String fax;
 
     //Many To One with ProvinceEntity
     @ManyToOne(fetch = FetchType.EAGER, targetEntity = ProvinceEntity.class)

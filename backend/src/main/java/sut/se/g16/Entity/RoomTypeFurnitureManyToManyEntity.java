@@ -4,6 +4,7 @@ import lombok.Data;
 import lombok.NoArgsConstructor;
 
 import javax.persistence.*;
+import javax.validation.constraints.NotNull;
 
 @Entity
 @Data
@@ -14,7 +15,7 @@ public class RoomTypeFurnitureManyToManyEntity {
     @SequenceGenerator(name="roomtypeFurniture_seq",sequenceName="roomtypeFurniture_seq")               
     @GeneratedValue(strategy=GenerationType.SEQUENCE, generator="roomtypeFurniture_seq")  
     @Column(name="roomTypeFurnitureId",unique = true, nullable = false)
-    private long roomTypeFurnitureId;
+    private @NotNull long roomTypeFurnitureId;
 
     //Many To One With RoomTypeEntity
     @ManyToOne(fetch = FetchType.EAGER, targetEntity = RoomTypeEntity.class)
