@@ -5,6 +5,7 @@ import lombok.NoArgsConstructor;
 import lombok.NonNull;
 
 import javax.persistence.*;
+import javax.validation.constraints.NotNull;
 
 @Entity
 @Data
@@ -17,7 +18,7 @@ public class FurnitureEntity {
     @Column(name="furnitureId",unique = true, nullable = false)
     
     private Long furnitureId;
-    private @NonNull String furnitureName;
+    private @NotNull String furnitureName;
 
     public Long getFurnitureId() {
         return furnitureId;

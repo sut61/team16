@@ -1,6 +1,10 @@
 package sut.se.g16.Entity;
 
 import javax.persistence.*;
+import javax.validation.constraints.NotNull;
+import javax.validation.constraints.Pattern;
+import javax.validation.constraints.Size;
+
 import lombok.*;
 
 @Entity
@@ -15,10 +19,13 @@ public class RoomEntity {
     @SequenceGenerator(name="room_seq",sequenceName="room_seq")
     @GeneratedValue(strategy=GenerationType.SEQUENCE, generator="room_seq")
     @Column(name="roomId",unique = true, nullable = false)
-    private @NonNull Long roomId;
-    private @NonNull int roomNumber;
-    private @NonNull int roomPrice;
+    private @NotNull Long roomId;
 
+    @Size(min = 4, max = 6)
+    @Pattern (regexp = "^[A-Za-z]\\d+")
+    private @NotNull String roomNumber;
+
+    private @NotNull int roomPrice;
 
     //Many To One with HotelEntity
     @ManyToOne(fetch = FetchType.EAGER, targetEntity = HotelEntity.class)
@@ -64,11 +71,11 @@ public class RoomEntity {
         this.roomId = roomId;
     }
 
-    public int getRoomNumber() {
+    public String getRoomNumber() {
         return roomNumber;
     }
 
-    public void setRoomNumber(int roomNumber) {
+    public void setRoomNumber(String roomNumber) {
         this.roomNumber = roomNumber;
     }
 

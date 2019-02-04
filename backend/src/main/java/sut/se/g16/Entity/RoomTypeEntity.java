@@ -1,6 +1,8 @@
 package sut.se.g16.Entity;
 
 import javax.persistence.*;
+import javax.validation.constraints.NotNull;
+
 import lombok.*;
 
 @Entity
@@ -15,11 +17,11 @@ public class RoomTypeEntity {
     @SequenceGenerator(name="roomtype_seq",sequenceName="roomtype_seq")
     @GeneratedValue(strategy=GenerationType.SEQUENCE, generator="roomtype_seq")
     @Column(name="roomTypeId",unique = true, nullable = false)
-    private @NonNull Long roomTypeId;
-    private @NonNull String roomTypeName;
-    private @NonNull String bedType;
-    private @NonNull int numberOfBed;
-    private @NonNull int maxPeople;
+    private @NotNull Long roomTypeId;
+    private @NotNull String roomTypeName;
+    private @NotNull String bedType;
+    private @NotNull int numberOfBed;
+    private @NotNull int maxPeople;
 
     public Long getRoomTypeId() {
         return roomTypeId;
