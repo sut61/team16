@@ -15,10 +15,10 @@ import java.util.Collection;
 @CrossOrigin(origins = "http://localhost:4200")
 public interface RoomRepository extends JpaRepository<RoomEntity, Long> {
     @Query("SELECT t.roomNumber FROM RoomEntity t WHERE t.roomNumber = :Name")
-    Integer findByRoomNumber(@Param("Name")int Name);
+    Integer findByRoomNumber(@Param("Name")String Name);
 
     @Query("SELECT t.newHotelEntity.hotelId FROM RoomEntity t WHERE t.newHotelEntity.hotelId = :id and t.roomNumber = :roomNumber")
-    Long findHotelIdFromHotelIdAndRoomNumber(@Param("id")Long id,@Param("roomNumber")int roomNumber);
+    Long findHotelIdFromHotelIdAndRoomNumber(@Param("id")Long id,@Param("roomNumber")String roomNumber);
 
     @Query("SELECT t FROM RoomEntity t WHERE t.newHotelEntity.hotelId = :hotelId and t.newRoomTypeEntity.roomTypeId = :roomTypeId and t.newRoomStatusEntity.roomStatusId = :roomStatusId")
     Collection<RoomEntity> findRoomByHotelIdRoomTypeId(@Param("hotelId")long hotelId,@Param("roomTypeId")long roomTypeId,@Param("roomStatusId")long roomStatusId);
@@ -27,10 +27,10 @@ public interface RoomRepository extends JpaRepository<RoomEntity, Long> {
     int findRoomPriceById(@Param("Name")long Name);
 
     @Query("SELECT t.roomNumber FROM RoomEntity t WHERE t.roomId = :id")
-    int findRoomNumberById(@Param("id")long id);
+    String findRoomNumberById(@Param("id")long id);
 
-    @Query("SELECT t.roomId FROM RoomEntity t WHERE t.roomNumber = :roomnumber AND t.newHotelEntity.hotelId = :hotelId")
-    Long findRoomIdByHotelIdAndRoomNumber(@Param("roomnumber")int roomnumber,@Param("hotelId") Long hotelId);
+    @Query("SELECT t.roomId FROM RoomEntity t WHERE t.roomNumber = :roomnumber and t.newHotelEntity.hotelId = :hotelId")
+    Long findRoomIdByHotelIdAndRoomNumber(@Param("roomnumber")String roomnumber,@Param("hotelId") Long hotelId);
 
     @Query("SELECT t FROM RoomEntity t WHERE t.roomId = :Name")
     RoomEntity findRoomByRoomId(@Param("Name")Long Name);
