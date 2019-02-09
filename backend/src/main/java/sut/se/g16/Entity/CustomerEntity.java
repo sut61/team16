@@ -1,7 +1,10 @@
 package sut.se.g16.Entity;
 
 import javax.persistence.*;
+import javax.validation.constraints.Email;
 import javax.validation.constraints.NotNull;
+import javax.validation.constraints.Pattern;
+import javax.validation.constraints.Positive;
 
 import com.fasterxml.jackson.annotation.JsonIgnore;
 import lombok.*;
@@ -18,25 +21,42 @@ public class CustomerEntity {
     @SequenceGenerator(name="customerSeq",sequenceName="customerSeq")
     @GeneratedValue(strategy=GenerationType.SEQUENCE, generator="customerSeq")
     @Column(name="customerId",unique = true, nullable = false)
-    private @NotNull Long customerId;
-    private @NotNull String customerName;
-    private @NotNull Long customerIdcrad;
-    private @NotNull String customerAddress;
-    private @NotNull String customerEmail;
-    private @NotNull String customerPhone;
-    private @NotNull String customerUsername;
-    private @NotNull String customerPassword;
 
+    private @NonNull Long customerId;
+    @NotNull
+    private String customerName;
+    @NotNull
+    @Positive
+    private Long customerIdcrad;
+    @NotNull
+    private String customerAddress;
+    @NotNull
+    @Email
+    private String customerEmail;
+    @NotNull
+    @Pattern(regexp = "^[0][689]([0-9]{8})")
+    private String customerPhone;
+    @NotNull
+    @Pattern(regexp = "^([A-z*0-9]{4,20})")
+    @Column(unique = true)
+    private String customerUsername;
+    @NotNull
+    @Pattern(regexp = "^([A-z*0-9]{8,15})")
+    private String customerPassword;
+
+    @NotNull
     @ManyToOne(fetch = FetchType.EAGER, targetEntity = TitleNameEntity.class)
     @JoinColumn(name = "titlenameId")
     @JsonIgnore
     private TitleNameEntity titleName;
 
+    @NotNull
     @ManyToOne(fetch = FetchType.EAGER, targetEntity = SexEntity.class)
     @JoinColumn(name = "sexId")
     @JsonIgnore
     private SexEntity sex;
 
+    @NotNull
     @ManyToOne(fetch = FetchType.EAGER, targetEntity = NationalityEntity.class)
     @JoinColumn(name = "nationalitycodeId")
     @JsonIgnore

@@ -21,8 +21,10 @@ public class NationalityEntity {
     @SequenceGenerator(name="nationalitySeq",sequenceName="nationalitySeq")
     @GeneratedValue(strategy=GenerationType.SEQUENCE, generator="nationalitySeq")
     @Column(name="nationalityId",unique = true, nullable = false)
-    private @NotNull Long nationalityId;
-    private @NotNull String nationalityName;
+
+    private @NonNull Long nationalityId;
+    @NotNull
+    private String nationalityName;
 
     public Long getNationalityId() {
         return nationalityId;

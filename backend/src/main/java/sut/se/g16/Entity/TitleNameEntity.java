@@ -21,8 +21,10 @@ public class TitleNameEntity {
     @SequenceGenerator(name="titlenameSeq",sequenceName="titlenameSeq")
     @GeneratedValue(strategy=GenerationType.SEQUENCE, generator="titlenameSeq")
     @Column(name="titlenameId",unique = true, nullable = false)
-    private @NotNull Long titlenameId;
-    private @NotNull String titlenameType;
+    
+    private @NonNull Long titlenameId;
+    @NotNull
+    private String titlenameType;
 
     public Long getTitlenameId() {
         return titlenameId;
