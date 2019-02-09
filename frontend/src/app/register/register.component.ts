@@ -72,14 +72,15 @@ export class RegisterComponent implements OnInit {
           + '/' + this.views.phoneInput + '/' + this.views.userInput + '/' + this.views.passwordInput, this.views )
                .subscribe(
                    data => {
+                     alert("Register Successfully!!");
                        console.log('POST Request is successful', data);
                    },
                    error => {
+                    alert("Please check the data pattern. Again!!");
                         console.log('Rrror', error);
                   }
 
                );
-        alert("Successfully!!");
         }
         else{
         alert("Please enter a new email.!!");
