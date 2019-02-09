@@ -12,6 +12,8 @@ import org.springframework.web.bind.annotation.CrossOrigin;
 public interface CustomerRepository extends JpaRepository<CustomerEntity, Long> {
     CustomerEntity findBycustomerEmail(String customerEmail);
 
+    CustomerEntity findBycustomerUsername(String customerUsername);
+
     CustomerEntity findByCustomerId(Long customerId);
 
     @Query("SELECT t FROM CustomerEntity t WHERE t.customerUsername = :name")
