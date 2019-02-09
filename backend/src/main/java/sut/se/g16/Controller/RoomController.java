@@ -34,7 +34,7 @@ public class RoomController {
 
     @GetMapping("/room/{roomType}/{roomstatus}/{number}/{price}/{memberUserName}")
     public Boolean update(@PathVariable String memberUserName, @PathVariable String roomType,
-            @PathVariable String roomstatus, @PathVariable final String number, @PathVariable int price) {
+            @PathVariable String roomstatus, @PathVariable final String number, @PathVariable Long price) {
         if (count != 0) {
             Long mem = memberHotelRepository.findId(memberUserName);
             Long hotelIdFromName = hotelRepository.findHotelIdByMemId(mem);
@@ -83,7 +83,7 @@ public class RoomController {
 
     @GetMapping("/updateroomstatus/{roomId}/{hotel}/{roomType}/{roomstatus}/{number}/{price}")
     public Boolean editRoom(@PathVariable Long roomId, @PathVariable String hotel, @PathVariable String roomType,
-            @PathVariable String roomstatus, @PathVariable final String number, @PathVariable int price) {
+            @PathVariable String roomstatus, @PathVariable final String number, @PathVariable Long price) {
         int checkDoubly = 0;
         RoomEntity room = new RoomEntity();
         HotelEntity ho = hotelRepository.findByName(hotel);

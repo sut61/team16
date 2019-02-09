@@ -3,6 +3,7 @@ package sut.se.g16.Entity;
 import lombok.*;
 import java.util.*;
 import javax.persistence.Id;
+import javax.validation.constraints.NotNull;
 import javax.persistence.*;
 
 import java.time.LocalDate;
@@ -16,11 +17,11 @@ public class PromotionEntity {
     @Id  
     @SequenceGenerator(name="promotionId_seq",sequenceName="promotionId_seq")               
     @GeneratedValue(strategy = GenerationType.SEQUENCE, generator="promotionId_seq") 
-    private @NonNull Long promotionId;
-    private @NonNull String promotionName;
-    private @NonNull Date dateStart;
-    private @NonNull Date dateEnd;
-    private @NonNull String detail;
+    private @NotNull Long promotionId;
+    private @NotNull String promotionName;
+    private @NotNull Date dateStart;
+    private @NotNull Date dateEnd;
+    private @NotNull String detail;
 
     @ManyToOne(fetch = FetchType.EAGER, targetEntity = PromotionTypeEntity.class)
     @JoinColumn(name = "PromotionType_ID", insertable = true)

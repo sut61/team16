@@ -16,6 +16,9 @@ public interface MeetingEventRoomTypeTimeManyToManyRepository extends JpaReposit
     @Query("SELECT t.meetingEventRoomTypeTimeManyToManyId , t.newRoomStatusEntity.roomStatusName FROM MeetingEventRoomTypeTimeManyToManyEntity t WHERE t.newMeetingEventRoomEntity.meetingEventRoomId = :id")
     Collection<MeetingEventRoomTypeTimeManyToManyEntity> findAllByMeetingRoomId(@Param("id")Long id);
 
-    // @Query("SELECT  t FROM MeetingEventRoomTypeTimeManyToManyEntity t WHERE t.meetingEventRoomTypeTimeManyToManyId = (SELECT MAX(t.meetingEventRoomTypeTimeManyToManyId) FROM MeetingEventRoomTypeTimeManyToManyEntity t)")
-    // MeetingEventRoomTypeTimeManyToManyEntity findTest();
+    @Query("SELECT t FROM MeetingEventRoomTypeTimeManyToManyEntity t WHERE t.newMeetingEventRoomEntity.meetingEventRoomId = :id and t.newTypeTimeEntity.typeTimeName = :typeName")
+    MeetingEventRoomTypeTimeManyToManyEntity findByMeetingIdandTypeTime(@Param("id")Long id, @Param("typeName") String typeName);
+
+    
+
 }

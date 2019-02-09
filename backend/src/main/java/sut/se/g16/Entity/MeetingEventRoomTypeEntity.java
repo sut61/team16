@@ -16,6 +16,8 @@ public class MeetingEventRoomTypeEntity {
     @GeneratedValue(strategy=GenerationType.SEQUENCE, generator="meetingeventroomtype_seq")
     @Column(name="meetingEventRoomTypeId",unique = true, nullable = false)
     private @NotNull Long meetingEventRoomTypeId;
+
+    @Column(unique = true)
     private @NotNull String meetingEventRoomTypeName;
 
     public Long getMeetingEventRoomTypeId() {

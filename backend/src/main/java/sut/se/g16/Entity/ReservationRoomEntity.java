@@ -3,6 +3,8 @@ package sut.se.g16.Entity;
 import lombok.*;
 import java.util.*;
 import javax.persistence.*;
+import javax.validation.constraints.NotNull;
+
 import java.time.LocalDate;
 //import sut.se.g16.Entity.*;
 
@@ -14,7 +16,7 @@ public class ReservationRoomEntity {
     @Id
     @SequenceGenerator(name="resevationRoomId_seq",sequenceName="resevationRoomId_seq")               
     @GeneratedValue(strategy = GenerationType.SEQUENCE, generator="resevationRoomId_seq")  
-    private @NonNull Long reservationRoomId;
+    private @NotNull Long reservationRoomId;
 
     @ManyToOne(fetch = FetchType.EAGER )
     @JoinColumn(name= "hotelId")
@@ -35,6 +37,10 @@ public class ReservationRoomEntity {
     @ManyToOne(fetch = FetchType.EAGER )
     @JoinColumn(name= "statusPaymentId")
     private StatusPaymentEntity newStatusPaymentEntity;
+
+    @ManyToOne(fetch = FetchType.EAGER )
+    @JoinColumn(name= "roomId")
+    private RoomEntity newRoomEntity;
 
     private @NonNull Date dateIn;
     private @NonNull Date dateOut;
@@ -164,6 +170,12 @@ public class ReservationRoomEntity {
      */
     public void setTotalPriceReservationRoom(Double totalPriceReservationRoom) {
         this.totalPriceReservationRoom = totalPriceReservationRoom;
+    }
+    public RoomEntity getNewRoomEntity() {
+        return newRoomEntity;
+    }
+    public void setNewRoomEntity(RoomEntity newRoomEntity) {
+        this.newRoomEntity = newRoomEntity;
     }
 
     

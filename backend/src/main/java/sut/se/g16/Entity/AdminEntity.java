@@ -1,8 +1,11 @@
 package sut.se.g16.Entity;
+
 import javax.persistence.Entity;
 import javax.persistence.*;
 import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
+import javax.validation.constraints.NotNull;
+
 import lombok.*;
 
 @Entity  //บอกว่าเป็น class entity class ที่เก็บขอมูล
@@ -14,7 +17,7 @@ public class AdminEntity {
     @SequenceGenerator(name="Admin_seq",sequenceName="Admin_seq")
     @GeneratedValue(strategy = GenerationType.SEQUENCE, generator="Admin_seq")
     @Column(name = "adminID")
-    @Id private @NonNull Long adminID;
+    @Id private @NotNull Long adminID;
     private String adminName;
 
 

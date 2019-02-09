@@ -7,6 +7,7 @@ import lombok.Setter;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 
 import javax.persistence.*;
+import javax.validation.constraints.NotNull;
 @NoArgsConstructor
 @Entity
 @Data
@@ -19,9 +20,9 @@ public class ReviewEntity {
 	@SequenceGenerator(name = "Reviews_seq", sequenceName = "Reviews_seq")
 	@GeneratedValue(strategy = GenerationType.SEQUENCE, generator = "Reviews_seq")
 	@Column(name = "ReviewsId", unique = true, nullable = false)
-	private Long reviewId;
-	private String comment;
-	private float score;
+	private @NotNull Long reviewId;
+	private @NotNull String comment;
+	private @NotNull float score;
 
 	@ManyToOne(fetch = FetchType.EAGER, targetEntity = ReservationRoomEntity.class)
 	public ReservationRoomEntity newReservationRoomEntity;

@@ -16,9 +16,9 @@ public class HotelController{
         this.hotelRepository = hotelRepository;
     }
     @GetMapping("/hotel/{name}/{villageNo}/{houseNo}/{building}/{village}/{alleyLane}/{road}/{subDistrictSubArea}/{districtArea}/{postCode}/{mobilePhone}/{phone}/{fax}/{province}/{memberName}")
-    public HotelEntity newHotel(@PathVariable final String  name,@PathVariable String province,@PathVariable int villageNo
+    public HotelEntity newHotel(@PathVariable final String  name,@PathVariable String province,@PathVariable Long villageNo
     ,@PathVariable String houseNo, @PathVariable String building, @PathVariable String village, @PathVariable String alleyLane,
-    @PathVariable String road, @PathVariable String subDistrictSubArea, @PathVariable String districtArea, @PathVariable int postCode,
+    @PathVariable String road, @PathVariable String subDistrictSubArea, @PathVariable String districtArea, @PathVariable String postCode,
     @PathVariable String mobilePhone, @PathVariable String phone, @PathVariable String fax,@PathVariable String memberName){
         ProvinceEntity p = provinceRepository.findByName(province);
         MemberHotelEntity member = memberHotelRepository.findByName(memberName);

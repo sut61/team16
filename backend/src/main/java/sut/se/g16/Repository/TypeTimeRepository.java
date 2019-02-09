@@ -13,4 +13,7 @@ public interface TypeTimeRepository extends JpaRepository<TypeTimeEntity, Long> 
 
     @Query("SELECT t FROM TypeTimeEntity t WHERE t.typeTimeName = :Name")
     TypeTimeEntity findTypeTimeByName(@Param("Name")String Name);
+
+    @Query("SELECT t.typeTimeId FROM TypeTimeEntity t WHERE t.typeTimeName = :Name")
+    Long findTypeTimeIdByName(@Param("Name")String Name);
 }

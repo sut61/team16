@@ -61,6 +61,7 @@ public class ReservationRoomController{
         ReservationRoomEntity reserRoom = new ReservationRoomEntity();
         reserRoom.setDateIn(d1);
         reserRoom.setDateOut(d1);
+        reserRoom.setNewRoomEntity(room1);
         reserRoom.setTotalPriceReservationRoom(totalPriceReservationRoom);
         HotelEntity h = hotelRepository.findByHotelId(hotel);
         System.out.println(h);
@@ -98,7 +99,7 @@ public class ReservationRoomController{
     //RoomType Controller
 
     @GetMapping("/roomtype/{name}/{bed}/{number}/{people}")
-    public RoomTypeEntity RoomType(@PathVariable String name,@PathVariable String bed,@PathVariable int number,@PathVariable int people) {
+    public RoomTypeEntity RoomType(@PathVariable String name,@PathVariable String bed,@PathVariable Long number,@PathVariable Long people) {
         RoomTypeEntity set = new RoomTypeEntity();
         set.setBedType(bed);
         set.setMaxPeople(people);

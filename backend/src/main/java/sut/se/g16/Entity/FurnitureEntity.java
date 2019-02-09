@@ -16,8 +16,7 @@ public class FurnitureEntity {
     @SequenceGenerator(name="furniture_seq",sequenceName="furniture_seq")               
     @GeneratedValue(strategy=GenerationType.SEQUENCE, generator="furniture_seq")  
     @Column(name="furnitureId",unique = true, nullable = false)
-    
-    private Long furnitureId;
+    private @NotNull Long furnitureId;
     private @NotNull String furnitureName;
 
     public Long getFurnitureId() {

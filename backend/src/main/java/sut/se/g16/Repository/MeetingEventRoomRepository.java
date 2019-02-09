@@ -19,4 +19,15 @@ public interface MeetingEventRoomRepository extends JpaRepository<MeetingEventRo
     @Query("SELECT t.newHotelEntity.hotelId FROM MeetingEventRoomEntity t WHERE t.newHotelEntity.hotelId = :id and t.meetingEventRoomNumber = :roomNumber")
     Long findHotelIdFromHotelIdAndRoomNumber(@Param("id")Long id,@Param("roomNumber")String roomNumber);
     
+    @Query("SELECT t FROM MeetingEventRoomEntity t WHERE t.meetingEventRoomId = :id")
+    MeetingEventRoomEntity findMeetingEventRoomByMeetingEventRoomId(@Param("id")Long id);
+
+    @Query("SELECT t FROM MeetingEventRoomEntity t WHERE t.meetingEventRoomId = :Name")
+    MeetingEventRoomEntity findMeetingEventRoomByMeetingRoomId(@Param("Name")Long Name);
+
+    @Query("SELECT t FROM MeetingEventRoomEntity t WHERE t.meetingEventRoomName = :Name")
+    MeetingEventRoomEntity findMeetingEventRoomByMeetingRoomName(@Param("Name")String Name);
+
+    @Query("SELECT t.meetingEventRoomId FROM MeetingEventRoomEntity t WHERE t.meetingEventRoomName = :Name")
+    Long findMeetingEventRoomIdByMeetingRoomName(@Param("Name")String Name);
 }

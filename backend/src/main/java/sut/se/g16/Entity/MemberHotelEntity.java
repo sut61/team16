@@ -17,6 +17,7 @@ public class MemberHotelEntity {
     @GeneratedValue(strategy=GenerationType.SEQUENCE, generator="memberHotel_seq")
     @Column(name="memberHotelId",unique = true, nullable = false)
     private @NotNull Long memberHotelId;
+    @Column(unique = true)
     private @NotNull String  memberHotelName;
     private @NotNull Long  memberHotelPassword;
 

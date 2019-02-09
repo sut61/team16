@@ -17,9 +17,9 @@ public class MeetingEventRoomEntity {
     @GeneratedValue(strategy=GenerationType.SEQUENCE, generator="meetingeventroom_seq")
     @Column(name="meetingEventRoomId",unique = true, nullable = false)
     private @NotNull Long meetingEventRoomId;
-    private @NotNull int meetingEventRoomPrice;
+    private @NotNull Long meetingEventRoomPrice;
 
-    @Size(min = 6, max = 6)
+    @Size(min = 5, max = 6)
     @Pattern (regexp = "^[A-Za-z]{2}\\d+")
     private @NotNull String meetingEventRoomNumber;
 
@@ -58,11 +58,11 @@ public class MeetingEventRoomEntity {
         this.meetingEventRoomId = meetingEventRoomId;
     }
 
-    public int getMeetingEventRoomPrice() {
+    public Long getMeetingEventRoomPrice() {
         return meetingEventRoomPrice;
     }
 
-    public void setMeetingEventRoomPrice(int meetingEventRoomPrice) {
+    public void setMeetingEventRoomPrice(Long meetingEventRoomPrice) {
         this.meetingEventRoomPrice = meetingEventRoomPrice;
     }
 

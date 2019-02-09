@@ -4,6 +4,8 @@ import lombok.Data;
 import lombok.NonNull;
 
 import javax.persistence.*;
+import javax.validation.constraints.NotNull;
+
 import java.util.ArrayList;
 import java.util.List;
 
@@ -15,8 +17,7 @@ public class PromotionTypeEntity {
     @SequenceGenerator(name = "promotionType_seq", sequenceName = "promotionType_seq")
     @GeneratedValue(strategy = GenerationType.SEQUENCE, generator = "promotionType_seq")
     @Column(name = "promotionTypeId", unique = true, nullable = false)
-    private @NonNull
-    Long promotionTypeId;
+    private @NotNull Long promotionTypeId;
 
     private String promotionTypeName;
 

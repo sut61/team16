@@ -1,6 +1,8 @@
 package sut.se.g16.Entity;
 
-import  javax.persistence.*;
+import javax.persistence.*;
+import javax.validation.constraints.NotNull;
+
 import lombok.*;
 import org.hibernate.annotations.Fetch;
 import org.hibernate.annotations.FetchMode;
@@ -19,8 +21,8 @@ public class FoodPaymentEntity {
     @SequenceGenerator(name="foodPaymentSeq",sequenceName="foodPaymentSeq")
     @GeneratedValue(strategy=GenerationType.SEQUENCE, generator="foodPaymentSeq")
     @Column(name="foodPaymentId",unique = true, nullable = false)
-    private @NonNull Long foodPaymentId;
-    private @NonNull String foodPaymentStatus;
+    private @NotNull Long foodPaymentId;
+    private @NotNull String foodPaymentStatus;
 
 
     ///////////////////////////////////////////////////////////////////////////////////////////////////////////////////////

@@ -19,7 +19,7 @@ public class RoomTypeController {
         this.roomTypeRepository = roomTypeRepository;
     }
     @GetMapping("/roomtype/{rt}/{bedType}/{numberOfBed}/{maxPeople}")
-    public RoomTypeEntity newRoomType(@PathVariable final String  rt,@PathVariable String bedType,@PathVariable int numberOfBed,@PathVariable int maxPeople){
+    public RoomTypeEntity newRoomType(@PathVariable final String  rt,@PathVariable String bedType,@PathVariable Long numberOfBed,@PathVariable Long maxPeople){
         RoomTypeEntity roomType = new RoomTypeEntity();
         roomType.setRoomTypeName(rt);
         roomType.setBedType(bedType);

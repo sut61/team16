@@ -18,10 +18,13 @@ public class RoomTypeEntity {
     @GeneratedValue(strategy=GenerationType.SEQUENCE, generator="roomtype_seq")
     @Column(name="roomTypeId",unique = true, nullable = false)
     private @NotNull Long roomTypeId;
+
+    @Column(unique = true)
     private @NotNull String roomTypeName;
+    
     private @NotNull String bedType;
-    private @NotNull int numberOfBed;
-    private @NotNull int maxPeople;
+    private @NotNull Long numberOfBed;
+    private @NotNull Long maxPeople;
 
     public Long getRoomTypeId() {
         return roomTypeId;
@@ -47,19 +50,19 @@ public class RoomTypeEntity {
         this.bedType = bedType;
     }
 
-    public int getNumberOfBed() {
+    public Long getNumberOfBed() {
         return numberOfBed;
     }
 
-    public void setNumberOfBed(int numberOfBed) {
+    public void setNumberOfBed(Long numberOfBed) {
         this.numberOfBed = numberOfBed;
     }
 
-    public int getMaxPeople() {
+    public Long getMaxPeople() {
         return maxPeople;
     }
 
-    public void setMaxPeople(int maxPeople) {
+    public void setMaxPeople(Long maxPeople) {
         this.maxPeople = maxPeople;
     }
 }

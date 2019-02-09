@@ -46,7 +46,7 @@ public class MeetingEventRoomController {
     @GetMapping("/meetingeventroom/{name}/{meetingRoomType}/{morning}/{afternoon}/{evening}/{number}/{price}/{memberUserName}")
     public Boolean addMeetingEventRoom(@PathVariable String name, @PathVariable String meetingRoomType,
             @PathVariable String morning, @PathVariable String afternoon, @PathVariable String evening,
-            @PathVariable String number, @PathVariable int price, @PathVariable String memberUserName) {
+            @PathVariable String number, @PathVariable Long price, @PathVariable String memberUserName) {
         if (count != 0) {
             Long mem = memberHotelRepository.findId(memberUserName);
             System.out.print(mem);
@@ -112,7 +112,7 @@ public class MeetingEventRoomController {
     @GetMapping("/updatemeetingeventroomstatus/{id}/{name}/{meetingRoomType}/{morning}/{afternoon}/{evening}/{number}/{price}/{memberUserName}/{id1}/{id2}/{id3}")
     public Boolean updateMeetingRoom(@PathVariable Long id, @PathVariable String name, @PathVariable String meetingRoomType,
     @PathVariable String morning, @PathVariable String afternoon, @PathVariable String evening,
-    @PathVariable String number, @PathVariable int price, @PathVariable String memberUserName,
+    @PathVariable String number, @PathVariable Long price, @PathVariable String memberUserName,
     @PathVariable Long id1, @PathVariable Long id2, @PathVariable Long id3) {
 
         System.out.println("Update");
@@ -221,4 +221,6 @@ public class MeetingEventRoomController {
     public Collection<TypeTimeEntity> typetime() {
         return typeTimeRepository.findAll().stream().collect(Collectors.toList());
     }
+
+
 }

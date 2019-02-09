@@ -1,5 +1,7 @@
 package sut.se.g16.Entity;
-import  javax.persistence.*;
+
+import javax.persistence.*;
+import javax.validation.constraints.NotNull;
 
 import com.fasterxml.jackson.annotation.JsonIgnore;
 import lombok.*;
@@ -16,14 +18,14 @@ public class CustomerEntity {
     @SequenceGenerator(name="customerSeq",sequenceName="customerSeq")
     @GeneratedValue(strategy=GenerationType.SEQUENCE, generator="customerSeq")
     @Column(name="customerId",unique = true, nullable = false)
-    private @NonNull Long customerId;
-    private @NonNull String customerName;
-    private @NonNull Long customerIdcrad;
-    private @NonNull String customerAddress;
-    private @NonNull String customerEmail;
-    private @NonNull String customerPhone;
-    private @NonNull String customerUsername;
-    private @NonNull String customerPassword;
+    private @NotNull Long customerId;
+    private @NotNull String customerName;
+    private @NotNull Long customerIdcrad;
+    private @NotNull String customerAddress;
+    private @NotNull String customerEmail;
+    private @NotNull String customerPhone;
+    private @NotNull String customerUsername;
+    private @NotNull String customerPassword;
 
     @ManyToOne(fetch = FetchType.EAGER, targetEntity = TitleNameEntity.class)
     @JoinColumn(name = "titlenameId")

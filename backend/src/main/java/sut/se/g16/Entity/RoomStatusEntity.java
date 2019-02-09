@@ -17,6 +17,8 @@ public class RoomStatusEntity {
     @GeneratedValue(strategy=GenerationType.SEQUENCE, generator="roomstatus_seq")
     @Column(name="roomStatusId",unique = true, nullable = false)
     private @NotNull Long roomStatusId;
+
+    @Column (unique = true)
     private @NotNull String roomStatusName;
 
     public Long getRoomStatusId() {

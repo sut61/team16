@@ -10,7 +10,12 @@ import sut.se.g16.Entity.MeetingEventRoomTypeEntity;
 @CrossOrigin(origins = "http://localhost:4200")
 @RepositoryRestResource
 public interface MeetingEventRoomTypeRepository extends JpaRepository<MeetingEventRoomTypeEntity, Long> {
-    
     @Query("SELECT t FROM MeetingEventRoomTypeEntity t WHERE t.meetingEventRoomTypeName = :meetingRoomType")
     MeetingEventRoomTypeEntity findMeetingEventRoomTypeByName(@Param("meetingRoomType")String meetingRoomType);
+
+    @Query("SELECT t FROM MeetingEventRoomTypeEntity t WHERE t.meetingEventRoomTypeId = :Name")
+    MeetingEventRoomTypeEntity findMeetingEventRoomTypeByMeetingEventRoomTypeId(@Param("Name")Long Name);
+
+    @Query("SELECT t FROM MeetingEventRoomTypeEntity t WHERE t.meetingEventRoomTypeName = :Name")
+    MeetingEventRoomTypeEntity findMeetingEventRoomTypeByMeetingEventRoomTypeName(@Param("Name")String Name);
 }

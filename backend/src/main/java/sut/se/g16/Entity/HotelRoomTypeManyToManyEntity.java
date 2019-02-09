@@ -3,6 +3,8 @@ package sut.se.g16.Entity;
 import lombok.*;
 import java.util.*;
 import javax.persistence.*;
+import javax.validation.constraints.NotNull;
+
 import java.time.LocalDate;
 //import sut.se.g16.Entity.*;
 
@@ -14,11 +16,11 @@ public class HotelRoomTypeManyToManyEntity {
     @SequenceGenerator(name = "hotelRoomType_seq", sequenceName = "hotelRoomType_seq")
     @GeneratedValue(strategy = GenerationType.SEQUENCE, generator = "hotelRoomType_seq")
     @Column(name = "hotelRoomTypeId", unique = true, nullable = false)
-    private @NonNull Long hotelRoomTypeId;
+    private @NotNull Long hotelRoomTypeId;
 
     // Many To One With ItemEntity
     @ManyToOne(fetch = FetchType.EAGER, targetEntity = RoomTypeEntity.class)
-    @JoinColumn(name = " roomtypeId")
+    @JoinColumn(name = " roomTypeId")
     private RoomTypeEntity newRoomTypeEntity;
 
     // Many To One With HotelEntity

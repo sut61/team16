@@ -16,7 +16,7 @@ public class ProvinceEntity {
     @SequenceGenerator(name="province_seq",sequenceName="province_seq")
     @GeneratedValue(strategy=GenerationType.SEQUENCE, generator="province_seq")
     @Column(name="provinceId",unique = true, nullable = false)
-    private Long provinceId;
+    private @NotNull Long provinceId;
     private @NotNull String provinceName;
     
     public Long getProvinceId(){

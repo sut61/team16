@@ -176,7 +176,7 @@ public class FoodOrderController {
     }
 
     @GetMapping(path = "/foodorder/{hotel}/{room}/{list}/{customer}/{amount}")
-    public Boolean newFoodOrder(@PathVariable String hotel, @PathVariable int room, @PathVariable String list, @PathVariable String customer,@PathVariable int amount) {
+    public Boolean newFoodOrder(@PathVariable String hotel, @PathVariable String room, @PathVariable String list, @PathVariable String customer,@PathVariable int amount) {
         CustomerEntity cus = customerRepository.findByUser(customer);
         HotelEntity ho = hotelRepository.findByName(hotel);
         ListEntity li = listRepository.findListByName(list);

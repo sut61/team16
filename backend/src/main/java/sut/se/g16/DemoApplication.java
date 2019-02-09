@@ -73,32 +73,32 @@ public class DemoApplication {
                     RoomTypeEntity rt = new RoomTypeEntity();
                     rt.setRoomTypeName(roomType);
                     rt.setBedType("Single");
-                    rt.setNumberOfBed(1);
-                    rt.setMaxPeople(2);
+                    rt.setNumberOfBed(1L);
+                    rt.setMaxPeople(2L);
                     roomTypeRepository.save(rt);
                 }
                 if (roomType == "Suite") {
                     RoomTypeEntity rt = new RoomTypeEntity();
                     rt.setRoomTypeName(roomType);
                     rt.setBedType("Twice");
-                    rt.setNumberOfBed(1);
-                    rt.setMaxPeople(3);
+                    rt.setNumberOfBed(1L);
+                    rt.setMaxPeople(3L);
                     roomTypeRepository.save(rt);
                 }
                 if (roomType == "Deluxe") {
                     RoomTypeEntity rt = new RoomTypeEntity();
                     rt.setRoomTypeName(roomType);
                     rt.setBedType("Twice");
-                    rt.setNumberOfBed(1);
-                    rt.setMaxPeople(3);
+                    rt.setNumberOfBed(1L);
+                    rt.setMaxPeople(3L);
                     roomTypeRepository.save(rt);
                 }
                 if (roomType == "Superior") {
                     RoomTypeEntity rt = new RoomTypeEntity();
                     rt.setRoomTypeName(roomType);
                     rt.setBedType("Twice");
-                    rt.setNumberOfBed(2);
-                    rt.setMaxPeople(6);
+                    rt.setNumberOfBed(2L);
+                    rt.setMaxPeople(6L);
                     roomTypeRepository.save(rt);
                 }
             });
@@ -139,12 +139,12 @@ public class DemoApplication {
             hotels.setNewProvinceEntity(p);
             hotels.setHouseNo("403");
             hotels.setNewMemberHotelEntity(m);
-            hotels.setPhone("0862505906");
+            hotels.setPhone("022250590");
             hotels.setVillage("เจริญรอด");
             hotels.setRoad("แจ้งวัฒนะ");
             hotels.setSubDistrictSubArea("ในเมือง");
-            hotels.setVillageNo(20);
-            hotels.setPostCode(30110);
+            hotels.setVillageNo(20L);
+            hotels.setPostCode("30110");
             hotels.setMobilePhone("0903768901");
             hotelRepository.save(hotels);
 
@@ -157,12 +157,12 @@ public class DemoApplication {
             hotel.setNewProvinceEntity(p);
             hotel.setHouseNo("403");
             hotel.setNewMemberHotelEntity(m2);
-            hotel.setPhone("0862505906");
+            hotel.setPhone("022250590");
             hotel.setVillage("เจริญรอด");
             hotel.setRoad("แจ้งวัฒนะ");
             hotel.setSubDistrictSubArea("ในเมือง");
-            hotel.setVillageNo(20);
-            hotel.setPostCode(30110);
+            hotel.setVillageNo(20L);
+            hotel.setPostCode("30110");
             hotel.setMobilePhone("0903768901");
             hotelRepository.save(hotel);
 
@@ -527,7 +527,7 @@ public class DemoApplication {
             promotionTypeRepository.save(teqi3);
 
             // Create TypeTime
-            Stream.of("Morning", "Afternoon", "Evening").forEach(typeTime -> {
+            Stream.of("Morning", "Afternoon", "Evening", "Morning-Afternoon","Morning-Evenning","Afternoon-Evening").forEach(typeTime -> {
                 TypeTimeEntity tt = new TypeTimeEntity();
                 tt.setTypeTimeName(typeTime);
                 typeTimeRepository.save(tt);
@@ -541,6 +541,32 @@ public class DemoApplication {
                 meetingEventRoomTypeRepository.save(mert);
 
             });
+
+            // Stream.of("ชุดโต๊ะประชุม","เก้าอี้","เวที").forEach(function -> {
+            //     FunctionEntity func = new FunctionEntity();
+            //     func.setFunctonName(function);
+            //     functionRepository.save(func);
+            // });
+
+            //SP2 Reservation MeetingRoom
+            // Create Hotel RoomType Many
+
+            // Stream.of("ประชุม", "สัมมนา", "จัดงานเลี้ยง").forEach(DD -> {
+            //     MeetingEventRoomTypeEntity mrt = meetingEventRoomTypeRepository.findMeetingEventRoomTypeByName(DD);
+            //     HotelEntity phimainin = hotelRepository.findByhotelNameEng("PhimaiIn");
+            //     HotelMeetingEventRoomTypeManyToManyEntity s = new HotelMeetingEventRoomTypeManyToManyEntity();
+            //     s.setNewHotelEntity(phimainin);
+            //     s.setNewMeetingEventRoomTypeEntity(mrt);
+            //     hotelMeetingEventRoomTypeManyToManyRepository.save(s);
+            // });
+            // Stream.of("ประชุม", "สัมมนา").forEach(meetingRoomType -> {
+            //     MeetingEventRoomTypeEntity mrt = meetingEventRoomTypeRepository.findMeetingEventRoomTypeByName(meetingRoomType);
+            //     HotelEntity Amathara = hotelRepository.findByhotelNameEng("Amathara");
+            //     HotelMeetingEventRoomTypeManyToManyEntity s = new HotelMeetingEventRoomTypeManyToManyEntity();
+            //     s.setNewHotelEntity(Amathara);
+            //     s.setNewMeetingEventRoomTypeEntity(mrt);
+            //     hotelMeetingEventRoomTypeManyToManyRepository.save(s);
+            // });
         };
 
     }

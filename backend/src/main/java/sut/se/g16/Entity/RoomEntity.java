@@ -25,7 +25,7 @@ public class RoomEntity {
     @Pattern (regexp = "^[A-Za-z]\\d+")
     private @NotNull String roomNumber;
 
-    private @NotNull int roomPrice;
+    private @NotNull Long roomPrice;
 
     //Many To One with HotelEntity
     @ManyToOne(fetch = FetchType.EAGER, targetEntity = HotelEntity.class)
@@ -79,11 +79,11 @@ public class RoomEntity {
         this.roomNumber = roomNumber;
     }
 
-    public int getRoomPrice() {
+    public Long getRoomPrice() {
         return roomPrice;
     }
 
-    public void setRoomPrice(int roomPrice) {
+    public void setRoomPrice(Long roomPrice) {
         this.roomPrice = roomPrice;
     }
 

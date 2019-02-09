@@ -2,6 +2,8 @@ package sut.se.g16.Entity;
 
 import javax.persistence.*;
 import javax.validation.constraints.NotNull;
+import javax.validation.constraints.Pattern;
+import javax.validation.constraints.Size;
 
 import lombok.*;
 
@@ -16,18 +18,30 @@ public class HotelEntity {
     @GeneratedValue(strategy=GenerationType.SEQUENCE, generator="hotel_seq")
     @Column(name="hotelId",unique = true, nullable = false)
     private @NotNull Long hotelId;
+    @Column (unique = true)
     private @NotNull String hotelNameEng;
-    private @NotNull int villageNo;
-    private @NonNull String houseNo;
+    private @NotNull Long villageNo;
+    private @NotNull String houseNo;
     private @NotNull String building ;
     private @NotNull String village;
     private @NotNull String alleyLane;
     private @NotNull String road;
     private @NotNull String subDistrictSubArea;
     private @NotNull String districtArea;
-    private @NotNull int postCode;
+    @Size(min = 5, max = 5)
+    @Pattern (regexp = "[1-9][0-9]+")
+    private @NotNull String postCode;
+
+    @Size(min = 10, max = 10)
+    @Pattern (regexp = "[0][0-9]+")
     private @NotNull String mobilePhone;
+
+    @Size(min = 9, max = 9)
+    @Pattern (regexp = "[0][0-9]+")
     private @NotNull String phone;
+
+    @Size(min = 9, max = 9)
+    @Pattern (regexp = "[0][0-9]+")
     private @NotNull String fax;
 
     //Many To One with ProvinceEntity
@@ -71,11 +85,11 @@ public class HotelEntity {
         this.hotelNameEng = hotelNameEng;
     }
 
-    public int getVillageNo() {
+    public Long getVillageNo() {
         return villageNo;
     }
 
-    public void setVillageNo(int villageNo) {
+    public void setVillageNo(Long villageNo) {
         this.villageNo = villageNo;
     }
 
@@ -135,11 +149,11 @@ public class HotelEntity {
         this.districtArea = districtArea;
     }
 
-    public int getPostCode() {
+    public String getPostCode() {
         return postCode;
     }
 
-    public void setPostCode(int postCode) {
+    public void setPostCode(String postCode) {
         this.postCode = postCode;
     }
 

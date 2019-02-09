@@ -1,6 +1,8 @@
 package sut.se.g16.Entity;
 
-import  javax.persistence.*;
+import javax.persistence.*;
+import javax.validation.constraints.NotNull;
+
 import lombok.*;
 import org.hibernate.annotations.Fetch;
 import org.hibernate.annotations.FetchMode;
@@ -19,8 +21,8 @@ public class SexEntity {
     @SequenceGenerator(name="sexSeq",sequenceName="sexSeq")
     @GeneratedValue(strategy=GenerationType.SEQUENCE, generator="sexSeq")
     @Column(name="sexId",unique = true, nullable = false)
-    private @NonNull Long sexId;
-    private @NonNull String sexType;
+    private @NotNull Long sexId;
+    private @NotNull String sexType;
 
     public Long getSexId() {
         return sexId;
