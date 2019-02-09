@@ -21,8 +21,10 @@ public class SexEntity {
     @SequenceGenerator(name="sexSeq",sequenceName="sexSeq")
     @GeneratedValue(strategy=GenerationType.SEQUENCE, generator="sexSeq")
     @Column(name="sexId",unique = true, nullable = false)
-    private @NotNull Long sexId;
-    private @NotNull String sexType;
+
+    private @NonNull Long sexId;
+    @NotNull
+    private String sexType;
 
     public Long getSexId() {
         return sexId;
