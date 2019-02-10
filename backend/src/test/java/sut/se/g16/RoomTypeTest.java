@@ -34,10 +34,10 @@ import org.springframework.boot.test.autoconfigure.orm.jpa.TestEntityManager;
 
 @RunWith(SpringRunner.class)
 @DataJpaTest
-public class RoomTest {
+public class RoomTypeTest {
 
-    @Autowired
-    private RoomRepository roomRepository;
+	@Autowired
+	private RoomTypeRepository roomTypeRepository;
 	@Autowired
 	private TestEntityManager entityManager;
 
@@ -50,29 +50,33 @@ public class RoomTest {
 	}
 
 	// Start Test Sprint #1
-	// Test field 2 field of RoomEntity Contain annotation @NotNull @Size @Pattern
+	// Test 4 filed of RoomTypeEntity contain NotNull And and @Column(unique = true)
 	@Test
-	public void testVadidValueAll() {
-		RoomEntity room = new RoomEntity();
-		room.setRoomNumber("A407");
-		room.setRoomPrice(650L);
-		roomRepository.save(room);
+	public void testEnterDataRoomTypeEntity() {
+		RoomTypeEntity rt = new RoomTypeEntity();
+		rt.setBedType("Single");
+		rt.setMaxPeople(3L);
+		rt.setNumberOfBed(1L);
+		rt.setRoomTypeName("Standard");
+		roomTypeRepository.save(rt);
 	}
 
 	@Test
-	public void testRoomNumberCannotBeNull() {
-		RoomEntity room = new RoomEntity();
-		room.setRoomNumber(null);
-		room.setRoomPrice(650L);
+	public void testRoomTypeNameMustNotNull() {
+		RoomTypeEntity rt = new RoomTypeEntity();
+		rt.setBedType("Single");
+		rt.setMaxPeople(3L);
+		rt.setNumberOfBed(1L);
+		rt.setRoomTypeName(null);
 
 		try {
-			entityManager.persist(room);
+			entityManager.persist(rt);
 			entityManager.flush();
 
 			fail("Should not pass to this line");
 		} catch (javax.validation.ConstraintViolationException e) {
 			System.out.println("*********************************************************************");
-			System.out.println("testRoomNumberCannotBeNull");
+			System.out.println("testRoomTypeNameMustNotNull");
 			System.out.println("Error message = " + e.getMessage());
 			System.out.println("*********************************************************************");
 			Set<ConstraintViolation<?>> violations = e.getConstraintViolations();
@@ -82,84 +86,59 @@ public class RoomTest {
 	}
 
 	@Test
-	public void testRoomNumberLength4To6LessThan4() {
-		RoomEntity room = new RoomEntity();
-		room.setRoomNumber("A47");
-		room.setRoomPrice(650L);
+	public void testRoomTypeNameMustUnique() {
+		RoomTypeEntity rt1 = new RoomTypeEntity();
+		rt1.setBedType("Twice");
+		rt1.setMaxPeople(3L);
+		rt1.setNumberOfBed(1L);
+		rt1.setRoomTypeName("VIP");
+		entityManager.persist(rt1);
+		entityManager.flush();
+
+		RoomTypeEntity rt2 = new RoomTypeEntity();
+		rt2.setBedType("Single");
+		rt2.setMaxPeople(3L);
+		rt2.setNumberOfBed(1L);
+		rt2.setRoomTypeName("VIP");
 
 		try {
-			entityManager.persist(room);
-			entityManager.flush();
-			fail("RoomNumber Should 4-6 character ");
-		} catch (javax.validation.ConstraintViolationException e) {
-			System.out.println("*********************************************************************");
-			System.out.println("testRoomNumberLength4To6LessThan4");
-			System.out.println("Error message = " + e.getMessage());
-			System.out.println("*********************************************************************");
-			Set<ConstraintViolation<?>> violations = e.getConstraintViolations();
-			assertEquals(violations.isEmpty(), false);
-			assertEquals(violations.size(), 1);
-		}
-	}
-
-	@Test
-	public void testRoomNumberLength4To6MoreThan6() {
-		;
-		RoomEntity room = new RoomEntity();
-		room.setRoomNumber("A400007");
-		room.setRoomPrice(650L);
-
-		try {
-			entityManager.persist(room);
-			entityManager.flush();
-			fail("RoomNumber Should 4-6 character ");
-		} catch (javax.validation.ConstraintViolationException e) {
-			System.out.println("*********************************************************************");
-			System.out.println("testRoomNumberLength4To6MoreThan6");
-			System.out.println("Error message = " + e.getMessage());
-			System.out.println("*********************************************************************");
-			Set<ConstraintViolation<?>> violations = e.getConstraintViolations();
-			assertEquals(violations.isEmpty(), false);
-			assertEquals(violations.size(), 1);
-		}
-	}
-
-	@Test
-	public void testRoomNumberStartWithAToZ() {
-		RoomEntity room = new RoomEntity();
-		room.setRoomNumber("#40007");
-		room.setRoomPrice(650L);
-
-		try {
-			entityManager.persist(room);
+			entityManager.persist(rt2);
 			entityManager.flush();
 
-			fail("First RoomNumber must A-Z or a-z and follow by digit");
+			fail("RoomTypeName must unique");
 		} catch (javax.validation.ConstraintViolationException e) {
 			System.out.println("*********************************************************************");
-			System.out.println("testRoomNumberStartWithAToZ");
-			System.out.println("Error message = " + e.getMessage());
+			System.out.println("testRoomTypeNameMustUnique");
+			System.out.print("Error message = ");
+			e.printStackTrace();
 			System.out.println("*********************************************************************");
 			Set<ConstraintViolation<?>> violations = e.getConstraintViolations();
 			assertEquals(violations.isEmpty(), false);
 			assertEquals(violations.size(), 1);
+		} catch (javax.persistence.PersistenceException e) {
+			System.out.println("AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA");
+			System.out.println("testRoomTypeNameMustUnique");
+			e.printStackTrace();
+			System.out.println("AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA");
 		}
 	}
 
 	@Test
-	public void testRoomPriceCannotBeNull() {
-		RoomEntity room = new RoomEntity();
-		room.setRoomNumber("A407");
-		room.setRoomPrice(null);
+	public void testBedTypeMustNotNull() {
+		RoomTypeEntity rt = new RoomTypeEntity();
+		rt.setBedType(null);
+		rt.setMaxPeople(3L);
+		rt.setNumberOfBed(1L);
+		rt.setRoomTypeName("Standard");
 
 		try {
-			entityManager.persist(room);
+			entityManager.persist(rt);
 			entityManager.flush();
 
 			fail("Should not pass to this line");
 		} catch (javax.validation.ConstraintViolationException e) {
 			System.out.println("*********************************************************************");
-			System.out.println("testRoomPriceCannotBeNull");
+			System.out.println("testBedTypeMustNotNull");
 			System.out.println("Error message = " + e.getMessage());
 			System.out.println("*********************************************************************");
 			Set<ConstraintViolation<?>> violations = e.getConstraintViolations();
@@ -167,4 +146,52 @@ public class RoomTest {
 			assertEquals(violations.size(), 1);
 		}
 	}
+
+	@Test
+	public void testMaxPeopleMustNotNull() {
+		RoomTypeEntity rt = new RoomTypeEntity();
+		rt.setBedType("Single");
+		rt.setMaxPeople(null);
+		rt.setNumberOfBed(1L);
+		rt.setRoomTypeName("Standard");
+
+		try {
+			entityManager.persist(rt);
+			entityManager.flush();
+
+			fail("Should not pass to this line");
+		} catch (javax.validation.ConstraintViolationException e) {
+			System.out.println("*********************************************************************");
+			System.out.println("testMaxPeopleMustNotNull");
+			System.out.println("Error message = " + e.getMessage());
+			System.out.println("*********************************************************************");
+			Set<ConstraintViolation<?>> violations = e.getConstraintViolations();
+			assertEquals(violations.isEmpty(), false);
+			assertEquals(violations.size(), 1);
+		}
+	}
+
+	@Test
+	public void testNumberOfBedMustNotNull() {
+		RoomTypeEntity rt = new RoomTypeEntity();
+		rt.setBedType("Single");
+		rt.setMaxPeople(3L);
+		rt.setNumberOfBed(null);
+		rt.setRoomTypeName("Standard");
+
+		try {
+			entityManager.persist(rt);
+			entityManager.flush();
+
+			fail("Should not pass to this line");
+		} catch (javax.validation.ConstraintViolationException e) {
+			System.out.println("*********************************************************************");
+			System.out.println("testNumberOfBedMustNotNull");
+			System.out.println("Error message = " + e.getMessage());
+			System.out.println("*********************************************************************");
+			Set<ConstraintViolation<?>> violations = e.getConstraintViolations();
+			assertEquals(violations.isEmpty(), false);
+			assertEquals(violations.size(), 1);
+		}
+    }
 }
