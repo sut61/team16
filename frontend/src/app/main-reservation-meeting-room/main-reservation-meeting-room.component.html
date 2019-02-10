@@ -8,9 +8,9 @@
         <p class="navbarSpace">|</p>
     <button mat-button class="textshadow" (click)="payment()">Payment</button>
     <p class="navbarSpace">|</p>
-    <button mat-button class="textshadow" (click)="reservationmeeting()" >ReservationMeetingRoom</button>
+    <button mat-button class="textshadow" (click)="reservation()">ReservationRoom</button>
     <p class="navbarSpace">|</p>
-    <button mat-button class="active">ReservationRoom</button>
+    <button mat-button class="active">ReservationMeeting</button>
     <p class="navbarSpace">|</p>
     <button mat-button class="textshadow" (click)="foodOrder()">Food Order</button>
     <p class="navbarSpace">|</p>
@@ -18,8 +18,6 @@
     <p class="navbarSpace">|</p>
     <button mat-button class="textshadow" (click)="sent()">Sent Your Lost</button>
     <p class="navbarSpace">|</p>
-    <!-- <button mat-button class="textshadow" (click)="UpdateRoomStatus()">ReservationMeeetingRoom</button>
-    <p class="navbarSpace">|</p> -->
     <button mat-button class="textshadow" [routerLink]="['/login']">Logout</button>
     <span class="spaceright"></span>
   </mat-toolbar-row>
@@ -33,24 +31,21 @@
         <mat-cell *matCellDef="let element;let i = index;"> {{i+1}} </mat-cell>
       </ng-container>
       <ng-container matColumnDef="roomType">
-        <mat-header-cell *matHeaderCellDef> ประเภทห้องพัก </mat-header-cell>
-        <mat-cell *matCellDef="let element"> {{element.newRoomTypeEntity.roomTypeName}} </mat-cell>
+        <mat-header-cell *matHeaderCellDef> ประเภทห้องประชุม </mat-header-cell>
+        <mat-cell *matCellDef="let element"> {{element.newMeetingEventRoomTypeEntity.meetingEventRoomTypeName}} </mat-cell>
       </ng-container>
       <ng-container matColumnDef="hotel">
         <mat-header-cell *matHeaderCellDef> โรงแรม </mat-header-cell>
         <mat-cell *matCellDef="let element"> {{element.newHotelEntity.hotelNameEng}} </mat-cell>
       </ng-container>
-      <ng-container matColumnDef="promotion">
-        <mat-header-cell *matHeaderCellDef> โปรโมทชั่น </mat-header-cell>
-        <mat-cell *matCellDef="let element"> {{element.newPromotionEntity.promotionName}} </mat-cell>
-      </ng-container>
+    
       <ng-container matColumnDef="datein">
         <mat-header-cell *matHeaderCellDef> Check In </mat-header-cell>
-        <mat-cell *matCellDef="let element"> {{element.dateIn | date:'longDate'}} </mat-cell>
+        <mat-cell *matCellDef="let element"> {{element.reservationMeetingEventRoomDateIn | date:'longDate'}} </mat-cell>
       </ng-container>
       <ng-container matColumnDef="dateout">
         <mat-header-cell *matHeaderCellDef> Check Out </mat-header-cell>
-        <mat-cell *matCellDef="let element"> {{element.dateOut | date:'longDate'}} </mat-cell>
+        <mat-cell *matCellDef="let element"> {{element.reservationMeetingEventRoomDateOut | date:'longDate'}} </mat-cell>
       </ng-container>
       <mat-header-row *matHeaderRowDef="displayedColumns; "></mat-header-row>
       <mat-row *matRowDef="let row; columns: displayedColumns;" (click)="selectRow(row)" ></mat-row>
@@ -69,31 +64,32 @@
     </mat-form-field>
 
     <mat-form-field class="selectInput">
-      <mat-placeholder class="placeholder">Promotion</mat-placeholder>
-      <mat-select [(ngModel)]="select.promotionSelect" name="promotionName">
-        <mat-option *ngFor="let promotions of promotion" [value]="promotions.promotionId">
-          {{promotions.promotionName}}
+      <mat-placeholder class="placeholder">MeetingRoomType</mat-placeholder>
+      <mat-select [(ngModel)]="select.meetingRoomTypeSelect" name="meetingEventRoomTypeName">
+        <mat-option *ngFor="let meetingRoomTypes of meetingRoomType" [value]="meetingRoomTypes.newMeetingEventRoomTypeEntity.meetingEventRoomTypeId" (click) = "selectMeetingRoomType()" >
+          {{meetingRoomTypes.newMeetingEventRoomTypeEntity.meetingEventRoomTypeName}}
         </mat-option>
       </mat-select>
     </mat-form-field>
 
     <mat-form-field class="selectInput">
-      <mat-placeholder class="placeholder">RoomType</mat-placeholder>
-      <mat-select [(ngModel)]="select.roomTypeSelect" name="roomTypeName">
-        <mat-option *ngFor="let roomtypes of roomType" [value]="roomtypes.newRoomTypeEntity.roomTypeId" (click) = "selectRoomType()">
-          {{roomtypes.newRoomTypeEntity.roomTypeName}}
+      <mat-placeholder class="placeholder">MeetingRoom</mat-placeholder>
+      <mat-select [(ngModel)]="select.meetingRoomSelect" name="meetingEventRoomId">
+        <mat-option *ngFor="let meetingRooms of meetingRoom" [value]="meetingRooms.meetingEventRoomName">
+          {{meetingRooms.meetingEventRoomName}}
         </mat-option>
       </mat-select>
     </mat-form-field>
 
     <mat-form-field class="selectInput">
-      <mat-placeholder class="placeholder">Room</mat-placeholder>
-      <mat-select [(ngModel)]="select.roomSelect" name="roomNumber">
-        <mat-option *ngFor="let rooms of room" [value]="rooms.roomId">
-          {{rooms.roomNumber}}
+      <mat-placeholder class="placeholder">TypeTime</mat-placeholder>
+      <mat-select [(ngModel)]="select.cheese">
+        <mat-option *ngFor="let ty of typetime" [value]="ty.typeTimeName">
+          {{ty.typeTimeName}}
         </mat-option>
       </mat-select>
     </mat-form-field>
+    
     
       <mat-form-field class="selectInput">
           <mat-placeholder class="placeholder">Check In</mat-placeholder>
@@ -109,11 +105,21 @@
         <mat-datepicker-toggle matSuffix [for]="picker2"></mat-datepicker-toggle>
         <mat-datepicker #picker2 [startAt]="endDate" class = "textBottom"></mat-datepicker>
       </mat-form-field>
-   
+
+      <mat-form-field class="selectInput">
+        <mat-placeholder class="placeholder">Function</mat-placeholder>
+        <mat-select [(ngModel)]="select.functionSelect" name="roomNumber">
+          <mat-option *ngFor="let functions of function" [value]="functions.functonName">
+            {{functions.functonName}}
+          </mat-option>
+        </mat-select>
+      </mat-form-field>
+
       <mat-form-field class="selectInput">
         <mat-placeholder class="placeholder">Comment</mat-placeholder>
-        <input matInput [(ngModel)]="select.commentInput" name="commentReserroom">
+        <input matInput [(ngModel)]="select.commentInput" name="comment">
       </mat-form-field>
+   
 
     <div class="button">
       <button class="textshadow" mat-button (click)="comfirm()">Comfirm</button>
