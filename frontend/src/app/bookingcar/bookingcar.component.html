@@ -1,0 +1,94 @@
+<img src='/car.jpg' style='position:fixed;top:0px;left:0px;width:100%;height:100%;z-index:-1;'>
+
+<mat-toolbar>
+  <mat-toolbar-row class="navbar">
+    <h1 class="leftnavbar">BookingCAR</h1>
+    <span class="spacer"></span>
+    <button mat-button class="textshadow" (click)="bookingcar()">BookingCar</button>
+    <p class="navbarSpace">|</p>
+    <button mat-button class="textshadow" (click)="reservationroom()">ReservationRoom</button>
+    <p class="navbarSpace">|</p>
+    <button mat-button class="textshadow" (click)="foodOrder()">Food Order</button>
+    <p class="navbarSpace">|</p>
+    <button mat-button class="textshadow" (click)="review()">Review</button>
+    <p class="navbarSpace">|</p>
+    <button mat-button class="textshadow" [routerLink]="['/login']">Logout</button>
+    <span class="spaceright"></span>
+  </mat-toolbar-row>
+</mat-toolbar>
+<div class="container">
+  <div class="panelmaster">
+    <body>
+    <!-- hotel -->
+    <mat-form-field class="selectInput">
+        <mat-select placeholder="เลือกโรงแรมที่รับรถ" [(ngModel)]="select.hotelSelect" name = "hotelNameEng" >
+          <mat-option *ngFor="let hotelNameEng of Hotels" [value]="hotelNameEng.hotelNameEng">
+            {{hotelNameEng.hotelNameEng}}</mat-option>
+        </mat-select>
+    </mat-form-field>
+    <br>
+    <!-- car -->
+    <mat-form-field class="selectInput">
+      <mat-select placeholder="เลือกรถที่ต้องการเช่า" [(ngModel)]="select.carNameSelect" name = "carName" >
+        <mat-option *ngFor="let carName of carNames" [value]="carName.carName">
+          {{carName.carName}}</mat-option>
+      </mat-select>
+    </mat-form-field>
+    <br>
+    <!-- วันที่ยืม -->
+    <mat-form-field class="selectInput">
+      <mat-placeholder class="placeholder">Loan date</mat-placeholder>
+      <input matInput [matDatepicker]="picker" class="placeholder" [(ngModel)]="select.inputStartDate">
+      <mat-datepicker-toggle matSuffix [for]="picker"></mat-datepicker-toggle>
+      <mat-datepicker touchUi #picker color="primary" class = "textBottom"></mat-datepicker>
+    </mat-form-field>
+    <br>
+    <!-- วันที่คืน -->
+    <mat-form-field class="selectInput">
+      <mat-placeholder class="placeholder">Returned date</mat-placeholder>
+      <input matInput [matDatepicker]="picker1" class="placeholder" [(ngModel)]="select.inputEndDate">
+      <mat-datepicker-toggle matSuffix [for]="picker1"></mat-datepicker-toggle>
+      <mat-datepicker touchUi #picker1 color="primary1" class = "textBottom"></mat-datepicker>
+    </mat-form-field>
+    <br>
+    <!-- หมายเลขใบอนุญาติขับขี่ -->
+    <mat-form-field class="selectInput" >
+      <mat-placeholder class="placeholder">หมายเลขใบอนุญาติขับขี่</mat-placeholder>
+      <input matInput [(ngModel)]="select.driverIdInput" name = "driverId"input matInput >
+    </mat-form-field>
+    <br>
+    <div class="button">
+      <button class = "textshadow" (click)="save_func()" mat-button>CONFIRM</button>
+    </div>
+    <p class="selectInput"><b>ยินดีต้อนรับคุณ : {{select.inputUserName}}</b></p>
+    <p class="selectInput"><b>รถที่ท่านเลือก : {{select.carNameSelect}}</b></p>
+    <p class="selectInput"><b>สถานที่รับรถของท่าน : {{select.hotelSelect}}</b></p>
+    </body>
+  </div>
+  <div class="panelmaster2">
+      <table mat-table [dataSource]="bookingcars" class="example-container mat-elevation-z8">
+          <ng-container matColumnDef="id">
+            <th mat-header-cell *matHeaderCellDef> BookingID </th>
+            <td mat-cell *matCellDef="let element"> {{element.bookingCar.bookingcarId}} </td>
+          </ng-container>
+          <ng-container matColumnDef="car">
+            <th mat-header-cell *matHeaderCellDef> CarName </th>
+            <td mat-cell *matCellDef="let element"> {{element.carName}} </td>
+          </ng-container> 
+          <ng-container matColumnDef="price">
+            <th mat-header-cell *matHeaderCellDef> Price </th>
+            <td mat-cell *matCellDef="let element"> {{element.carPrice}}</td>
+          </ng-container>
+          <ng-container matColumnDef="start">
+              <th mat-header-cell *matHeaderCellDef> StareDate </th>
+              <td mat-cell *matCellDef="let element"> {{element.bookingCar.dateStart | date:'longDate'}}</td>
+          </ng-container>
+          <ng-container matColumnDef="end">
+                <th mat-header-cell *matHeaderCellDef> EndDate </th>
+                <td mat-cell *matCellDef="let element"> {{element.bookingCar.dateEnd | date:'longDate'}}</td>
+          </ng-container>
+          <tr mat-header-row *matHeaderRowDef="displayedColumns; sticky: true"></tr>
+          <tr mat-row *matRowDef="let row; columns: displayedColumns;" ></tr>
+        </table>
+  </div>
+</div>

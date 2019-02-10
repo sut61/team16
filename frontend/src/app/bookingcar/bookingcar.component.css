@@ -1,0 +1,79 @@
+body{
+    font-family: 'Raleway', sans-serif;
+  }
+  .navbarSpace {
+    font-size: 32px;
+    padding: 4px;
+    color: rgb(255, 255, 255, 0.37);
+  }
+  .navbar {
+    background-color: rgb(41,64,63);
+    box-shadow: 0 6px 10px 0 rgba(0, 0, 0, 0.14), 0 1px 18px 0 rgba(0, 0, 0, 0.12), 0 3px 5px -1px rgba(0, 0, 0, 0.3);
+  }
+  .leftnavbar{
+    margin-left: 9%;
+  }
+  .mat-button{
+    font-size: 20px;
+    color: white;
+  }
+  .navbar h1{
+    text-shadow:  2px 2px 4px black;
+    color: white;
+    font-size: 35px;
+  }
+  .spaceright{
+    margin-right: 8%;
+  }
+  .spacer {
+    flex-grow: 1;
+  }
+  .panelmaster{
+      float: left;
+      margin-left: 10%;
+      width: 20%;
+      height:  870px;
+      background-color:rgb(37,167,105);
+      box-shadow: 5px 6px 10px 1px rgba(0, 0, 0, 0.14), 0 1px 18px 0 rgba(0, 0, 0, 0.12), 0 3px 5px -1px rgba(0, 0, 0, 0.3);
+      opacity: .8;
+  }
+  .mat-row:hover{
+    background-color: rgba(243, 146, 0);
+  }
+  .mat-header-cell{
+    background-color:rgba(37,167,105);
+    font-size: 18px;
+    color: rgb(255, 255, 255);
+    text-shadow:  2px 2px 4px black;
+  }
+  .panelmaster2{
+      float: right;
+      margin-right: 10%;
+      width: 60%;
+      height:  870px;
+      background-color:rgba(226, 226, 226, 0.815);
+      box-shadow: 0 6px 10px 1px rgba(0, 0, 0, 0.14), 0 1px 0px 0 rgba(0, 0, 0, 0.12), 0 3px 5px -1px rgba(0, 0, 0, 0.3);
+  }
+  .selectInput {
+    width: 90%;
+    margin-left: 4%;
+    margin-right: 4%;
+    font-size: 20px;
+    -webkit-text-fill-color: #ffffff;
+    text-align: center;
+    text-shadow:  2px 2px 4px rgb(0, 0, 0)
+  }
+
+  .button{
+    background-color: #FF9900;
+    text-align: center;
+    margin-left: 10%;
+    margin-right: 10%;
+    border-radius: 10px;
+  }
+  .textshadow {
+    text-shadow:  2px 2px 4px black;
+  }
+  table {
+    width: 100%; 
+  }
