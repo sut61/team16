@@ -13,6 +13,7 @@ export interface FoodOrderComponent {
   newListEntity: {
     listName: String;
     priceFood: number;
+    listPrice: number;
   }
 }
 @Component({
@@ -30,7 +31,7 @@ export class FoodOrderComponent implements OnInit {
     roomSelect: '',
     foodTypeSelect: '',
     listSelect: '',
-    foodPricericeOutput: '',
+    foodPriceOutput: '',
     customer: '',
     amountInput: ''
 
@@ -83,15 +84,18 @@ export class FoodOrderComponent implements OnInit {
     this.foodOrderService.getList(this.select.foodTypeSelect).subscribe(data => {
       this.list = data;
       this.select.listSelect = '';
-      this.select.foodPricericeOutput = '';
+      this.select.foodPriceOutput = '';
     })
   }
 
   findPrice() {
     this.foodOrderService.getPrice(this.select.listSelect).subscribe(data => {
-      this.select.foodPricericeOutput = data;
+      this.select.foodPriceOutput = data;
       console.log(data)
     })
+  }
+  bookingcar(){
+    this.router.navigate(['/bookingcar', this.select.customer]);
   }
   reservation(){
     this.router.navigate(['/reservationroom', this.select.customer]);
@@ -104,6 +108,7 @@ export class FoodOrderComponent implements OnInit {
     console.log(this.select.amountInput);
     if (this.select.hotelSelect === '' || this.select.roomSelect === '' || this.select.foodTypeSelect === '' || this.select.listSelect === ''|| this.select.amountInput === '') {
       alert('Please Enter all Data');
+      location.reload();
     }
     else {
       this.httpClient.get('http://localhost:8080/foodorder/' + this.select.hotelSelect + '/' + this.select.roomSelect + '/' + this.select.listSelect + '/' + this.select.customer +'/'+ this.select.amountInput, this.select)
@@ -111,16 +116,18 @@ export class FoodOrderComponent implements OnInit {
           data => {
             console.log(data);
             if (data) {
-              console.log('PUT Request is successful', data);
+              console.log('PUT Request is successful');
               alert('-Success-');
               this.refresh();
               location.reload();
             }
             else
-              alert('Room number ' + this.select.inputRoomNumber + ' in hotel ' + this.select.hotelNameSelect + ' have alrady exist')
+              alert(this.select.listSelect + ':  Not enough! or Out of stock!');
+              location.reload();
           },
           error => {
             console.log('Error', error);
+            
           }
         )
     }

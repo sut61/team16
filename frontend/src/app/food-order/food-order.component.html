@@ -5,6 +5,8 @@
     <span class="spacer"></span>
     <!-- <button mat-button class="active">Add Room</button>
     <p class="navbarSpace">|</p> -->
+    <button mat-button class = "textshadow" (click)="bookingcar()">Bookingcar</button>
+    <p class="navbarSpace">|</p>
     <button mat-button class = "textshadow" (click)="reservation()">ReservationRoom</button>
     <p class="navbarSpace">|</p>
     <button mat-button class = "active">FoodOrder</button>
@@ -82,7 +84,7 @@
     </mat-form-field>
 
       <!-- ราคาอาหาร -->
-      <p class ="selectInputText">Price:&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; {{select.foodPricericeOutput}}</p>
+      <p class ="selectInputText">Price:&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; {{select.foodPriceOutput}}</p>
 
       <!-- จำนวนสั่งซื้อ -->
     <mat-form-field class="selectInput">
