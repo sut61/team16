@@ -94,6 +94,7 @@ public class ReviewController {
         re.setScore(sumscore);
         re.setComment(comment);
         re.setNewRoomTypeEntity(room);
+        re.setProblem(problem);
         return this.reviewRepository.save(re);
     }
 }
