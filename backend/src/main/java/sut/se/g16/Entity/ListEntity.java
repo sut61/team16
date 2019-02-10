@@ -1,7 +1,13 @@
 package sut.se.g16.Entity;
 
 import javax.persistence.*;
+import javax.validation.constraints.Max;
+import javax.validation.constraints.Min;
+import javax.validation.constraints.NotBlank;
 import javax.validation.constraints.NotNull;
+import javax.validation.constraints.Pattern;
+import javax.validation.constraints.Positive;
+import javax.validation.constraints.Size;
 
 import com.fasterxml.jackson.annotation.JsonIgnore;
 import lombok.*;
@@ -19,9 +25,16 @@ public class ListEntity {
     @GeneratedValue(strategy=GenerationType.SEQUENCE, generator="listSeq")
     @Column(name="listId",unique = true, nullable = false)
     private @NotNull Long listId;
-    private @NotNull String listName;
-    private @NotNull Long priceFood;
 
+    @Column(unique = true)
+    @Size(min = 3, max = 20)
+    @Pattern (regexp = "[A-Z][a-z]+\\s?[A-Z]?[a-z]*")
+    private @NotNull String listName;
+
+    @Positive
+    private @NotNull Long totalAmount;
+    @Positive
+    private @NotNull Long listPrice;
     ///////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 
     //Many To One with FoodTypeEntity
@@ -47,13 +60,19 @@ public class ListEntity {
     public void setListName(String listName) {
         this.listName = listName;
     }
-
-    public Long getPriceFood() {
-        return priceFood;
+    public Long getTotalAmount() {
+        return totalAmount;
     }
 
-    public void setPriceFood(Long priceFood) {
-        this.priceFood = priceFood;
+    public void setTotalAmount(Long totalAmount) {
+        this.totalAmount = totalAmount;
+    }
+    public Long getListPrice() {
+        return listPrice;
+    }
+
+    public void setListPrice(Long listPrice) {
+        this.listPrice = listPrice;
     }
 
     ///////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
@@ -65,6 +84,8 @@ public class ListEntity {
     public void setNewFoodTypeEntity(FoodTypeEntity newFoodTypeEntity) {
         this.newFoodTypeEntity = newFoodTypeEntity;
     }
+
+
 
 }
 

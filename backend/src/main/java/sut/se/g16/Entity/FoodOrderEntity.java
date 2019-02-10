@@ -1,7 +1,8 @@
 package sut.se.g16.Entity;
 
-import javax.persistence.*;
+import  javax.persistence.*;
 import javax.validation.constraints.NotNull;
+import javax.validation.constraints.Positive;
 
 import com.fasterxml.jackson.annotation.JsonIgnore;
 import lombok.*;
@@ -23,6 +24,8 @@ public class FoodOrderEntity {
     @GeneratedValue(strategy=GenerationType.SEQUENCE, generator="foodOrderSeq")
     @Column(name="foodOrderId",unique = true, nullable = false)
     private @NotNull Long foodOrderId;
+    
+    @Positive
     private @NotNull Long totalProiceOrder;
 
     ///////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
