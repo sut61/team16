@@ -1,0 +1,200 @@
+@charset "utf-8";
+
+#scoreservice1{
+    position: absolute;
+    top: 60px;
+    right: 60%;
+    padding-right: 16px;
+}
+#scoreservice2{
+    position: absolute;
+    top: 105px;
+    right: 60%;
+    padding-right: 16px;
+}
+#scoreservice3{
+    position: absolute;
+    top: 155px;
+    right: 60%;
+    padding-right: 16px;
+}
+#scoreroom{
+    margin-left: 10px;
+    margin-top: 70PX;
+    margin-bottom: 25px;
+}
+#scoreroom1{
+    margin-left: 10px;
+    margin-bottom: 25px;
+}
+#room{
+    margin-left: 20PX;
+}
+
+#scoresecu1{
+    position: absolute;
+    top: 73.0%;
+    right: 60%;
+    padding-right: 16px;
+}
+.detail_text{
+    left: 5%;
+    height: 95px;
+    width:  90%;
+    border: none;
+    border-radius: 10px;
+    color: #4e709d;
+    background-color: #cdd5e0;
+}
+#scoresecu2{
+    position: absolute;
+    top: 78.0%;
+    right: 60%;
+    padding-right: 16px;
+}
+#scoresecu3{
+    position: absolute;
+    top: 82.5%;
+    right: 60%;
+    padding-right: 16px;
+}
+#secu{
+    position: absolute;
+    top: 70%;
+}
+#problem{
+    position: absolute;
+    top: 20%;
+    right: 10%;
+    width: auto;
+    font-size: 20px;
+}
+#review{
+    position: absolute;
+    top: 35%;
+    
+    right: 10%;
+    width: auto;
+    font-size: 20px;
+}
+#ส่ง{
+    color: aliceblue;
+    background-color: blue;
+    width: 100px;
+    font-size: 20px;
+    margin-right: 5%;
+    float: right;
+}
+.panel1{
+    width: 50%;
+    height: 595px;
+    background-color: rgb(64, 131, 255);
+    text-align: left;
+    float: left;
+  }
+  .panel2{
+    width: 50%;
+    height: 595px;
+    background-color: rgb(64, 131, 255);
+    text-align: left;
+    float: left;
+    margin-bottom: 15px;
+  }
+  .panelmaster{
+    position: absolute;
+    left: 10%;
+    right: 10%;
+    width: 80%;
+    height:  595px;
+    background-color: rgb(64, 131, 255);
+    box-shadow: 0 6px 10px 1px rgba(0, 0, 0, 0.14), 0 1px 18px 0 rgba(0, 0, 0, 0.12), 0 3px 5px -1px rgba(0, 0, 0, 0.3);
+  }
+  .combo{
+    position: absolute;
+    left: 10%;
+    right: 10%;
+    width: 80%;
+    height:  50px;
+    background-color:rgb(221, 37, 37);
+    box-shadow: 0 6px 10px 1px rgba(0, 0, 0, 0.14), 0 1px 18px 0 rgba(0, 0, 0, 0.12), 0 3px 5px -1px rgba(0, 0, 0, 0.3);
+  }
+  .combo1{
+    width: 33%;
+    height: 50px;
+    background-color: rgb(64, 131, 255);
+    text-align: left;
+    float: left;
+    margin-bottom: 15px;
+  }
+  .combo2{
+    width: 34%;
+    height: 50px;
+    background-color: rgb(64, 131, 255);
+    text-align: left;
+    float: left;
+    margin-bottom: 15px;
+  }
+  .combo3{
+    width: 33%;
+    height: 50px;
+    background-color: rgb(64, 131, 255);
+    text-align: left;
+    float: right;
+    margin-bottom: 15px;
+  }
+  .placeholder{
+      color: black; 
+  }
+  .comboMargin{
+      margin-left: 20px;
+  }
+  .panel11{
+    width: 50%;
+    height: 250px;
+    background-color: rgb(64, 131, 255);
+    text-align: left;
+    float: left;
+  }
+  .panel12{
+    width: 50%;
+    height: 250px;
+    background-color: rgb(64, 131, 255);
+    text-align: left;
+    float: right;
+  }
+.fontsize{
+    margin-top: 2%;
+    margin-left: 5%;
+    font-size: 30px;
+    margin-bottom: 0%;
+}
+.left{
+    float: right;
+}
+.right{
+    position: absolute;
+    float: left;
+}
+body{
+    font-family: 'Raleway', sans-serif;
+  }
+  .navbar {
+    background-color: darkslateblue;
+  }
+  .leftnavbar{
+    margin-left: 10%;
+  }
+  .mat-button{
+    font-size: 20px;
+    color: white;
+  }
+  .navbar h1{
+    color: white;
+    font-size: 35px;
+  }
+  .spaceright{
+    margin-right: 9%;
+  }
+  .spacer {
+    flex-grow: 1;
+  }
