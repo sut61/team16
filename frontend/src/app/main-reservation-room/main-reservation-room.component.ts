@@ -19,7 +19,9 @@ export interface MainReservationRoomComponent {
   newPromotionEntity: {
     promotionName: String;
   }
-
+newMeetingRoomtypeEntity: {
+  meetingRoomtypeName: String;
+}
 
 
 
@@ -46,7 +48,9 @@ export class MainReservationRoomComponent implements OnInit {
     inputStartDate: '',
     inputEndDate: '',
     cus: '',
-    totalPriceRoom: '499'
+    totalPriceRoom: '',
+    commentInput: '',
+    
 
   }
 
@@ -80,7 +84,7 @@ export class MainReservationRoomComponent implements OnInit {
     this.reservationRoomService.getRoomType(this.select.hotelSelect).subscribe(data => {
       this.roomType = data;
       console.log(data);
-      console.log(this.roomType);
+      console.log(this.roomType); 
     });
 
   }
@@ -89,6 +93,18 @@ export class MainReservationRoomComponent implements OnInit {
       this.dataSource = new ReservationRoomDataSource(this.reservationRoomService, customerName);
 
     });
+  }
+  sent(){
+    this.router.navigate(['/sent-your-lost', this.select.cus]);
+  }
+  bookingcar() {
+    this.router.navigate(['/bookingcar', this.select.cus]);
+  }
+  payment(){
+    this.router.navigate(['/payment', this.select.cus]);
+  }
+  reservationmeeting(){
+    this.router.navigate(['/reservationmeeting', this.select.cus])
   }
   review() {
     this.router.navigate(['/view/review', this.select.cus]);
@@ -103,11 +119,14 @@ export class MainReservationRoomComponent implements OnInit {
     console.log(this.select.inputStartDate);
     console.log(this.select.inputEndDate);
 
-    if (this.select.hotelSelect === '' || this.select.roomTypeSelect === '' || this.select.inputStartDate === '' || this.select.inputEndDate === '') {
+    if (this.select.hotelSelect === '' || this.select.roomTypeSelect === '' || this.select.inputStartDate === '' || this.select.inputEndDate === '' || this.select.commentInput === '') {
       alert('Please Enter all Data');
+      location.reload();
+
     }
     else {
-      this.httpClient.get('http://localhost:8080/reservationroom/' + this.select.totalPriceRoom + '/' + this.select.inputStartDate + '/' + this.select.inputEndDate + '/' + this.select.roomTypeSelect + '/' + this.select.cus + '/' + this.select.promotionSelect + '/' + this.select.hotelSelect + '/' + this.select.roomSelect, this.select)
+      //+ this.select.totalPriceRoom + '/' 
+      this.httpClient.get('http://localhost:8080/reservationroom/' + this.select.inputStartDate + '/' + this.select.inputEndDate + '/' + this.select.roomTypeSelect + '/' + this.select.cus + '/' + this.select.promotionSelect + '/' + this.select.hotelSelect + '/' + this.select.roomSelect + '/' + this.select.commentInput , this.select)
         .subscribe(
           data => {
             console.log(data);
