@@ -63,7 +63,7 @@
   <br>
 
   <mat-form-field class="example-date" class="selectInput" >
-    <mat-placeholder class="placeholder">วันที่รับ</mat-placeholder>
+    <mat-placeholder class="placeholder">วันที่เริ่ม</mat-placeholder>
     <input matInput [matDatepicker]="picker" class="placeholder" [(ngModel)]="views.dateStartInput">
     
     <mat-datepicker-toggle matSuffix [for]="picker"></mat-datepicker-toggle>
@@ -74,7 +74,7 @@
   <br>
   
   <mat-form-field class="example-date1"class="selectInput">
-      <mat-placeholder class="placeholder">วันที่คืน</mat-placeholder>
+      <mat-placeholder class="placeholder">วันที่สิ้นสุด</mat-placeholder>
     <input matInput [matDatepicker]="picker1" class="placeholder" [(ngModel)]="views.dateEndInput">
     <mat-datepicker-toggle matSuffix [for]="picker1"></mat-datepicker-toggle>
     <mat-datepicker touchUi #picker1 color="primary1" class = "textBottom"></mat-datepicker>
