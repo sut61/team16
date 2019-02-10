@@ -15,4 +15,7 @@ public interface FoodTypeRepository extends JpaRepository<FoodTypeEntity, Long> 
 
     @Query("SELECT t.foodTypeId FROM FoodTypeEntity t WHERE t.foodTypeName = :Name")
     Long findFoodTypeIdByName(@Param("Name")String Name);
+
+    @Query("SELECT t FROM FoodTypeEntity t WHERE t.foodTypeId = :id")
+    FoodTypeEntity findAllByFoodTypeId(@Param("id")Long id);
 }
