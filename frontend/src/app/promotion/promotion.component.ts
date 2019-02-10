@@ -85,6 +85,7 @@ export class PromotionComponent implements OnInit {
           alert('POST Request is successful');
         },
         error => {
+          alert('error pattern and error size');
           console.log('Rrror', error);
         }
       );
