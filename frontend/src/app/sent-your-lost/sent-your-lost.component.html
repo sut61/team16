@@ -1,0 +1,96 @@
+<img src='/sent.jpg' style='position:fixed;top:0px;left:0px;width:100%;height:100%;z-index:-1;'>
+<mat-toolbar>
+  <mat-toolbar-row class="navbar">
+    <h1 class="leftnavbar">Sent Your Lost</h1>
+    <span class="spacer"></span>
+    <button mat-button class="textshadow" (click)="bookingcar()">BookingCar</button>
+    <p class="navbarSpace">|</p>
+    <button mat-button class="textshadow" (click)="payment()">Payment</button>
+    <p class="navbarSpace">|</p>
+    <button mat-button class="textshadow" (click)="reservationmeeting()">ReservationMeetingRoom</button>
+    <p class="navbarSpace">|</p>
+    <button mat-button class="textshadow" (click)="reservation()">ReservationRoom</button>
+    <p class="navbarSpace">|</p>
+    <button mat-button class="textshadow" (click)="foodOrder()">Food Order</button>
+    <p class="navbarSpace">|</p>
+    <button mat-button class="textshadow" (click)="review()">Review</button>
+    <p class="navbarSpace">|</p>
+    <button mat-button class="active">Sent Your Lost</button>
+    <p class="navbarSpace">|</p>
+    <button mat-button class="textshadowLogOut" [routerLink]="['/login']">Logout</button>
+    <span class="spaceright"></span>
+  </mat-toolbar-row>
+</mat-toolbar>
+<div class="container">
+  <div class="panelmaster2">
+    <table mat-table [dataSource]="dataSource" class="example-container mat-elevation-z8">
+      <ng-container matColumnDef="Item">
+        <th mat-header-cell *matHeaderCellDef> ที่อยู่ </th>
+        <td mat-cell *matCellDef="let element"> {{element.newSentYourLostEntity.address}}</td>
+      </ng-container>
+      <ng-container matColumnDef="Address">
+        <th mat-header-cell *matHeaderCellDef> สิ่งของ </th>
+        <td mat-cell *matCellDef="let element"> {{element.newItemEntity.itemName}}</td>
+      </ng-container>
+      <tr mat-header-row *matHeaderRowDef="displayedColumns; sticky: true"></tr>
+      <tr mat-row *matRowDef="let row; columns: displayedColumns;" (click)="selectRow(row)"></tr>
+    </table>
+  </div>
+  <div class="panelmaster">
+
+    <body>
+      <br>
+      <!-- โรงแรม -->
+      <mat-form-field class="selectInput">
+        <mat-placeholder class="placeholder">Hotel</mat-placeholder>
+        <mat-select class="textBottom" [(ngModel)]="select.hotelName" name="hotelNameEng">
+          <mat-option *ngFor="let hotels of hotelName" [value]="hotels.hotelNameEng">
+            {{hotels.hotelNameEng}}
+          </mat-option>
+        </mat-select>
+      </mat-form-field>
+
+      <!-- ห้องพัก -->
+      <mat-form-field class="selectInput">
+        <mat-placeholder class="placeholder">Room</mat-placeholder>
+        <mat-select class="textBottom" [(ngModel)]="select.roomnumber" name="roomNumber">
+          <mat-option *ngFor="let rooms of room" [value]="rooms.roomNumber">
+            {{rooms.roomNumber}}
+          </mat-option>
+        </mat-select>
+      </mat-form-field>
+
+      <!-- ประเภทอาหาร -->
+      <mat-form-field class="selectInput">
+        <mat-placeholder class="placeholder">Room Type</mat-placeholder>
+        <mat-select class="textBottom" [(ngModel)]="select.roomTypename" name="roomTypeName">
+          <mat-option *ngFor="let roomTypes of roomType" [value]="roomTypes.roomTypeName">
+            {{roomTypes.roomTypeName}}
+          </mat-option>
+        </mat-select>
+      </mat-form-field>
+
+      <!-- เมนูอาหาร -->
+      <mat-form-field class="selectInput">
+        <mat-placeholder class="placeholder">Item</mat-placeholder>
+        <mat-select class="textBottom" [(ngModel)]="select.itemname" name="itemName">
+          <mat-option *ngFor="let items of item" [value]="items.itemName">
+            {{items.itemName}}
+          </mat-option>
+        </mat-select>
+      </mat-form-field>
+
+
+      <!-- จำนวนสั่งซื้อ -->
+      <mat-form-field class="selectInput">
+        <mat-placeholder class="placeholder">Address</mat-placeholder>
+        <input matInput class="textBottom" [(ngModel)]="address">
+      </mat-form-field>
+      <br>
+      <div class="button">
+        <button class="textshadow" mat-button (click)="add()">Sent</button>
+      </div>
+      <p class="separate">-</p>
+    </body>
+  </div>
+</div>
