@@ -86,4 +86,5 @@ public class CarEntity {
     public void setCarbrand(CarBrandEntity carbrand) {
         this.carbrand = carbrand;
     }
+
 }
