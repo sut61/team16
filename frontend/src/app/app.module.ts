@@ -37,7 +37,11 @@ import { HomeComponent } from './home/home.component';
 import { AddMeetingEventRoomComponent, DialogOverviewExampleDialog } from './add-meeting-event-room/add-meeting-event-room.component';
 import { MeetingRoomStatusComponent } from './meeting-room-status/meeting-room-status.component';
 import { MeetingRoomService } from './shared/meeting-room.service';
-
+import { BookingcarComponent } from './bookingcar/bookingcar.component';
+import { BookingcarService } from './shared/bookingcar.service';
+import { EmployeeLoginComponent } from './employee-login/employee-login.component';
+import { FoodStockComponent } from './food-stock/food-stock.component';
+import { FoodStockService } from './shared/food-stock.service';
 
 
 const appRoutes: Routes = [
@@ -50,13 +54,16 @@ const appRoutes: Routes = [
   {path: 'memberhotel/login',component: MemberLoginComponent},
   {path: 'result', component: ResultComponent},
   {path: 'login', component: LoginComponent},
+  {path: 'employeelogin', component: EmployeeLoginComponent},
   {path: 'register', component: RegisterComponent},
   {path: 'reservationroom/:inputUserName', component: MainReservationRoomComponent},
   {path: 'promotion/:inputUserName', component: PromotionComponent},
   {path: 'review', component: ReviewComponent},
   {path: 'view/review/:inputUserName', component: ViewReviewComponent},
   {path: 'review/:inputMemberUserName/:selectHotelNameEng/:selectRoomType/:selectReservationId', component: ReviewComponent},
-  {path: 'updatefoodstatus/:inputUserName',component: UpdateFoodStatusComponent}
+  {path: 'updatefoodstatus/:inputUserName',component: UpdateFoodStatusComponent},
+  {path: 'bookingcar/:inputUserName', component: BookingcarComponent},
+  {path: 'foodstock/:inputUserName', component: FoodStockComponent}
 
 ];
 
@@ -78,7 +85,10 @@ const appRoutes: Routes = [
     HomeComponent,
     AddMeetingEventRoomComponent,
     MeetingRoomStatusComponent,
-    DialogOverviewExampleDialog
+    BookingcarComponent,
+    DialogOverviewExampleDialog,
+    EmployeeLoginComponent,
+    FoodStockComponent
   ],
   imports: [
     BrowserModule,
@@ -103,7 +113,8 @@ const appRoutes: Routes = [
     RouterModule.forRoot(appRoutes)
   ],
   entryComponents: [DialogOverviewExampleDialog],
-  providers: [RoomService,FoodOrderService,ReservationRoomService,PromotionService,CustomerService,ReviewService,ViewReviewService,MeetingRoomService],
+  providers: [RoomService,FoodOrderService,FoodStockService,ReservationRoomService,PromotionService,CustomerService,ReviewService,
+    ViewReviewService,MeetingRoomService,BookingcarComponent,BookingcarService],
   bootstrap: [AppComponent]
 })
 export class AppModule { }
