@@ -12,5 +12,5 @@ public interface BookingCarRepository extends JpaRepository<BookingCarEntity, Lo
     @Query("SELECT t.hotel.hotelId FROM BookingCarEntity t WHERE t.bookingcarId = :id")
     Long findHotelIdByBookingCarId(@Param("id")Long id);
 
-   
+    BookingCarEntity findByBookingcarId(Long bookingcarId);
 }
