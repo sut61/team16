@@ -1,7 +1,6 @@
 package sut.se.g16.Entity;
 
 import javax.persistence.*;
-import javax.validation.constraints.NotNull;
 
 import com.fasterxml.jackson.annotation.JsonIgnore;
 
@@ -17,7 +16,7 @@ public class FoodOrderTotalPriceFoodManyToManyEntity {
     @SequenceGenerator(name="foodOrderTotalPriceFood_seq",sequenceName="foodOrderTotalPriceFood_seq")
     @GeneratedValue(strategy=GenerationType.SEQUENCE, generator="foodOrderTotalPriceFood_seq")
     @Column(name="foodOrderTotalPriceFoodManyToManyId",unique = true, nullable = false)
-    private @NotNull Long foodOrderTotalPriceFoodManyToManyId;
+    private @NonNull Long foodOrderTotalPriceFoodManyToManyId;
 
     ///////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 

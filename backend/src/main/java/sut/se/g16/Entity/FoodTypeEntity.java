@@ -2,6 +2,8 @@ package sut.se.g16.Entity;
 
 import javax.persistence.*;
 import javax.validation.constraints.NotNull;
+import javax.validation.constraints.Pattern;
+import javax.validation.constraints.Size;
 
 import lombok.*;
 import org.hibernate.annotations.Fetch;
@@ -22,6 +24,10 @@ public class FoodTypeEntity {
     @GeneratedValue(strategy=GenerationType.SEQUENCE, generator="foodTypeSeq")
     @Column(name="foodTypeId",unique = true, nullable = false)
     private @NotNull Long foodTypeId;
+
+    @Column(unique = true)
+    @Size(min = 3, max = 20)
+    @Pattern( regexp ="[A-Z][a-z]+")
     private @NotNull String foodTypeName;
 
 
