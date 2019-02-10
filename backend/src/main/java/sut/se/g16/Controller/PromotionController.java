@@ -14,8 +14,6 @@ import org.springframework.http.MediaType;
 public class PromotionController {
 
     @Autowired
-    private AdminRepository adminRepository;
-    @Autowired
     private PromotionTypeRepository promotionTypeRepository;
     @Autowired
     private HotelRepository hotelRepository;
@@ -24,10 +22,9 @@ public class PromotionController {
     @Autowired
     private PromotionRepository promotionRepository;
 
-    public PromotionController(AdminRepository adminRepository, PromotionTypeRepository promotionTypeRepository,
+    public PromotionController(PromotionTypeRepository promotionTypeRepository,
             HotelRepository hotelRepository, RoomTypeRepository roomTypeRepository,
             PromotionRepository promotionRepository) {
-        this.adminRepository = adminRepository;
         this.roomTypeRepository = roomTypeRepository;
         this.promotionRepository = promotionRepository;
         this.promotionTypeRepository = promotionTypeRepository;
@@ -59,11 +56,6 @@ public class PromotionController {
 
     }
 
-    @GetMapping(path = "/adminEntity", produces = MediaType.APPLICATION_JSON_VALUE)
-    public Collection<AdminEntity> adminEntity() {
-        return adminRepository.findAll().stream().collect(Collectors.toList());
-
-    }
 
     @GetMapping(path = "/roomTypeEntity", produces = MediaType.APPLICATION_JSON_VALUE)
     public Collection<RoomTypeEntity> roomTypeEntity() {
