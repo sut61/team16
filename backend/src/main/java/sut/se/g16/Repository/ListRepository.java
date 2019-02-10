@@ -20,7 +20,15 @@ public interface ListRepository extends JpaRepository<ListEntity, Long> {
     @Query("SELECT t FROM ListEntity t WHERE t.newFoodTypeEntity.foodTypeId = :foodTypeId")
     Collection<ListEntity> findListByFoodTypeId(@Param("foodTypeId")long foodTypeId);
 
-    @Query("SELECT t.priceFood FROM ListEntity t WHERE t.listName = :Name")
-    Long findPriceByList(@Param("Name")String Name);
+    // @Query("SELECT t.priceFood FROM ListEntity t WHERE t.listName = :Name")
+    // Long findPriceByList(@Param("Name")String Name);
 
+    @Query("SELECT t.listId FROM ListEntity t WHERE t.listName = :Name")
+    Long findListIdByName(@Param("Name")String Name);
+
+    @Query("SELECT t.newFoodTypeEntity.foodTypeId FROM ListEntity t WHERE t.listName = :Name")
+    Long findFoodTypeIdByName(@Param("Name")String Name);
+
+    @Query("SELECT t.listPrice FROM ListEntity t WHERE t.listName =:name")
+    Long findPriceByListName(@Param("name")String name);
 }
