@@ -14,4 +14,5 @@ public interface PaymentRepository extends JpaRepository<PaymentEntity, Long> {
 
     @Query("SELECT t FROM PaymentEntity t WHERE t.billId = :x")
     PaymentEntity findBillById(@Param("x") Long x);
+
 }
