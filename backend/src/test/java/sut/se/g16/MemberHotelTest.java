@@ -34,10 +34,11 @@ import org.springframework.boot.test.autoconfigure.orm.jpa.TestEntityManager;
 
 @RunWith(SpringRunner.class)
 @DataJpaTest
-public class RoomTest {
+public class MemberHotelTest {
 
-    @Autowired
-    private RoomRepository roomRepository;
+
+	@Autowired
+	private MemberHotelRepository memberHotelRepository;
 	@Autowired
 	private TestEntityManager entityManager;
 
@@ -50,29 +51,30 @@ public class RoomTest {
 	}
 
 	// Start Test Sprint #1
-	// Test field 2 field of RoomEntity Contain annotation @NotNull @Size @Pattern
+	// Test 2 filed of MemberHotelEntity contain NotNull And and @Column(unique =
+	// true)
 	@Test
-	public void testVadidValueAll() {
-		RoomEntity room = new RoomEntity();
-		room.setRoomNumber("A407");
-		room.setRoomPrice(650L);
-		roomRepository.save(room);
+	public void testEnterDataMemberHotelEntity() {
+		MemberHotelEntity mem = new MemberHotelEntity();
+		mem.setMemberHotelName("Aphirat");
+		mem.setMemberHotelPassword(1234L);
+		memberHotelRepository.save(mem);
 	}
 
 	@Test
-	public void testRoomNumberCannotBeNull() {
-		RoomEntity room = new RoomEntity();
-		room.setRoomNumber(null);
-		room.setRoomPrice(650L);
+	public void testMemberHotelNameMusNotNull() {
+		MemberHotelEntity mem = new MemberHotelEntity();
+		mem.setMemberHotelName(null);
+		mem.setMemberHotelPassword(1234L);
 
 		try {
-			entityManager.persist(room);
+			entityManager.persist(mem);
 			entityManager.flush();
 
 			fail("Should not pass to this line");
 		} catch (javax.validation.ConstraintViolationException e) {
 			System.out.println("*********************************************************************");
-			System.out.println("testRoomNumberCannotBeNull");
+			System.out.println("testMemberHotelNameMusNotNull");
 			System.out.println("Error message = " + e.getMessage());
 			System.out.println("*********************************************************************");
 			Set<ConstraintViolation<?>> violations = e.getConstraintViolations();
@@ -82,84 +84,53 @@ public class RoomTest {
 	}
 
 	@Test
-	public void testRoomNumberLength4To6LessThan4() {
-		RoomEntity room = new RoomEntity();
-		room.setRoomNumber("A47");
-		room.setRoomPrice(650L);
+	public void testMemberHotelNameMustUnique() {
+		MemberHotelEntity mem = new MemberHotelEntity();
+		mem.setMemberHotelName("Somsak");
+		mem.setMemberHotelPassword(1234L);
+		entityManager.persist(mem);
+		entityManager.flush();
+
+		MemberHotelEntity mem2 = new MemberHotelEntity();
+		mem2.setMemberHotelName("Somsak");
+		mem2.setMemberHotelPassword(1234L);
 
 		try {
-			entityManager.persist(room);
-			entityManager.flush();
-			fail("RoomNumber Should 4-6 character ");
-		} catch (javax.validation.ConstraintViolationException e) {
-			System.out.println("*********************************************************************");
-			System.out.println("testRoomNumberLength4To6LessThan4");
-			System.out.println("Error message = " + e.getMessage());
-			System.out.println("*********************************************************************");
-			Set<ConstraintViolation<?>> violations = e.getConstraintViolations();
-			assertEquals(violations.isEmpty(), false);
-			assertEquals(violations.size(), 1);
-		}
-	}
-
-	@Test
-	public void testRoomNumberLength4To6MoreThan6() {
-		;
-		RoomEntity room = new RoomEntity();
-		room.setRoomNumber("A400007");
-		room.setRoomPrice(650L);
-
-		try {
-			entityManager.persist(room);
-			entityManager.flush();
-			fail("RoomNumber Should 4-6 character ");
-		} catch (javax.validation.ConstraintViolationException e) {
-			System.out.println("*********************************************************************");
-			System.out.println("testRoomNumberLength4To6MoreThan6");
-			System.out.println("Error message = " + e.getMessage());
-			System.out.println("*********************************************************************");
-			Set<ConstraintViolation<?>> violations = e.getConstraintViolations();
-			assertEquals(violations.isEmpty(), false);
-			assertEquals(violations.size(), 1);
-		}
-	}
-
-	@Test
-	public void testRoomNumberStartWithAToZ() {
-		RoomEntity room = new RoomEntity();
-		room.setRoomNumber("#40007");
-		room.setRoomPrice(650L);
-
-		try {
-			entityManager.persist(room);
+			entityManager.persist(mem2);
 			entityManager.flush();
 
-			fail("First RoomNumber must A-Z or a-z and follow by digit");
+			fail("MemberHotelName must unique");
 		} catch (javax.validation.ConstraintViolationException e) {
 			System.out.println("*********************************************************************");
-			System.out.println("testRoomNumberStartWithAToZ");
-			System.out.println("Error message = " + e.getMessage());
+			System.out.println("testMemberHotelNameMustUnique");
+			System.out.print("Error message = ");
+			e.printStackTrace();
 			System.out.println("*********************************************************************");
 			Set<ConstraintViolation<?>> violations = e.getConstraintViolations();
 			assertEquals(violations.isEmpty(), false);
 			assertEquals(violations.size(), 1);
+		} catch (javax.persistence.PersistenceException e) {
+			System.out.println("AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA");
+			System.out.println("testMemberHotelNameMustUnique");
+			e.printStackTrace();
+			System.out.println("AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA");
 		}
 	}
 
 	@Test
-	public void testRoomPriceCannotBeNull() {
-		RoomEntity room = new RoomEntity();
-		room.setRoomNumber("A407");
-		room.setRoomPrice(null);
+	public void testMemberHotelPasswordMustNotNull() {
+		MemberHotelEntity mem = new MemberHotelEntity();
+		mem.setMemberHotelName("Aphirat");
+		mem.setMemberHotelPassword(null);
 
 		try {
-			entityManager.persist(room);
+			entityManager.persist(mem);
 			entityManager.flush();
 
 			fail("Should not pass to this line");
 		} catch (javax.validation.ConstraintViolationException e) {
 			System.out.println("*********************************************************************");
-			System.out.println("testRoomPriceCannotBeNull");
+			System.out.println("testMemberHotelPasswordMusNotNull");
 			System.out.println("Error message = " + e.getMessage());
 			System.out.println("*********************************************************************");
 			Set<ConstraintViolation<?>> violations = e.getConstraintViolations();
@@ -167,4 +138,5 @@ public class RoomTest {
 			assertEquals(violations.size(), 1);
 		}
 	}
+
 }
