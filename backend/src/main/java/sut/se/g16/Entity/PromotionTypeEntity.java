@@ -18,8 +18,7 @@ public class PromotionTypeEntity {
     @GeneratedValue(strategy = GenerationType.SEQUENCE, generator = "promotionType_seq")
     @Column(name = "promotionTypeId", unique = true, nullable = false)
     private @NotNull Long promotionTypeId;
-
-    private String promotionTypeName;
+    private @NotNull String promotionTypeName;
 
 
     public Long getPromotionTypeId() {
