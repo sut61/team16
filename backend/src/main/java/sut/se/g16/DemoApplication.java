@@ -25,15 +25,17 @@ public class DemoApplication {
             StatusPaymentRepository statusPaymentRepository, FurnitureRepository furnitureRepository,
             RoomTypeRepository roomTypeRepository, RoomRepository roomRepository, AdminRepository adminRepository,
             PromotionTypeRepository promotionTypeRepository, TypeTimeRepository typeTimeRepository,
-            MeetingEventRoomTypeRepository meetingEventRoomTypeRepository,
+            MeetingEventRoomTypeRepository meetingEventRoomTypeRepository,FunctionRepository functionRepository,
             RoomTypeFurnitureManyToManyRepository roomTypeFurnitureManyToManyRepository,
             FoodOrderRepository foodOrderRepository, ListRepository listRepository,
             FoodTypeRepository foodTypeRepository, TotalPriceFoodRepository totalPriceFoodRepository,
             ProvinceRepository provinceRepository, FoodPaymentRepository foodPaymentRepository,
-            HotelRoomTypeManyToManyRepository hotelRoomTypeManyToManyRepository,
+            HotelRoomTypeManyToManyRepository hotelRoomTypeManyToManyRepository,HotelMeetingEventRoomTypeManyToManyRepository hotelMeetingEventRoomTypeManyToManyRepository,
             FoodOrderTotalPriceFoodManyToManyRepository foodOrderTotalPriceFoodManyToManyRepository,
             CustomerRepository customerRepository, NationalityRepository nationalityRepository,
-            SexRepository sexRepository, TitleNameRepository titleNameRepository) {
+            SexRepository sexRepository, TitleNameRepository titleNameRepository, CarBrandRepository carBrandRepository,
+            CarTypeRepository carTypeRepository, CarRepository carRepository, EmployeeRepository employeeRepository, ItemRepository itemRepository,
+            BankRepository bankRepository) {
 
         return args -> {
 
@@ -139,12 +141,12 @@ public class DemoApplication {
             hotels.setNewProvinceEntity(p);
             hotels.setHouseNo("403");
             hotels.setNewMemberHotelEntity(m);
-            hotels.setPhone("022250590");
+            hotels.setPhone("0862505906");
             hotels.setVillage("เจริญรอด");
             hotels.setRoad("แจ้งวัฒนะ");
             hotels.setSubDistrictSubArea("ในเมือง");
             hotels.setVillageNo(20L);
-            hotels.setPostCode("30110");
+            hotels.setPostCode(30110L);
             hotels.setMobilePhone("0903768901");
             hotelRepository.save(hotels);
 
@@ -157,12 +159,12 @@ public class DemoApplication {
             hotel.setNewProvinceEntity(p);
             hotel.setHouseNo("403");
             hotel.setNewMemberHotelEntity(m2);
-            hotel.setPhone("022250590");
+            hotel.setPhone("0862505906");
             hotel.setVillage("เจริญรอด");
             hotel.setRoad("แจ้งวัฒนะ");
             hotel.setSubDistrictSubArea("ในเมือง");
             hotel.setVillageNo(20L);
-            hotel.setPostCode("30110");
+            hotel.setPostCode(30110L);
             hotel.setMobilePhone("0903768901");
             hotelRepository.save(hotel);
 
@@ -178,105 +180,6 @@ public class DemoApplication {
                 FoodTypeEntity food = new FoodTypeEntity();
                 food.setFoodTypeName(foodtype);
                 foodTypeRepository.save(food);
-                if (foodtype == "Drink") {
-                    Stream.of("Cocacola", "Soda", "Beer", "whiskey").forEach(list -> {
-                        if (list.equals("Cocacola")) {
-                            ListEntity li = new ListEntity();
-                            li.setListName("Cocacola");
-                            li.setNewFoodTypeEntity(food);
-                            li.setPriceFood(20L);
-                            listRepository.save(li);
-                        }
-
-                        if (list.equals("Soda")) {
-                            ListEntity li = new ListEntity();
-                            li.setListName("Soda");
-                            li.setNewFoodTypeEntity(food);
-                            li.setPriceFood(15L);
-                            listRepository.save(li);
-                        }
-
-                        if (list.equals("Beer")) {
-                            ListEntity li = new ListEntity();
-                            li.setListName("Beer");
-                            li.setNewFoodTypeEntity(food);
-                            li.setPriceFood(80L);
-                            listRepository.save(li);
-                        }
-
-                        if (list.equals("whiskey")) {
-                            ListEntity li = new ListEntity();
-                            li.setListName("whiskey");
-                            li.setNewFoodTypeEntity(food);
-                            li.setPriceFood(2000L);
-                            listRepository.save(li);
-                        }
-                    });
-
-                } else if (foodtype == "Food") {
-                    Stream.of("Tomyumkung", "Papaya salad", "Fried rice with Crab", "Soup").forEach(list -> {
-                        if (list.equals("Tomyumkung")) {
-                            ListEntity li = new ListEntity();
-                            li.setListName("Tomyumkung");
-                            li.setNewFoodTypeEntity(food);
-                            li.setPriceFood(150L);
-                            listRepository.save(li);
-                        }
-
-                        if (list.equals("Papaya salad")) {
-                            ListEntity li = new ListEntity();
-                            li.setListName("Papaya salad");
-                            li.setNewFoodTypeEntity(food);
-                            li.setPriceFood(80L);
-                            listRepository.save(li);
-                        }
-
-                        if (list.equals("Fried rice with Crab")) {
-                            ListEntity li = new ListEntity();
-                            li.setListName("Fried rice with Crab");
-                            li.setNewFoodTypeEntity(food);
-                            li.setPriceFood(100L);
-                            listRepository.save(li);
-                        }
-
-                        if (list.equals("Soup")) {
-                            ListEntity li = new ListEntity();
-                            li.setListName("Soup");
-                            li.setNewFoodTypeEntity(food);
-                            li.setPriceFood(150L);
-                            listRepository.save(li);
-                        }
-                    });
-
-                } else if (foodtype == "Dessert") {
-                    Stream.of("Cupcakes", "Brownies", "Cookies").forEach(list -> {
-                        if (list.equals("Cupcakes")) {
-                            ListEntity li = new ListEntity();
-                            li.setListName("Cupcakes");
-                            li.setNewFoodTypeEntity(food);
-                            li.setPriceFood(60L);
-                            listRepository.save(li);
-                        }
-
-                        if (list.equals("Brownies")) {
-                            ListEntity li = new ListEntity();
-                            li.setListName("Brownies");
-                            li.setNewFoodTypeEntity(food);
-                            li.setPriceFood(70L);
-                            listRepository.save(li);
-                        }
-
-                        if (list.equals("Cookies")) {
-                            ListEntity li = new ListEntity();
-                            li.setListName("Cookies");
-                            li.setNewFoodTypeEntity(food);
-                            li.setPriceFood(50L);
-                            listRepository.save(li);
-                        }
-
-                    });
-
-                }
             });
 
             Stream.of("Male", "Female").forEach(sex -> {
@@ -541,17 +444,16 @@ public class DemoApplication {
                 meetingEventRoomTypeRepository.save(mert);
 
             });
-
-            // Stream.of("ชุดโต๊ะประชุม","เก้าอี้","เวที").forEach(function -> {
-            //     FunctionEntity func = new FunctionEntity();
-            //     func.setFunctonName(function);
-            //     functionRepository.save(func);
-            // });
+            Stream.of("ชุดโต๊ะประชุม","เก้าอี้","เวที").forEach(function -> {
+                FunctionEntity func = new FunctionEntity();
+                func.setFunctonName(function);
+                functionRepository.save(func);
+            });
 
             //SP2 Reservation MeetingRoom
             // Create Hotel RoomType Many
 
-            // Stream.of("ประชุม", "สัมมนา", "จัดงานเลี้ยง").forEach(DD -> {
+            // Stream.of("ประชุม", "สัมมา", "จัดเลี้ยง").forEach(DD -> {
             //     MeetingEventRoomTypeEntity mrt = meetingEventRoomTypeRepository.findMeetingEventRoomTypeByName(DD);
             //     HotelEntity phimainin = hotelRepository.findByhotelNameEng("PhimaiIn");
             //     HotelMeetingEventRoomTypeManyToManyEntity s = new HotelMeetingEventRoomTypeManyToManyEntity();
@@ -559,7 +461,7 @@ public class DemoApplication {
             //     s.setNewMeetingEventRoomTypeEntity(mrt);
             //     hotelMeetingEventRoomTypeManyToManyRepository.save(s);
             // });
-            // Stream.of("ประชุม", "สัมมนา").forEach(meetingRoomType -> {
+            // Stream.of("ประชุม", "สัมมา").forEach(meetingRoomType -> {
             //     MeetingEventRoomTypeEntity mrt = meetingEventRoomTypeRepository.findMeetingEventRoomTypeByName(meetingRoomType);
             //     HotelEntity Amathara = hotelRepository.findByhotelNameEng("Amathara");
             //     HotelMeetingEventRoomTypeManyToManyEntity s = new HotelMeetingEventRoomTypeManyToManyEntity();
@@ -567,6 +469,318 @@ public class DemoApplication {
             //     s.setNewMeetingEventRoomTypeEntity(mrt);
             //     hotelMeetingEventRoomTypeManyToManyRepository.save(s);
             // });
+            			//BookingCar
+			//CarType
+			Stream.of("City", "Sedan", "SUVs", "Van", "Fourwheeler", "Other").forEach(carType -> {
+				CarTypeEntity carTypeEntity = new CarTypeEntity();
+				carTypeEntity.setCarType(carType);
+				carTypeRepository.save(carTypeEntity);
+			});
+			//CarBrand
+			Stream.of("MiniCooper", "Toyota", "BMW", "Honda", "MG", "Nissan", "Mitsubishi", "Mazda", "Suzuki", "Other").forEach(carBrand -> {
+				CarBrandEntity carBrandEntity = new CarBrandEntity();
+				carBrandEntity.setCarBrand(carBrand);
+				carBrandRepository.save(carBrandEntity);
+			});
+			//Car
+			Stream.of("Mitsubishi Attrage 2018", "Mazda 2 2010", "Toyota Altis 2012", "Toyota Sienta 2019", "Mitsubishi Pajero sport 2011", "Suzuki Ciaz 2018"
+					, "Honda City 2012", "MG 3 2018", "Toyota Yaris 2016", "Toyota Vios 2018", "Toyota Innova 2015", "Toyota Fortuner 2012"
+					, "BMW X1 2012", "Toyota Alphard 2014", "Nissan Juke 2015", "Mini Cooper Hatch 3 door 2008", "BMW 520i 2013", "Mini Cooper Hatch 3 door 2015"
+					, "Aston martin Vanquish 1972", "BMW Series 5 2018", "Hyundai H1 2013", "Audi TT S 2009", "Chevrolet Camaro 2017", "Volvo S90 2018").forEach(car -> {
+				if (car.equals("Mitsubishi Attrage 2018")) {
+					CarEntity carEntity = new CarEntity();
+					carEntity.setCarName("Mitsubishi Attrage 2018");
+					carEntity.setCarPrice(650);
+					CarTypeEntity carTypeEntity = carTypeRepository.findBycartypeId(1L);
+					carEntity.setCartype(carTypeEntity);
+					CarBrandEntity carBrandEntity = carBrandRepository.findBycarbrandId(7L);
+					carEntity.setCarbrand(carBrandEntity);
+					carRepository.save(carEntity);
+				}
+
+				if (car.equals("Mazda 2 2010")) {
+					CarEntity carEntity = new CarEntity();
+					carEntity.setCarName("Mazda 2 2010");
+					carEntity.setCarPrice(550);
+					CarTypeEntity carTypeEntity = carTypeRepository.findBycartypeId(1L);
+					carEntity.setCartype(carTypeEntity);
+					CarBrandEntity carBrandEntity = carBrandRepository.findBycarbrandId(8L);
+					carEntity.setCarbrand(carBrandEntity);
+					carRepository.save(carEntity);
+				}
+
+				if (car.equals("Toyota Altis 2012")) {
+					CarEntity carEntity = new CarEntity();
+					carEntity.setCarName("Toyota Altis 2012");
+					carEntity.setCarPrice(970);
+					CarTypeEntity carTypeEntity = carTypeRepository.findBycartypeId(2L);
+					carEntity.setCartype(carTypeEntity);
+					CarBrandEntity carBrandEntity = carBrandRepository.findBycarbrandId(2L);
+					carEntity.setCarbrand(carBrandEntity);
+					carRepository.save(carEntity);
+				}
+
+				if (car.equals("Toyota Sienta 2019")) {
+					CarEntity carEntity = new CarEntity();
+					carEntity.setCarName("Toyota Sienta 2019");
+					carEntity.setCarPrice(1500);
+					CarTypeEntity carTypeEntity = carTypeRepository.findBycartypeId(3L);
+					carEntity.setCartype(carTypeEntity);
+					CarBrandEntity carBrandEntity = carBrandRepository.findBycarbrandId(2L);
+					carEntity.setCarbrand(carBrandEntity);
+					carRepository.save(carEntity);
+				}
+
+				if (car.equals("Mitsubishi Pajero sport 2011")) {
+					CarEntity carEntity = new CarEntity();
+					carEntity.setCarName("Mitsubishi Pajero sport 2011");
+					carEntity.setCarPrice(1500);
+					CarTypeEntity carTypeEntity = carTypeRepository.findBycartypeId(3L);
+					carEntity.setCartype(carTypeEntity);
+					CarBrandEntity carBrandEntity = carBrandRepository.findBycarbrandId(7L);
+					carEntity.setCarbrand(carBrandEntity);
+					carRepository.save(carEntity);
+				}
+
+				if (car.equals("Suzuki Ciaz 2018")) {
+					CarEntity carEntity = new CarEntity();
+					carEntity.setCarName("Suzuki Ciaz 2018");
+					carEntity.setCarPrice(900);
+					CarTypeEntity carTypeEntity = carTypeRepository.findBycartypeId(2L);
+					carEntity.setCartype(carTypeEntity);
+					CarBrandEntity carBrandEntity = carBrandRepository.findBycarbrandId(9L);
+					carEntity.setCarbrand(carBrandEntity);
+					carRepository.save(carEntity);
+				}
+
+				if (car.equals("Honda City 2012")) {
+					CarEntity carEntity = new CarEntity();
+					carEntity.setCarName("Honda City 2012");
+					carEntity.setCarPrice(899);
+					CarTypeEntity carTypeEntity = carTypeRepository.findBycartypeId(2L);
+					carEntity.setCartype(carTypeEntity);
+					CarBrandEntity carBrandEntity = carBrandRepository.findBycarbrandId(4L);
+					carEntity.setCarbrand(carBrandEntity);
+					carRepository.save(carEntity);
+				}
+
+				if (car.equals("MG 3 2018")) {
+					CarEntity carEntity = new CarEntity();
+					carEntity.setCarName("MG 3 2018");
+					carEntity.setCarPrice(1000);
+					CarTypeEntity carTypeEntity = carTypeRepository.findBycartypeId(1L);
+					carEntity.setCartype(carTypeEntity);
+					CarBrandEntity carBrandEntity = carBrandRepository.findBycarbrandId(5L);
+					carEntity.setCarbrand(carBrandEntity);
+					carRepository.save(carEntity);
+				}
+
+				if (car.equals("Toyota Yaris 2016")) {
+					CarEntity carEntity = new CarEntity();
+					carEntity.setCarName("Toyota Yaris 2016");
+					carEntity.setCarPrice(960);
+					CarTypeEntity carTypeEntity = carTypeRepository.findBycartypeId(1L);
+					carEntity.setCartype(carTypeEntity);
+					CarBrandEntity carBrandEntity = carBrandRepository.findBycarbrandId(2L);
+					carEntity.setCarbrand(carBrandEntity);
+					carRepository.save(carEntity);
+				}
+
+				if (car.equals("Toyota Vios 2018")) {
+					CarEntity carEntity = new CarEntity();
+					carEntity.setCarName("Toyota Vios 2018");
+					carEntity.setCarPrice(1250);
+					CarTypeEntity carTypeEntity = carTypeRepository.findBycartypeId(2L);
+					carEntity.setCartype(carTypeEntity);
+					CarBrandEntity carBrandEntity = carBrandRepository.findBycarbrandId(2L);
+					carEntity.setCarbrand(carBrandEntity);
+					carRepository.save(carEntity);
+				}
+
+				if (car.equals("Toyota Innova 2015")) {
+					CarEntity carEntity = new CarEntity();
+					carEntity.setCarName("Toyota Innova 2015");
+					carEntity.setCarPrice(2000);
+					CarTypeEntity carTypeEntity = carTypeRepository.findBycartypeId(4L);
+					carEntity.setCartype(carTypeEntity);
+					CarBrandEntity carBrandEntity = carBrandRepository.findBycarbrandId(2L);
+					carEntity.setCarbrand(carBrandEntity);
+					carRepository.save(carEntity);
+				}
+
+				if (car.equals("Toyota Fortuner 2012")) {
+					CarEntity carEntity = new CarEntity();
+					carEntity.setCarName("Toyota Fortuner 2012");
+					carEntity.setCarPrice(1900);
+					CarTypeEntity carTypeEntity = carTypeRepository.findBycartypeId(5L);
+					carEntity.setCartype(carTypeEntity);
+					CarBrandEntity carBrandEntity = carBrandRepository.findBycarbrandId(2L);
+					carEntity.setCarbrand(carBrandEntity);
+					carRepository.save(carEntity);
+				}
+
+				if (car.equals("BMW X1 2012")) {
+					CarEntity carEntity = new CarEntity();
+					carEntity.setCarName("BMW X1 2012");
+					carEntity.setCarPrice(3500);
+					CarTypeEntity carTypeEntity = carTypeRepository.findBycartypeId(3L);
+					carEntity.setCartype(carTypeEntity);
+					CarBrandEntity carBrandEntity = carBrandRepository.findBycarbrandId(3L);
+					carEntity.setCarbrand(carBrandEntity);
+					carRepository.save(carEntity);
+				}
+
+				if (car.equals("Toyota Alphard 2014")) {
+					CarEntity carEntity = new CarEntity();
+					carEntity.setCarName("Toyota Alphard 2014");
+					carEntity.setCarPrice(5500);
+					CarTypeEntity carTypeEntity = carTypeRepository.findBycartypeId(4L);
+					carEntity.setCartype(carTypeEntity);
+					CarBrandEntity carBrandEntity = carBrandRepository.findBycarbrandId(2L);
+					carEntity.setCarbrand(carBrandEntity);
+					carRepository.save(carEntity);
+				}
+
+				if (car.equals("Nissan Juke 2015")) {
+					CarEntity carEntity = new CarEntity();
+					carEntity.setCarName("Nissan Juke 2015");
+					carEntity.setCarPrice(1700);
+					CarTypeEntity carTypeEntity = carTypeRepository.findBycartypeId(3L);
+					carEntity.setCartype(carTypeEntity);
+					CarBrandEntity carBrandEntity = carBrandRepository.findBycarbrandId(6L);
+					carEntity.setCarbrand(carBrandEntity);
+					carRepository.save(carEntity);
+				}
+
+				if (car.equals("Mini Cooper Hatch 3 door 2008")) {
+					CarEntity carEntity = new CarEntity();
+					carEntity.setCarName("Mini Cooper Hatch 3 door 2008");
+					carEntity.setCarPrice(2900);
+					CarTypeEntity carTypeEntity = carTypeRepository.findBycartypeId(6L);
+					carEntity.setCartype(carTypeEntity);
+					CarBrandEntity carBrandEntity = carBrandRepository.findBycarbrandId(1L);
+					carEntity.setCarbrand(carBrandEntity);
+					carRepository.save(carEntity);
+				}
+
+				if (car.equals("BMW 520i 2013")) {
+					CarEntity carEntity = new CarEntity();
+					carEntity.setCarName("BMW 520i 2013");
+					carEntity.setCarPrice(6500);
+					CarTypeEntity carTypeEntity = carTypeRepository.findBycartypeId(2L);
+					carEntity.setCartype(carTypeEntity);
+					CarBrandEntity carBrandEntity = carBrandRepository.findBycarbrandId(3L);
+					carEntity.setCarbrand(carBrandEntity);
+					carRepository.save(carEntity);
+				}
+
+				if (car.equals("Mini Cooper Hatch 3 door 2015")) {
+					CarEntity carEntity = new CarEntity();
+					carEntity.setCarName("Mini Cooper Hatch 3 door 2015");
+					carEntity.setCarPrice(5000);
+					CarTypeEntity carTypeEntity = carTypeRepository.findBycartypeId(1L);
+					carEntity.setCartype(carTypeEntity);
+					CarBrandEntity carBrandEntity = carBrandRepository.findBycarbrandId(1L);
+					carEntity.setCarbrand(carBrandEntity);
+					carRepository.save(carEntity);
+				}
+
+				if (car.equals("Aston martin Vanquish 1972")) {
+					CarEntity carEntity = new CarEntity();
+					carEntity.setCarName("Aston martin Vanquish 1972");
+					carEntity.setCarPrice(200000);
+					CarTypeEntity carTypeEntity = carTypeRepository.findBycartypeId(3L);
+					carEntity.setCartype(carTypeEntity);
+					CarBrandEntity carBrandEntity = carBrandRepository.findBycarbrandId(10L);
+					carEntity.setCarbrand(carBrandEntity);
+					carRepository.save(carEntity);
+				}
+
+				if (car.equals("BMW Series 5 2018")) {
+					CarEntity carEntity = new CarEntity();
+					carEntity.setCarName("BMW Series 5 2018");
+					carEntity.setCarPrice(12000);
+					CarTypeEntity carTypeEntity = carTypeRepository.findBycartypeId(2L);
+					carEntity.setCartype(carTypeEntity);
+					CarBrandEntity carBrandEntity = carBrandRepository.findBycarbrandId(3L);
+					carEntity.setCarbrand(carBrandEntity);
+					carRepository.save(carEntity);
+				}
+
+				if (car.equals("Mercedes Benz E Coupe 2018")) {
+					CarEntity carEntity = new CarEntity();
+					carEntity.setCarName("Mercedes Benz E Coupe 2018");
+					carEntity.setCarPrice(16900);
+					CarTypeEntity carTypeEntity = carTypeRepository.findBycartypeId(6L);
+					carEntity.setCartype(carTypeEntity);
+					CarBrandEntity carBrandEntity = carBrandRepository.findBycarbrandId(10L);
+					carEntity.setCarbrand(carBrandEntity);
+					carRepository.save(carEntity);
+				}
+
+				if (car.equals("Hyundai H1 2013")) {
+					CarEntity carEntity = new CarEntity();
+					carEntity.setCarName("Hyundai H1 2013");
+					carEntity.setCarPrice(3000);
+					CarTypeEntity carTypeEntity = carTypeRepository.findBycartypeId(6L);
+					carEntity.setCartype(carTypeEntity);
+					CarBrandEntity carBrandEntity = carBrandRepository.findBycarbrandId(10L);
+					carEntity.setCarbrand(carBrandEntity);
+					carRepository.save(carEntity);
+				}
+
+				if (car.equals("Audi TT S 2009")) {
+					CarEntity carEntity = new CarEntity();
+					carEntity.setCarName("Audi TT S 2009");
+					carEntity.setCarPrice(7000);
+					CarTypeEntity carTypeEntity = carTypeRepository.findBycartypeId(6L);
+					carEntity.setCartype(carTypeEntity);
+					CarBrandEntity carBrandEntity = carBrandRepository.findBycarbrandId(10L);
+					carEntity.setCarbrand(carBrandEntity);
+					carRepository.save(carEntity);
+				}
+
+				if (car.equals("Chevrolet Camaro 2017")) {
+					CarEntity carEntity = new CarEntity();
+					carEntity.setCarName("Chevrolet Camaro 2017");
+					carEntity.setCarPrice(15000);
+					CarTypeEntity carTypeEntity = carTypeRepository.findBycartypeId(6L);
+					carEntity.setCartype(carTypeEntity);
+					CarBrandEntity carBrandEntity = carBrandRepository.findBycarbrandId(10L);
+					carEntity.setCarbrand(carBrandEntity);
+					carRepository.save(carEntity);
+				}
+
+				if (car.equals("Volvo S90 2018")) {
+					CarEntity carEntity = new CarEntity();
+					carEntity.setCarName("Volvo S90 2018");
+					carEntity.setCarPrice(9900);
+					CarTypeEntity carTypeEntity = carTypeRepository.findBycartypeId(2L);
+					carEntity.setCartype(carTypeEntity);
+					CarBrandEntity carBrandEntity = carBrandRepository.findBycarbrandId(10L);
+					carEntity.setCarbrand(carBrandEntity);
+					carRepository.save(carEntity);
+				}
+            });
+                //Create Employee
+			    EmployeeEntity emp = new EmployeeEntity();
+			    emp.setEmployeeUserName("E1234");
+			    emp.setEmployeePassword("asdf1234");
+			    emp.setNewHotelEntity(hotels);
+                employeeRepository.save(emp);
+            
+                Stream.of("มือถือ","กระเป๋า","เสื้อ","การเกง").forEach(itemName->{
+                    ItemEntity item2=new ItemEntity();
+                    item2.setItemName(itemName);
+                    itemRepository.save(item2);
+                });
+
+                BankEntity b1 = new BankEntity("กรุงไทย");
+                BankEntity b2 = new BankEntity("ไทยพาณิชย์");
+                BankEntity b3 = new BankEntity("กสิกรไทย");
+                bankRepository.save(b1);
+                bankRepository.save(b2);
+                bankRepository.save(b3);
         };
 
     }
