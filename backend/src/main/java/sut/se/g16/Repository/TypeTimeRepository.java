@@ -11,9 +11,16 @@ import sut.se.g16.Entity.TypeTimeEntity;
 @RepositoryRestResource
 public interface TypeTimeRepository extends JpaRepository<TypeTimeEntity, Long> {
 
+    TypeTimeEntity findBytypeTimeName(String typeTimeName);
+    
     @Query("SELECT t FROM TypeTimeEntity t WHERE t.typeTimeName = :Name")
     TypeTimeEntity findTypeTimeByName(@Param("Name")String Name);
 
     @Query("SELECT t.typeTimeId FROM TypeTimeEntity t WHERE t.typeTimeName = :Name")
     Long findTypeTimeIdByName(@Param("Name")String Name);
+
+    @Query("SELECT t FROM TypeTimeEntity t WHERE t.typeTimeId = :id")
+    TypeTimeEntity findTypeTimeById(@Param("id")Long id);
+
+    
 }
