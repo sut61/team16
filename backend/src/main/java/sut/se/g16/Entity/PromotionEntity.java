@@ -4,6 +4,8 @@ import lombok.*;
 import java.util.*;
 import javax.persistence.Id;
 import javax.validation.constraints.NotNull;
+import javax.validation.constraints.Pattern;
+import javax.validation.constraints.Size;
 import javax.persistence.*;
 
 import java.time.LocalDate;
@@ -18,6 +20,9 @@ public class PromotionEntity {
     @SequenceGenerator(name="promotionId_seq",sequenceName="promotionId_seq")               
     @GeneratedValue(strategy = GenerationType.SEQUENCE, generator="promotionId_seq") 
     private @NotNull Long promotionId;
+    @Pattern (regexp = "^[A-Za-z]\\d+")
+    @Size(min = 5,max =10)
+    @Column(unique = true)
     private @NotNull String promotionName;
     private @NotNull Date dateStart;
     private @NotNull Date dateEnd;
@@ -26,10 +31,6 @@ public class PromotionEntity {
     @ManyToOne(fetch = FetchType.EAGER, targetEntity = PromotionTypeEntity.class)
     @JoinColumn(name = "PromotionType_ID", insertable = true)
     private  PromotionTypeEntity newPromotionTypeEntity;
-
-    @ManyToOne(fetch = FetchType.EAGER, targetEntity = AdminEntity.class)
-    @JoinColumn(name = "Member_ID", insertable = true)
-    private AdminEntity newAdminEntity;
 
     @ManyToOne(fetch = FetchType.EAGER, targetEntity = HotelEntity.class)
     @JoinColumn(name = "Hotel_ID", insertable = true)
@@ -81,12 +82,6 @@ public class PromotionEntity {
     }
     public void setNewPromotionTypeEntity(PromotionTypeEntity newPromotionTypeEntity) {
         this.newPromotionTypeEntity = newPromotionTypeEntity;
-    }
-    public AdminEntity getNewAdminEntity() {
-        return newAdminEntity;
-    }
-    public void setNewAdminEntity(AdminEntity newAdminEntity) {
-        this.newAdminEntity = newAdminEntity;
     }
 
     public HotelEntity getNewHotelEntity() {
