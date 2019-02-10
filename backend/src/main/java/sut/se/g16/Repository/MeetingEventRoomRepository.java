@@ -1,5 +1,7 @@
 package sut.se.g16.Repository;
 
+import java.util.Collection;
+
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.data.jpa.repository.Query;
 import org.springframework.data.repository.query.Param;
@@ -30,4 +32,8 @@ public interface MeetingEventRoomRepository extends JpaRepository<MeetingEventRo
 
     @Query("SELECT t.meetingEventRoomId FROM MeetingEventRoomEntity t WHERE t.meetingEventRoomName = :Name")
     Long findMeetingEventRoomIdByMeetingRoomName(@Param("Name")String Name);
+
+
+    @Query("SELECT t FROM MeetingEventRoomEntity t WHERE t.newMeetingEventRoomTypeEntity.meetingEventRoomTypeId = :id")
+    Collection<MeetingEventRoomEntity> findAllByMeetingEventRoomId(@Param("id") Long id);
 }

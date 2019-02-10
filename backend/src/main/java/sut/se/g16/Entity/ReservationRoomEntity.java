@@ -4,6 +4,8 @@ import lombok.*;
 import java.util.*;
 import javax.persistence.*;
 import javax.validation.constraints.NotNull;
+import javax.validation.constraints.Pattern;
+import javax.validation.constraints.Size;
 
 import java.time.LocalDate;
 //import sut.se.g16.Entity.*;
@@ -18,33 +20,44 @@ public class ReservationRoomEntity {
     @GeneratedValue(strategy = GenerationType.SEQUENCE, generator="resevationRoomId_seq")  
     private @NotNull Long reservationRoomId;
 
+
+    @NotNull
     @ManyToOne(fetch = FetchType.EAGER )
     @JoinColumn(name= "hotelId")
     private HotelEntity newHotelEntity;
 
+    @NotNull
     @ManyToOne(fetch = FetchType.EAGER )
     @JoinColumn(name= "customerId")
     private CustomerEntity newCustomerEntity;
 
+    @NotNull
     @ManyToOne(fetch = FetchType.EAGER )
     @JoinColumn(name= "promotionId")
     private PromotionEntity newPromotionEntity;
 
+    @NotNull
     @ManyToOne(fetch = FetchType.EAGER )
     @JoinColumn(name= "roomTypeId")
     private RoomTypeEntity newRoomTypeEntity;
 
+    @NotNull
     @ManyToOne(fetch = FetchType.EAGER )
     @JoinColumn(name= "statusPaymentId")
     private StatusPaymentEntity newStatusPaymentEntity;
 
+    @NonNull
     @ManyToOne(fetch = FetchType.EAGER )
     @JoinColumn(name= "roomId")
     private RoomEntity newRoomEntity;
 
     private @NonNull Date dateIn;
     private @NonNull Date dateOut;
-    private @NonNull Double totalPriceReservationRoom;
+
+    @Size(min = 10, max = 40)
+    @Pattern(regexp = "^[A-Za-z]+\\s?[A-Za-z]*[0-9]*[A-Za-z]*")
+    @Column(unique = true)
+    private @NonNull String commentReserroom;
 
     /**
      * @return the reservationRoomId
@@ -131,6 +144,20 @@ public class ReservationRoomEntity {
     }
 
     /**
+     * @return the newRoomEntity
+     */
+    public RoomEntity getNewRoomEntity() {
+        return newRoomEntity;
+    }
+
+    /**
+     * @param newRoomEntity the newRoomEntity to set
+     */
+    public void setNewRoomEntity(RoomEntity newRoomEntity) {
+        this.newRoomEntity = newRoomEntity;
+    }
+
+    /**
      * @return the dateIn
      */
     public Date getDateIn() {
@@ -158,25 +185,22 @@ public class ReservationRoomEntity {
         this.dateOut = dateOut;
     }
 
+
     /**
-     * @return the totalPriceReservationRoom
+     * @return the commentReserroom
      */
-    public Double getTotalPriceReservationRoom() {
-        return totalPriceReservationRoom;
+    public String getCommentReserroom() {
+        return commentReserroom;
     }
 
     /**
-     * @param totalPriceReservationRoom the totalPriceReservationRoom to set
+     * @param commentReserroom the commentReserroom to set
      */
-    public void setTotalPriceReservationRoom(Double totalPriceReservationRoom) {
-        this.totalPriceReservationRoom = totalPriceReservationRoom;
+    public void setCommentReserroom(String commentReserroom) {
+        this.commentReserroom = commentReserroom;
     }
-    public RoomEntity getNewRoomEntity() {
-        return newRoomEntity;
-    }
-    public void setNewRoomEntity(RoomEntity newRoomEntity) {
-        this.newRoomEntity = newRoomEntity;
-    }
+
+    
 
     
 }

@@ -42,6 +42,12 @@ import { BookingcarService } from './shared/bookingcar.service';
 import { EmployeeLoginComponent } from './employee-login/employee-login.component';
 import { FoodStockComponent } from './food-stock/food-stock.component';
 import { FoodStockService } from './shared/food-stock.service';
+import { MainReservationMeetingRoomComponent } from './main-reservation-meeting-room/main-reservation-meeting-room.component';
+import { ReservationMeetingRoomService } from './shared/reservation-meeting-room.service';
+import { SentYourLostComponent } from './sent-your-lost/sent-your-lost.component';
+import { SentService } from './shared/sent.service';
+import { PaymentComponent } from './payment/payment.component';
+import { PaymentService } from './shared/payment.service';
 
 
 const appRoutes: Routes = [
@@ -63,7 +69,11 @@ const appRoutes: Routes = [
   {path: 'review/:inputMemberUserName/:selectHotelNameEng/:selectRoomType/:selectReservationId', component: ReviewComponent},
   {path: 'updatefoodstatus/:inputUserName',component: UpdateFoodStatusComponent},
   {path: 'bookingcar/:inputUserName', component: BookingcarComponent},
-  {path: 'foodstock/:inputUserName', component: FoodStockComponent}
+  {path: 'foodstock/:inputUserName', component: FoodStockComponent},
+  {path: 'payment/:inputUserName',component: PaymentComponent},
+  {path: 'sent-your-lost/:inputUserName',component: SentYourLostComponent},
+  {path: 'reservationmeeting/:inputUserName',component: MainReservationMeetingRoomComponent}
+
 
 ];
 
@@ -88,7 +98,10 @@ const appRoutes: Routes = [
     BookingcarComponent,
     DialogOverviewExampleDialog,
     EmployeeLoginComponent,
-    FoodStockComponent
+    FoodStockComponent,
+    MainReservationMeetingRoomComponent,
+    SentYourLostComponent,
+    PaymentComponent
   ],
   imports: [
     BrowserModule,
@@ -113,8 +126,8 @@ const appRoutes: Routes = [
     RouterModule.forRoot(appRoutes)
   ],
   entryComponents: [DialogOverviewExampleDialog],
-  providers: [RoomService,FoodOrderService,FoodStockService,ReservationRoomService,PromotionService,CustomerService,ReviewService,
-    ViewReviewService,MeetingRoomService,BookingcarComponent,BookingcarService],
+  providers: [RoomService,FoodOrderService,SentService,ReservationMeetingRoomService,FoodStockService,ReservationRoomService,PromotionService,CustomerService,ReviewService,
+    ViewReviewService,MeetingRoomService,BookingcarComponent,BookingcarService,PaymentService],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

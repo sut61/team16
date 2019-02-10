@@ -40,4 +40,8 @@ public interface RoomRepository extends JpaRepository<RoomEntity, Long> {
 
     @Query("SELECT t FROM RoomEntity t WHERE t.newRoomTypeEntity.roomTypeId = :roomTypeId and t.newRoomStatusEntity.roomStatusId = :roomStatusId")
     Collection<RoomEntity> findRoomByRoomTypeId(@Param("roomTypeId")long roomTypeId,@Param("roomStatusId") Long roomStatusId);
+
+    @Query("SELECT t FROM RoomEntity t WHERE t.roomNumber = :Name")
+    RoomEntity findRoomEntityByRoomNumber(@Param("Name")String Name);
+    
 }

@@ -8,6 +8,9 @@ import org.springframework.boot.autoconfigure.SpringBootApplication;
 
 import javax.persistence.*;
 import javax.validation.constraints.NotNull;
+import javax.validation.constraints.Pattern;
+import javax.validation.constraints.Size;
+
 @NoArgsConstructor
 @Entity
 @Data
@@ -21,24 +24,33 @@ public class ReviewEntity {
 	@GeneratedValue(strategy = GenerationType.SEQUENCE, generator = "Reviews_seq")
 	@Column(name = "ReviewsId", unique = true, nullable = false)
 	private @NotNull Long reviewId;
-	private @NotNull String comment;
+	@Size(min=3,max=200)
+	@Pattern(regexp="^[A-Za-z]*")
+	private  String comment;
+	@Size(min=3,max=200)
+	@Pattern(regexp="^[A-Za-z]*")
+	private  String problem;
 	private @NotNull float score;
-
+	
+	@NotNull
 	@ManyToOne(fetch = FetchType.EAGER, targetEntity = ReservationRoomEntity.class)
+	@JoinColumn(name="reservationRoomId")
 	public ReservationRoomEntity newReservationRoomEntity;
 
+	@NotNull
 	@ManyToOne(fetch = FetchType.EAGER, targetEntity = HotelEntity.class)
 	@JoinColumn(name = "HotelId")
 	private HotelEntity newHotelEntity;
 
+	@NotNull
 	@ManyToOne(fetch = FetchType.EAGER, targetEntity = CustomerEntity.class)
 	@JoinColumn(name = "UserId")
 	private CustomerEntity newCustomerEntity;
 
+	@NotNull
 	@ManyToOne(fetch = FetchType.EAGER, targetEntity = RoomTypeEntity.class)
 	@JoinColumn(name = "RoomTypeId")
 	private RoomTypeEntity newRoomTypeEntity;
-
 
 	public Long getReviewId() {
 		return reviewId;
@@ -91,8 +103,16 @@ public class ReviewEntity {
 	public RoomTypeEntity getNewRoomTypeEntity() {
 		return newRoomTypeEntity;
 	}
-	
+
 	public void setNewRoomTypeEntity(RoomTypeEntity newRoomTypeEntity) {
 		this.newRoomTypeEntity = newRoomTypeEntity;
+	}
+
+	public String getProblem() {
+		return problem;
+	}
+
+	public void setProblem(String problem) {
+		this.problem = problem;
 	}
 }
