@@ -25,17 +25,16 @@ public class DemoApplication {
             StatusPaymentRepository statusPaymentRepository, FurnitureRepository furnitureRepository,
             RoomTypeRepository roomTypeRepository, RoomRepository roomRepository, AdminRepository adminRepository,
             PromotionTypeRepository promotionTypeRepository, TypeTimeRepository typeTimeRepository,
-            MeetingEventRoomTypeRepository meetingEventRoomTypeRepository,FunctionRepository functionRepository,
+            MeetingEventRoomTypeRepository meetingEventRoomTypeRepository,
             RoomTypeFurnitureManyToManyRepository roomTypeFurnitureManyToManyRepository,
             FoodOrderRepository foodOrderRepository, ListRepository listRepository,
             FoodTypeRepository foodTypeRepository, TotalPriceFoodRepository totalPriceFoodRepository,
             ProvinceRepository provinceRepository, FoodPaymentRepository foodPaymentRepository,
-            HotelRoomTypeManyToManyRepository hotelRoomTypeManyToManyRepository,HotelMeetingEventRoomTypeManyToManyRepository hotelMeetingEventRoomTypeManyToManyRepository,
+            HotelRoomTypeManyToManyRepository hotelRoomTypeManyToManyRepository,
             FoodOrderTotalPriceFoodManyToManyRepository foodOrderTotalPriceFoodManyToManyRepository,
             CustomerRepository customerRepository, NationalityRepository nationalityRepository,
             SexRepository sexRepository, TitleNameRepository titleNameRepository, CarBrandRepository carBrandRepository,
-            CarTypeRepository carTypeRepository, CarRepository carRepository, EmployeeRepository employeeRepository, ItemRepository itemRepository,
-            BankRepository bankRepository) {
+            CarTypeRepository carTypeRepository, CarRepository carRepository, EmployeeRepository employeeRepository) {
 
         return args -> {
 
@@ -141,12 +140,12 @@ public class DemoApplication {
             hotels.setNewProvinceEntity(p);
             hotels.setHouseNo("403");
             hotels.setNewMemberHotelEntity(m);
-            hotels.setPhone("0862505906");
+            hotels.setPhone("086250506");
             hotels.setVillage("เจริญรอด");
             hotels.setRoad("แจ้งวัฒนะ");
             hotels.setSubDistrictSubArea("ในเมือง");
             hotels.setVillageNo(20L);
-            hotels.setPostCode(30110L);
+            hotels.setPostCode("30110");
             hotels.setMobilePhone("0903768901");
             hotelRepository.save(hotels);
 
@@ -159,12 +158,12 @@ public class DemoApplication {
             hotel.setNewProvinceEntity(p);
             hotel.setHouseNo("403");
             hotel.setNewMemberHotelEntity(m2);
-            hotel.setPhone("0862505906");
+            hotel.setPhone("086255906");
             hotel.setVillage("เจริญรอด");
             hotel.setRoad("แจ้งวัฒนะ");
             hotel.setSubDistrictSubArea("ในเมือง");
             hotel.setVillageNo(20L);
-            hotel.setPostCode(30110L);
+            hotel.setPostCode("30110");
             hotel.setMobilePhone("0903768901");
             hotelRepository.save(hotel);
 
@@ -444,11 +443,11 @@ public class DemoApplication {
                 meetingEventRoomTypeRepository.save(mert);
 
             });
-            Stream.of("ชุดโต๊ะประชุม","เก้าอี้","เวที").forEach(function -> {
-                FunctionEntity func = new FunctionEntity();
-                func.setFunctonName(function);
-                functionRepository.save(func);
-            });
+            // Stream.of("ชุดโต๊ะประชุม","เก้าอี้","เวที").forEach(function -> {
+            //     FunctionEntity func = new FunctionEntity();
+            //     func.setFunctonName(function);
+            //     functionRepository.save(func);
+            // });
 
             //SP2 Reservation MeetingRoom
             // Create Hotel RoomType Many
@@ -769,18 +768,18 @@ public class DemoApplication {
 			    emp.setNewHotelEntity(hotels);
                 employeeRepository.save(emp);
             
-                Stream.of("มือถือ","กระเป๋า","เสื้อ","การเกง").forEach(itemName->{
-                    ItemEntity item2=new ItemEntity();
-                    item2.setItemName(itemName);
-                    itemRepository.save(item2);
-                });
+                // Stream.of("มือถือ","กระเป๋า","เสื้อ","การเกง").forEach(itemName->{
+                //     ItemEntity item2=new ItemEntity();
+                //     item2.setItemName(itemName);
+                //     itemRepository.save(item2);
+                // });
 
-                BankEntity b1 = new BankEntity("กรุงไทย");
-                BankEntity b2 = new BankEntity("ไทยพาณิชย์");
-                BankEntity b3 = new BankEntity("กสิกรไทย");
-                bankRepository.save(b1);
-                bankRepository.save(b2);
-                bankRepository.save(b3);
+                // BankEntity b1 = new BankEntity("กรุงไทย");
+                // BankEntity b2 = new BankEntity("ไทยพาณิชย์");
+                // BankEntity b3 = new BankEntity("กสิกรไทย");
+                // bankRepository.save(b1);
+                // bankRepository.save(b2);
+                // bankRepository.save(b3);
         };
 
     }
