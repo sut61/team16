@@ -9,6 +9,8 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RestController;
 
+import net.bytebuddy.asm.Advice.Return;
+
 import java.util.Collection;
 import java.util.stream.Collectors;
 
@@ -32,15 +34,19 @@ public class FoodOrderController {
     @Autowired
     private ProvinceRepository provinceRepository;
     @Autowired
+    private FoodStockRepository foodStockRepository;
+    @Autowired
     private FoodPaymentRepository foodPaymentRepository;
     @Autowired
     private FoodOrderTotalPriceFoodManyToManyRepository foodOrderTotalPriceFoodManyToManyRepository;
     @Autowired
     private CustomerRepository customerRepository;
-    public FoodOrderController(CustomerRepository customerRepository, FoodOrderRepository foodOrderRepository, ListRepository listRepository,
-            FoodTypeRepository foodTypeRepository, TotalPriceFoodRepository totalPriceFoodRepository,
-            RoomRepository roomRepository, HotelRepository hotelRepository, ProvinceRepository provinceRepository,
-            FoodPaymentRepository foodPaymentRepository,
+
+    public FoodOrderController(CustomerRepository customerRepository, FoodOrderRepository foodOrderRepository,
+            ListRepository listRepository, FoodTypeRepository foodTypeRepository,
+            TotalPriceFoodRepository totalPriceFoodRepository, RoomRepository roomRepository,
+            HotelRepository hotelRepository, ProvinceRepository provinceRepository,
+            FoodPaymentRepository foodPaymentRepository, FoodStockRepository foodStockRepository,
             FoodOrderTotalPriceFoodManyToManyRepository foodOrderTotalPriceFoodManyToManyRepository) {
         this.foodOrderRepository = foodOrderRepository;
         this.listRepository = listRepository;
@@ -53,72 +59,11 @@ public class FoodOrderController {
         this.foodOrderTotalPriceFoodManyToManyRepository = foodOrderTotalPriceFoodManyToManyRepository;
     }
 
-    // /* Province */
-    // @GetMapping("/provinces")
-    // public Collection<ProvinceEntity> provinces() {
-    //     return provinceRepository.findAll().stream().collect(Collectors.toList());
-    // }
-
-    // @GetMapping("/province/{name}")
-    // public ProvinceEntity newProvince(@PathVariable String name) {
-    //     ProvinceEntity p = new ProvinceEntity();
-    //     p.setProvinceName(name);
-    //     return this.provinceRepository.save(p);
-    // }
-
-    /* Hotal */
-    // @GetMapping("/hotels")
-    // public Collection<HotelEntity> hotel() {
-    //     return hotelRepository.findAll().stream().collect(Collectors.toList());
-    // }
-
-    // @GetMapping("/hotel/{name}/{villageNo}/{houseNo}/{building}/{village}/{alleyLane}/{road}/{subDistrictSubArea}/{districtArea}/{postCode}/{mobilePhone}/{phone}/{fax}/{province}")
-    // public HotelEntity newHotel(@PathVariable final String name, @PathVariable String province,
-    //         @PathVariable int villageNo, @PathVariable String houseNo, @PathVariable String building,
-    //         @PathVariable String village, @PathVariable String alleyLane, @PathVariable String road,
-    //         @PathVariable String subDistrictSubArea, @PathVariable String districtArea, @PathVariable int postCode,
-    //         @PathVariable String mobilePhone, @PathVariable String phone, @PathVariable String fax,
-    //         @PathVariable String memberName) {
-    //     ProvinceEntity p = provinceRepository.findByName(province);
-    //     HotelEntity hotels = new HotelEntity();
-    //     hotels.setHotelNameEng(name);
-    //     hotels.setVillageNo(villageNo);
-    //     hotels.setHouseNo(houseNo);
-    //     hotels.setBuilding(building);
-    //     hotels.setVillage(village);
-    //     hotels.setAlleyLane(alleyLane);
-    //     hotels.setRoad(road);
-    //     hotels.setSubDistrictSubArea(subDistrictSubArea);
-    //     hotels.setDistrictArea(districtArea);
-    //     hotels.setPostCode(postCode);
-    //     hotels.setMobilePhone(mobilePhone);
-    //     hotels.setPhone(phone);
-    //     hotels.setFax(fax);
-    //     hotels.setNewProvinceEntity(p);
-    //     return hotelRepository.save(hotels);
-    // }
-
-    // /* Room */
-    // @GetMapping(path = "/rooms")
-    // public Collection<RoomEntity> RoomEntity() {
-    //     return roomRepository.findAll().stream().collect(Collectors.toList());
-    // }
-
     @GetMapping(path = "/room/{hotel}")
     public Collection<RoomEntity> RoomEntity(@PathVariable String hotel) {
         Long hotelId = hotelRepository.findHotelIdByName(hotel);
         return roomRepository.findRoomByHotelId(hotelId);
     }
-
-    // @GetMapping("/room/{roomnumber}/{roomprice}/{hotel}")
-    // public RoomEntity newRoom(@PathVariable int roomnumber, @PathVariable int roomprice, @PathVariable String hotel) {
-    //     RoomEntity set = new RoomEntity();
-    //     HotelEntity ho = hotelRepository.findByName(hotel);
-    //     set.setRoomNumber(roomnumber);
-    //     set.setRoomPrice(roomprice);
-    //     set.setNewHotelEntity(ho);
-    //     return roomRepository.save(set);
-    // }
 
     /* Food Type */
     @GetMapping(path = "/foodtypes")
@@ -144,19 +89,21 @@ public class FoodOrderController {
         Long foodTypeId = foodTypeRepository.findFoodTypeIdByName(foodType);
         return listRepository.findListByFoodTypeId(foodTypeId);
     }
-    @GetMapping(path = "/listprice/{list}")
-    public Long newListEntity(@PathVariable String list) {
-        return listRepository.findPriceByList(list);
+
+    @GetMapping(path = "/listprice/{listname}")
+    public Long newStockEntity(@PathVariable String listname) {
+        return listRepository.findPriceByListName(listname);
     }
 
-    @GetMapping("/list/{nametype}/{foodname}/{pricefood}")
-    public ListEntity newList(@PathVariable String nametype, @PathVariable String foodname,
-            @PathVariable int pricefood) {
-        ListEntity set = new ListEntity();
-        FoodTypeEntity nt = foodTypeRepository.findByName(nametype);
-        set.setNewFoodTypeEntity(nt);
-        return listRepository.save(set);
-    }
+    // @GetMapping("/list/{nametype}/{foodname}/{pricefood}/{amount}")
+    // public ListEntity newList(@PathVariable String nametype, @PathVariable String
+    // foodname,
+    // @PathVariable int pricefood, @PathVariable Long amount) {
+    // ListEntity set = new ListEntity();
+    // FoodTypeEntity nt = foodTypeRepository.findByName(nametype);
+    // set.setNewFoodTypeEntity(nt);
+    // return listRepository.save(set);
+    // }
 
     /* Total Price Food */
     @GetMapping(path = "/totalpricefoods")
@@ -164,6 +111,7 @@ public class FoodOrderController {
         String status = "ยังไม่จ่าย";
         return totalPriceFoodRepository.findAllByFoodPayment(status);
     }
+
     @GetMapping(path = "/totalprice/{totalpriceId}")
     public Long total(@PathVariable Long totalpriceId) {
         return totalPriceFoodRepository.findTotalByTotalPriceId(totalpriceId);
@@ -176,11 +124,16 @@ public class FoodOrderController {
     }
 
     @GetMapping(path = "/foodorder/{hotel}/{room}/{list}/{customer}/{amount}")
-    public Boolean newFoodOrder(@PathVariable String hotel, @PathVariable String room, @PathVariable String list, @PathVariable String customer,@PathVariable int amount) {
+    public Boolean newFoodOrder(@PathVariable String hotel, @PathVariable String room, @PathVariable String list,
+            @PathVariable String customer, @PathVariable Long amount) {
+        ListEntity li = listRepository.findListByName(list);
+        // Long li = listRepository.findListIdByName(list);
+        Long ftid = listRepository.findFoodTypeIdByName(list);
+        FoodTypeEntity fte = foodTypeRepository.findAllByFoodTypeId(ftid);
+
         CustomerEntity cus = customerRepository.findByUser(customer);
         HotelEntity ho = hotelRepository.findByName(hotel);
-        ListEntity li = listRepository.findListByName(list);
-        System.out.println("List Price" + li.getPriceFood());
+        Long listPrice = listRepository.findPriceByListName(list);
         Long hotelId = hotelRepository.findHotelIdByName(hotel);
         Long roomId = roomRepository.findRoomIdByHotelIdAndRoomNumber(room, hotelId);
 
@@ -193,47 +146,98 @@ public class FoodOrderController {
 
         FoodPaymentEntity foodPay = foodPaymentRepository.findByStatus("ยังไม่จ่าย");
 
-        FoodOrderEntity foodOrder = new FoodOrderEntity();
-        foodOrder.setTotalProiceOrder(li.getPriceFood() *amount);
-        foodOrder.setNewCustomerEntity(cus);
-        foodOrder.setNewHotelEntity(ho);
-        foodOrder.setNewListEntity(li);
-        foodOrder.setNewRoomEntity(rm);
-        foodOrderRepository.save(foodOrder);
-        TotalPriceFoodEntity totalPrice = new TotalPriceFoodEntity();
-        if (totalPriceId == null) {
+        if (fte.getFoodTypeName().equals("Drink")) {
+            if (li.getTotalAmount() - amount >= 0) {
+                FoodOrderEntity foodOrder = new FoodOrderEntity();
+                foodOrder.setTotalProiceOrder(listPrice * amount);
+                foodOrder.setNewCustomerEntity(cus);
+                foodOrder.setNewHotelEntity(ho);
+                foodOrder.setNewListEntity(li);
+                foodOrder.setNewRoomEntity(rm);
+                foodOrderRepository.save(foodOrder);
 
-            totalPrice.setNewFoodPaymentEntity(foodPay);
-            totalPrice.setNewRoomEntity(rm);
-            totalPrice.setTotalPrice(amount * li.getPriceFood());
-            totalPriceFoodRepository.save(totalPrice);
+                li.setTotalAmount(li.getTotalAmount()-amount);
+                listRepository.save(li);
 
-            FoodOrderTotalPriceFoodManyToManyEntity fopmm = new FoodOrderTotalPriceFoodManyToManyEntity();
-            fopmm.setNewFoodOrderEntity(foodOrder);
-            fopmm.setNewTotalPriceFoodEntity(totalPrice);
-            foodOrderTotalPriceFoodManyToManyRepository.save(fopmm);
-            return true;
-        } else {
-            totalPriceFoodRepository.findById(totalPriceId).map(totalPriceEntity -> {
-                Long price = totalPriceEntity.getTotalPrice();
-                price += (amount * li.getPriceFood());
-                totalPriceEntity.setTotalPrice(price);
-                totalPriceFoodRepository.save(totalPriceEntity);
+                TotalPriceFoodEntity totalPrice = new TotalPriceFoodEntity();
+                if (totalPriceId == null) {
+                    totalPrice.setNewFoodPaymentEntity(foodPay);
+                    totalPrice.setNewRoomEntity(rm);
+                    totalPrice.setTotalPrice(amount * listPrice);
+                    totalPriceFoodRepository.save(totalPrice);
 
-                FoodOrderTotalPriceFoodManyToManyEntity fopmm = new FoodOrderTotalPriceFoodManyToManyEntity();
-                fopmm.setNewFoodOrderEntity(foodOrder);
-                fopmm.setNewTotalPriceFoodEntity(totalPriceEntity);
-                foodOrderTotalPriceFoodManyToManyRepository.save(fopmm);
+                    FoodOrderTotalPriceFoodManyToManyEntity fopmm = new FoodOrderTotalPriceFoodManyToManyEntity();
+                    fopmm.setNewFoodOrderEntity(foodOrder);
+                    fopmm.setNewTotalPriceFoodEntity(totalPrice);
+                    foodOrderTotalPriceFoodManyToManyRepository.save(fopmm);
+                    return true;
+                } else {
+                    totalPriceFoodRepository.findById(totalPriceId).map(totalPriceEntity -> {
+                        Long price = totalPriceEntity.getTotalPrice();
+                        price += (amount * listPrice);
+                        totalPriceEntity.setTotalPrice(price);
+                        totalPriceFoodRepository.save(totalPriceEntity);
 
+                        FoodOrderTotalPriceFoodManyToManyEntity fopmm = new FoodOrderTotalPriceFoodManyToManyEntity();
+                        fopmm.setNewFoodOrderEntity(foodOrder);
+                        fopmm.setNewTotalPriceFoodEntity(totalPriceEntity);
+                        foodOrderTotalPriceFoodManyToManyRepository.save(fopmm);
+
+                        return true;
+                    }).orElseGet(() -> {
+                        totalPriceFoodRepository.save(totalPrice);
+                        return true;
+                    });
+
+                }
                 return true;
-            }).orElseGet(() -> {
-                totalPriceFoodRepository.save(totalPrice);
-                return true;
-            });
-
+            }
+            return false;
         }
-        return true;
+        else{
+            FoodOrderEntity foodOrder = new FoodOrderEntity();
+                foodOrder.setTotalProiceOrder(listPrice * amount);
+                foodOrder.setNewCustomerEntity(cus);
+                foodOrder.setNewHotelEntity(ho);
+                foodOrder.setNewListEntity(li);
+                foodOrder.setNewRoomEntity(rm);
+                foodOrderRepository.save(foodOrder);
+                TotalPriceFoodEntity totalPrice = new TotalPriceFoodEntity();
+                if (totalPriceId == null) {
+                    totalPrice.setNewFoodPaymentEntity(foodPay);
+                    totalPrice.setNewRoomEntity(rm);
+                    totalPrice.setTotalPrice(amount * listPrice);
+                    totalPriceFoodRepository.save(totalPrice);
+
+                    FoodOrderTotalPriceFoodManyToManyEntity fopmm = new FoodOrderTotalPriceFoodManyToManyEntity();
+                    fopmm.setNewFoodOrderEntity(foodOrder);
+                    fopmm.setNewTotalPriceFoodEntity(totalPrice);
+                    foodOrderTotalPriceFoodManyToManyRepository.save(fopmm);
+                    return true;
+                } else {
+                    totalPriceFoodRepository.findById(totalPriceId).map(totalPriceEntity -> {
+                        Long price = totalPriceEntity.getTotalPrice();
+                        price += (amount * listPrice);
+                        totalPriceEntity.setTotalPrice(price);
+                        totalPriceFoodRepository.save(totalPriceEntity);
+
+                        FoodOrderTotalPriceFoodManyToManyEntity fopmm = new FoodOrderTotalPriceFoodManyToManyEntity();
+                        fopmm.setNewFoodOrderEntity(foodOrder);
+                        fopmm.setNewTotalPriceFoodEntity(totalPriceEntity);
+                        foodOrderTotalPriceFoodManyToManyRepository.save(fopmm);
+
+                        return true;
+                    }).orElseGet(() -> {
+                        totalPriceFoodRepository.save(totalPrice);
+                        return true;
+                    });
+
+                }
+                return true;
+            }
+        
     }
+
     @GetMapping(path = "/updatefoodstatus/{totalpriceId}")
     public Boolean updatefood(@PathVariable Long totalpriceId) {
         FoodPaymentEntity status = foodPaymentRepository.findByStatus("จ่ายแล้ว");
@@ -248,7 +252,6 @@ public class FoodOrderController {
         });
         return true;
     }
-
 
     /* FoodOrder TotalPriceFood ManyToMany */
     @GetMapping(path = "/foodordertotalpricefoods")
