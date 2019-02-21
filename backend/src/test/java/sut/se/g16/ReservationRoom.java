@@ -1,4 +1,4 @@
-﻿package sut.se.g16;
+package sut.se.g16;
 
 import org.junit.Test;
 import org.junit.runner.RunWith;
