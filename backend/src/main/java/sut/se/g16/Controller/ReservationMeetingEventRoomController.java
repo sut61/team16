@@ -85,8 +85,8 @@ public class ReservationMeetingEventRoomController {
 
 
     @GetMapping("/reservationmeetingeventroom/{reservationmeetingeventroomdatein}/{reservationmeetingeventroomdateout}/{meetingeventroomid}/{meetingeventroomtypeid}/{typetime}/{cus}/{hotel}/{detail}/{function}")
-    public Boolean ReservationMeetingEventRoom(@PathVariable String reservationmeetingeventroomdatein,
-            @PathVariable String reservationmeetingeventroomdateout, @PathVariable String meetingeventroomid,
+    public Boolean ReservationMeetingEventRoom(@PathVariable Date reservationmeetingeventroomdatein,
+            @PathVariable Date reservationmeetingeventroomdateout, @PathVariable String meetingeventroomid,
             @PathVariable Long meetingeventroomtypeid, @PathVariable String typetime, @PathVariable Long hotel,
             @PathVariable String cus, @PathVariable String detail, @PathVariable String function) {
         System.out.println("=========================================================================================");
@@ -123,9 +123,8 @@ public class ReservationMeetingEventRoomController {
         ReservationMeetingEventRoomEntity remeeting = new ReservationMeetingEventRoomEntity();
         remeeting.setDetail(detail);
 
-        Date d = new Date();
-        remeeting.setReservationMeetingEventRoomDateIn(d);
-        remeeting.setReservationMeetingEventRoomDateOut(d);
+        remeeting.setReservationMeetingEventRoomDateIn(reservationmeetingeventroomdatein);
+        remeeting.setReservationMeetingEventRoomDateOut(reservationmeetingeventroomdateout);
         remeeting.setNewMeetingEventRoomTypeEntity(meetingType);
         remeeting.setNewFunctionEntity(fun);
         remeeting.setNewMeetingEventRoomEntity(meeting);

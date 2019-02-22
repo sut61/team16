@@ -151,6 +151,7 @@ export class MainReservationMeetingRoomComponent implements OnInit {
 
           },
           error => {
+            alert('cannot reservationroom');
             console.log('Error', error);
           }
         )

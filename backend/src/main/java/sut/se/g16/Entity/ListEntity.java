@@ -31,7 +31,8 @@ public class ListEntity {
     @Pattern (regexp = "[A-Z][a-z]+\\s?[A-Z]?[a-z]*")
     private @NotNull String listName;
 
-    @Positive
+    @Min(value = 0)
+    @Max(value = 99)
     private @NotNull Long totalAmount;
     @Positive
     private @NotNull Long listPrice;

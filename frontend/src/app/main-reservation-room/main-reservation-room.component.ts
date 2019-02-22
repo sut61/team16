@@ -139,6 +139,7 @@ export class MainReservationRoomComponent implements OnInit {
               alert('Room number ' + this.select.inputRoomNumber + ' in hotel ' + this.select.hotelNameSelect + ' have alrady exist')
           },
           error => {
+            alert('cannot reservationroom');
             console.log('Error', error);
           }
         )

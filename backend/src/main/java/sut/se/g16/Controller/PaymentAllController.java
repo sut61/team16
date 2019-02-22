@@ -29,13 +29,14 @@ public class PaymentAllController {
     private RoomStatusRepository roomStatusRepository;
     @Autowired
     private RoomRepository roomRepository;
+    @Autowired
+    private StatusPaymentRepository statusPaymentRepository;
 
 
 
 
 
-
-    public PaymentAllController(BankRepository bankRepository, PaymentAllRepository paymentAllRepository, CustomerRepository customerRepository, BookingCarRepository bookingCarRepository,
+    public PaymentAllController(StatusPaymentRepository statusPaymentRepository,BankRepository bankRepository, PaymentAllRepository paymentAllRepository, CustomerRepository customerRepository, BookingCarRepository bookingCarRepository,
                                 ReservationRoomRepository reservationRoomRepository,  RoomStatusRepository roomStatusRepository,
                                 RoomRepository roomRepository, ReservationMeetingEventRoomRepository reservationMeetingEventRoomRepository) {
         this.bankRepository = bankRepository;
@@ -46,7 +47,7 @@ public class PaymentAllController {
         this.bookingCarRepository = bookingCarRepository;
         this.roomStatusRepository = roomStatusRepository;
         this.roomRepository = roomRepository;
-
+        this.statusPaymentRepository = statusPaymentRepository;
 
     }
     @GetMapping(path = "/bankEntity", produces = MediaType.APPLICATION_JSON_VALUE)
@@ -126,12 +127,14 @@ public class PaymentAllController {
         ReservationMeetingEventRoomEntity re = reservationMeetingEventRoomRepository.findByReservationMeetingEventRoomId(roomMeetSelect);
         CustomerEntity customer = customerRepository.findCustomerByName(cus);
         BookingCarEntity bb = bookingCarRepository.findByBookingcarId(bookingCarSelect);
-
+        StatusPaymentEntity statusPaymentRoom = statusPaymentRepository.findByStatusPaymentTypeName("จ่าย");
+        rr.setNewStatusPaymentEntity(statusPaymentRoom);
+        reservationRoomRepository.save(rr);
         RoomEntity room = rr.getNewRoomEntity();
         RoomStatusEntity status = roomStatusRepository.findByName("ว่าง");
         room.setNewRoomStatusEntity(status);
         roomRepository.save(room);
-
+                
 //        MeetingEventRoomEntity room1 = re.getNewMeetingEventRoomEntity();
 //        RoomStatusEntity statuss = roomStatusRepository.findByName("ว่าง");
 //        room1.setNewRoomStatusEntity(statuss);
