@@ -110,7 +110,7 @@ export class FoodStockComponent implements OnInit {
               alert('Error Data')
           },
           error => {
-            alert('Error: Please Enter Amount!')
+            alert('Error: Please Enter Amount! (1-99)')
             console.log('Error', error);
           }
         )
