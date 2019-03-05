@@ -40,8 +40,6 @@ public class ReservationRoom {
 	@Autowired
 	private ReservationRoomRepository reservationRoomRepository;
 	@Autowired
-	private ReservationMeetingEventRoomRepository reservationMeetingEventRoomRepository;
-	@Autowired
 	private HotelRepository hotelRepository;
 	@Autowired
 	private CustomerRepository customerRepository;
@@ -49,18 +47,10 @@ public class ReservationRoom {
 	private PromotionRepository promotionRepository;
 	@Autowired
 	private RoomTypeRepository roomTypeRepository;
-
 	@Autowired
-	private MeetingEventRoomRepository meetingEventRoomRepository;
+	private StatusPaymentRepository statusPaymentRepository;
 	@Autowired
-	private MeetingEventRoomTypeRepository meetingEventRoomTypeRepository;
-	@Autowired
-	private RoomStatusRepository roomStatusRepository;
-	@Autowired
-	private TypeTimeRepository typeTimeRepository;
-	@Autowired
-	private FunctionRepository functionRepository;
-
+	private RoomRepository roomRepository;
 
 	@Autowired
 	private TestEntityManager entityManager;
@@ -345,6 +335,35 @@ public class ReservationRoom {
 			System.out.print("23++++++++++++++++");
 		}
 	}
+
+	@Test
+	public void testVadidValueRoomTypeAll() {
+		ReservationRoomEntity reserroom = new ReservationRoomEntity();
+		reserroom.setNewRoomTypeEntity(roomTypeRepository.findByName("Standard"));
+		reservationRoomRepository.save(reserroom);
+	}
+
+	@Test
+	public void testRoomtypeCannotBeNull() {
+		ReservationRoomEntity reserroom = new ReservationRoomEntity();
+		reserroom.setNewRoomTypeEntity(roomTypeRepository.findByName(null));
+
+		try {
+			entityManager.persist(reserroom);
+			entityManager.flush();
+
+			//fail("Should not pass to this line");
+		} catch (javax.validation.ConstraintViolationException e) {
+			Set<ConstraintViolation<?>> violations = e.getConstraintViolations();
+			assertEquals(violations.isEmpty(), false);
+			// assertEquals(violations.size(), 1);
+			System.out.print("23++++++++++++++++");
+			System.out.print(e.getConstraintViolations());
+			System.out.print("23++++++++++++++++");
+		}
+	}
+
+	
 
 	
 }

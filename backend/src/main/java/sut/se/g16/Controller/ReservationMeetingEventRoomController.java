@@ -232,16 +232,16 @@ public class ReservationMeetingEventRoomController {
         return promotionRepository.findAll().stream().collect(Collectors.toList());
     }
 
-    @GetMapping("/meetingpromotion/{datestart}/{dateend}/{detail}")
-    public PromotionEntity newPromotion(@PathVariable Date dateStart, @PathVariable Date dateEnd,
-            @PathVariable String detail) {
-        Date d = new Date();
-        PromotionEntity pro = new PromotionEntity();
-        pro.setDetail(detail);
-        pro.setDateStart(d);
-        pro.setDateEnd(d);
-        return promotionRepository.save(pro);
-    }
+    // @GetMapping("/meetingpromotion/{datestart}/{dateend}/{detail}")
+    // public PromotionEntity newPromotion(@PathVariable Date dateStart, @PathVariable Date dateEnd,
+    //         @PathVariable String detail) {
+    //     Date d = new Date();
+    //     PromotionEntity pro = new PromotionEntity();
+    //     pro.setDetail(detail);
+    //     pro.setDateStart(d);
+    //     pro.setDateEnd(d);
+    //     return promotionRepository.save(pro);
+    // }
 
     @GetMapping("/meetingeventroomtype/{hotelId}")
     public Collection<HotelMeetingEventRoomTypeManyToManyEntity> getRoomTypeByHotelId(@PathVariable Long hotelId) {

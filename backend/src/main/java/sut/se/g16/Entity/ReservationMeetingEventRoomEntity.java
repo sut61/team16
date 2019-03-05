@@ -23,39 +23,48 @@ public class ReservationMeetingEventRoomEntity {
     @GeneratedValue(strategy = GenerationType.SEQUENCE, generator = "reservationMeetingEventRoomId_seq")
     private  Long reservationMeetingEventRoomId;
 
-    
+    @NotNull
     private Date reservationMeetingEventRoomDateIn;
+    @NotNull
     private Date reservationMeetingEventRoomDateOut;
 
+    @NotNull
     @Size(min = 10, max = 40)
-    //@Pattern(regexp = "^[A-Za-z]+\\s?[A-Za-z]*[0-9]*[A-Za-z]*")
+    @Pattern(regexp = "^[A-Za-z]+\\s?[A-Za-z]*[0-9]*[A-Za-z]*")
     @Column(unique = true)
     private String detail;
 
+    @NotNull
     @ManyToOne(fetch = FetchType.EAGER)
     @JoinColumn(name = "hotelId")
     private HotelEntity newHotelEntity;
 
+    //@NotNull
     @ManyToOne(fetch = FetchType.EAGER)
     @JoinColumn(name = "customerId")
     private CustomerEntity newCustomerEntity;
 
+    @NotNull
     @ManyToOne(fetch = FetchType.EAGER)
     @JoinColumn(name = "roomStatusId")
     private RoomStatusEntity newRoomStatusEntity;
 
+    @NotNull
     @ManyToOne(fetch = FetchType.EAGER)
     @JoinColumn(name = "meetingEventRoomId")
     private MeetingEventRoomEntity newMeetingEventRoomEntity;
 
+    @NotNull
     @ManyToOne(fetch = FetchType.EAGER)
     @JoinColumn(name = "meetingEventRoomTypeId")
     private MeetingEventRoomTypeEntity newMeetingEventRoomTypeEntity;
 
+    @NotNull
     @ManyToOne(fetch = FetchType.EAGER)
     @JoinColumn(name = "typeTimeId")
     private TypeTimeEntity newTypeTimeEntity;
 
+    @NotNull
     @ManyToOne(fetch = FetchType.EAGER)
     @JoinColumn(name = "functionId")
     private FunctionEntity newFunctionEntity;

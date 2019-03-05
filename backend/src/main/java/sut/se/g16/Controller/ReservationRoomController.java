@@ -107,26 +107,6 @@ public class ReservationRoomController{
     }
 
 
-    // @GetMapping("/promotion/{datestart}/{dateend}/{detail}")
-
-    // public PromotionEntity newPromotion(@PathVariable Date dateStart,@PathVariable Date dateEnd,@PathVariable String detail) {
-
-    //     Date d = new Date(); 
-
-    //     PromotionEntity pro = new PromotionEntity();
-
-    //     pro.setDetail(detail);
-
-    //     pro.setDateStart(d);
-
-    //     pro.setDateEnd(d);
-
-    //     return  promotionRepository.save(pro);
-
-    // }
-
-
-
     //RoomType Controller
 
 

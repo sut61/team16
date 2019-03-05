@@ -46,14 +46,19 @@ public class ReservationRoomEntity {
     @JoinColumn(name= "statusPaymentId")
     private StatusPaymentEntity newStatusPaymentEntity;
 
-    @NonNull
+    @NotNull
     @ManyToOne(fetch = FetchType.EAGER )
     @JoinColumn(name= "roomId")
     private RoomEntity newRoomEntity;
 
+    @NotNull
     private @NonNull Date dateIn;
+    
+    @NotNull
     private @NonNull Date dateOut;
 
+
+    @NotNull
     @Size(min = 10, max = 40)
     @Pattern(regexp = "^[A-Za-z]+\\s?[A-Za-z]*[0-9]*[A-Za-z]*")
     @Column(unique = true)
