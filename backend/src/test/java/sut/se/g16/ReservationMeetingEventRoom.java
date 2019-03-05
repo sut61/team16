@@ -60,6 +60,7 @@ public class ReservationMeetingEventRoom {
 	private TypeTimeRepository typeTimeRepository;
 	@Autowired
 	private FunctionRepository functionRepository;
+	
 
 
 	@Autowired
@@ -250,6 +251,65 @@ public class ReservationMeetingEventRoom {
 		}
 	}
 
+
+	@Test
+	public void testVadidValueCustomerAllSP2() {
+		ReservationMeetingEventRoomEntity resermet = new ReservationMeetingEventRoomEntity();
+		resermet.setNewCustomerEntity(customerRepository.findBycustomerUsername("WhanWhan55"));
+		reservationMeetingEventRoomRepository.save(resermet);
+
+	}
+
+	@Test
+	public void testCustomerCannotBeNull() {
+		ReservationMeetingEventRoomEntity resermet = new ReservationMeetingEventRoomEntity();
+		resermet.setNewCustomerEntity(customerRepository.findBycustomerUsername("null"));
+		
+		try {
+			entityManager.persist(resermet);
+			entityManager.flush();
+
+			//fail("Should not pass to this line");
+		} catch (javax.validation.ConstraintViolationException e) {
+			Set<ConstraintViolation<?>> violations = e.getConstraintViolations();
+			assertEquals(violations.isEmpty(), false);
+			assertEquals(violations.size(), 1);
+			System.out.print("++++++++++++++++");
+			System.out.print(e.getConstraintViolations());
+			System.out.print("+++++++++++++++");
+		}
+	}
+
+
+	@Test
+	public void testVadidValueHotelAllSP2() {
+		ReservationMeetingEventRoomEntity resermet = new ReservationMeetingEventRoomEntity();
+		resermet.setNewHotelEntity(hotelRepository.findByName("PhimaiIn"));
+		reservationMeetingEventRoomRepository.save(resermet);
+
+	}
+
+	@Test
+	public void testHotelCannotBeNull() {
+		ReservationMeetingEventRoomEntity resermet = new ReservationMeetingEventRoomEntity();
+		resermet.setNewHotelEntity(hotelRepository.findByName("null"));
+		
+		try {
+			entityManager.persist(resermet);
+			entityManager.flush();
+
+			//fail("Should not pass to this line");
+		} catch (javax.validation.ConstraintViolationException e) {
+			Set<ConstraintViolation<?>> violations = e.getConstraintViolations();
+			assertEquals(violations.isEmpty(), false);
+			assertEquals(violations.size(), 1);
+			System.out.print("++++++++++++++++");
+			System.out.print(e.getConstraintViolations());
+			System.out.print("+++++++++++++++");
+		}
+	}
+
+
 	@Test
 	public void testVadidValueMeetingEventRoomTypeAllSP2() {
 		ReservationMeetingEventRoomEntity resermet = new ReservationMeetingEventRoomEntity();
@@ -385,4 +445,6 @@ public class ReservationMeetingEventRoom {
 			System.out.print("23++++++++++++++++");
 		}
 	}
+
+	
 }
