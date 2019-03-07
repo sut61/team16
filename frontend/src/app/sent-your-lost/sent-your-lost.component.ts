@@ -89,7 +89,7 @@ export class SentYourLostComponent implements OnInit {
 
             } else {
               console.log('Please enter all Data.');
-
+              alert("Please enter all data!!")
             }
           },
           error => {
