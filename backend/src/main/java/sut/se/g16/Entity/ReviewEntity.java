@@ -7,6 +7,8 @@ import lombok.Setter;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 
 import javax.persistence.*;
+import javax.validation.constraints.Max;
+import javax.validation.constraints.Min;
 import javax.validation.constraints.NotNull;
 import javax.validation.constraints.Pattern;
 import javax.validation.constraints.Size;
@@ -24,13 +26,16 @@ public class ReviewEntity {
 	@GeneratedValue(strategy = GenerationType.SEQUENCE, generator = "Reviews_seq")
 	@Column(name = "ReviewsId", unique = true, nullable = false)
 	private @NotNull Long reviewId;
-	@Size(min=3,max=200)
-	@Pattern(regexp="^[A-Za-z]*")
+	@Size(min=5,max=200)
+	@Pattern(regexp="[A-Za-z]*")
 	private  String comment;
-	@Size(min=3,max=200)
-	@Pattern(regexp="^[A-Za-z]*")
+	
+	@Min(3)
+	@Max(200)
+	@Pattern(regexp="[A-Za-z]*")
 	private  String problem;
-	private @NotNull float score;
+
+	private float score;
 	
 	@NotNull
 	@ManyToOne(fetch = FetchType.EAGER, targetEntity = ReservationRoomEntity.class)
