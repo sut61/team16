@@ -33,8 +33,7 @@ public class SentYourLostEntity{
     @Column(name = "SentsId", unique = true, nullable = false)
     @NotNull private Long sentId;
 
-    @Max(60)
-    @Min(10)
+    @Size(min=10,max=60)
     @Pattern(regexp="^[A-Za-z]*")
     @NotNull private String address;
 

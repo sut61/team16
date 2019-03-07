@@ -74,8 +74,9 @@ public class SentYourLostApplicationTest {
 			assertEquals(violations.size(), 5);
 		}
 	}
+
 	@Test
-	public void enterAlldata(){
+	public void enterAlldata() {
 		sent.setAddress("afdasdfasdfasdADSFASDFA");
 		sent.setNewCustomerEntity(customerRepository.findBycustomerUsername("film"));
 		sent.setNewHotelEntity(hotelRepository.findByhotelNameEng("PhimaiIn"));
@@ -98,11 +99,11 @@ public class SentYourLostApplicationTest {
 		} catch (javax.validation.ConstraintViolationException e) {
 			Set<ConstraintViolation<?>> violations = e.getConstraintViolations();
 			assertEquals(violations.isEmpty(), false);
-			assertEquals(violations.size(), 4);
+			assertEquals(violations.size(), 2);
 			System.out.println("check customer null sent");
 			System.out.println("===========================================");
 			System.out.println("=============" + e + "=========================");
-			System.out.println("===========================================");
+			System.out.println("===========================================\n\n\n\n\n\n\n");
 		}
 	}
 
@@ -121,11 +122,11 @@ public class SentYourLostApplicationTest {
 		} catch (javax.validation.ConstraintViolationException e) {
 			Set<ConstraintViolation<?>> violations = e.getConstraintViolations();
 			assertEquals(violations.isEmpty(), false);
-			assertEquals(violations.size(), 5);
+			assertEquals(violations.size(), 3);
 			System.out.println("check hotel null sent");
 			System.out.println("===========================================");
 			System.out.println("=============" + e + "=========================");
-			System.out.println("===========================================");
+			System.out.println("===========================================\n\n\n\n\n\n\n");
 		}
 	}
 
@@ -144,11 +145,11 @@ public class SentYourLostApplicationTest {
 		} catch (javax.validation.ConstraintViolationException e) {
 			Set<ConstraintViolation<?>> violations = e.getConstraintViolations();
 			assertEquals(violations.isEmpty(), false);
-			assertEquals(violations.size(), 4);
+			assertEquals(violations.size(), 2);
 			System.out.println("check roomnumber null sent");
 			System.out.println("===========================================");
 			System.out.println("=============" + e + "=========================");
-			System.out.println("===========================================");
+			System.out.println("===========================================\n\n\n\n\n\n\n");
 		}
 	}
 
@@ -167,11 +168,11 @@ public class SentYourLostApplicationTest {
 		} catch (javax.validation.ConstraintViolationException e) {
 			Set<ConstraintViolation<?>> violations = e.getConstraintViolations();
 			assertEquals(violations.isEmpty(), false);
-			assertEquals(violations.size(), 5);
+			assertEquals(violations.size(), 3);
 			System.out.println("check roomtype null sent");
 			System.out.println("===========================================");
 			System.out.println("=============" + e + "=========================");
-			System.out.println("===========================================");
+			System.out.println("===========================================\n\n\n\n\n\n\n");
 		}
 	}
 
@@ -194,7 +195,7 @@ public class SentYourLostApplicationTest {
 			System.out.println("check address null sent");
 			System.out.println("===========================================");
 			System.out.println("=============" + e + "=========================");
-			System.out.println("===========================================");
+			System.out.println("===========================================\n\n\n\n\n\n\n");
 		}
 	}
 
@@ -213,11 +214,11 @@ public class SentYourLostApplicationTest {
 		} catch (javax.validation.ConstraintViolationException e) {
 			Set<ConstraintViolation<?>> violations = e.getConstraintViolations();
 			assertEquals(violations.isEmpty(), false);
-			assertEquals(violations.size(), 5);
+			assertEquals(violations.size(),4);
 			System.out.println("check pattern address sent");
 			System.out.println("===========================================");
 			System.out.println("=============" + e + "=========================");
-			System.out.println("===========================================");
+			System.out.println("===========================================\n\n\n\n\n\n\n");
 		}
 	}
 
@@ -227,7 +228,8 @@ public class SentYourLostApplicationTest {
 		sent.setNewRoomEntity(roomRepository.findRoomEntityByRoomNumber("A100"));
 		sent.setNewHotelEntity(hotelRepository.findByhotelNameEng("PhimaiIn"));
 		sent.setNewRoomTypeEntity(roomTypeRepository.findByName("Standard"));
-		sent.setAddress("aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa");
+		sent.setAddress(
+				"aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa");
 
 		try {
 			entityManager.persistAndFlush(sent);
@@ -236,11 +238,11 @@ public class SentYourLostApplicationTest {
 		} catch (javax.validation.ConstraintViolationException e) {
 			Set<ConstraintViolation<?>> violations = e.getConstraintViolations();
 			assertEquals(violations.isEmpty(), false);
-			assertEquals(violations.size(), 4);
+			assertEquals(violations.size(), 3);
 			System.out.println("check size address sent");
 			System.out.println("===========================================");
 			System.out.println("=============" + e + "=========================");
-			System.out.println("===========================================");
+			System.out.println("===========================================\n\n\n\n\n\n\n");
 		}
 	}
 
@@ -259,11 +261,13 @@ public class SentYourLostApplicationTest {
 		} catch (javax.validation.ConstraintViolationException e) {
 			Set<ConstraintViolation<?>> violations = e.getConstraintViolations();
 			assertEquals(violations.isEmpty(), false);
-			assertEquals(violations.size(), 4);
+			assertEquals(violations.size(), 3);
 			System.out.println("check size under address sent");
 			System.out.println("===========================================");
 			System.out.println("=============" + e + "=========================");
-			System.out.println("===========================================");
+			System.out.println("===========================================\n\n\n\n\n\n\n");
 		}
 	}
+
+	
 }

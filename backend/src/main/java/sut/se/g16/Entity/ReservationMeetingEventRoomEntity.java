@@ -39,7 +39,7 @@ public class ReservationMeetingEventRoomEntity {
     @JoinColumn(name = "hotelId")
     private HotelEntity newHotelEntity;
 
-    //@NotNull
+    @NotNull
     @ManyToOne(fetch = FetchType.EAGER)
     @JoinColumn(name = "customerId")
     private CustomerEntity newCustomerEntity;

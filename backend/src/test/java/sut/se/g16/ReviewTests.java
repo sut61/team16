@@ -62,19 +62,42 @@ public class ReviewTests {
         ValidatorFactory factory = Validation.buildDefaultValidatorFactory();
         validator = factory.getValidator();
 
+    }
+
+    @Test
+	public void testReviewValueAll() {
+		review.setNewCustomerEntity(customerRepository.findBycustomerUsername("film"));
         review.setComment("commentTester");
         review.setProblem("ProblemTester");
+        review.setNewHotelEntity(hotelRepository.findByhotelNameEng("PhimaiIn"));
+        review.setNewReservationRoomEntity(reservationRepository.findRservationById(1L));
+        review.setNewRoomTypeEntity(roomTypeRepository.findByName("Standard"));
         review.setScore(5);
+    }
+    
+    @Test
+	public void testScoreNegative() {
+		review.setNewCustomerEntity(customerRepository.findBycustomerUsername("film"));
+        review.setComment("commentTester");
+        review.setProblem("ProblemTester");
+        review.setNewHotelEntity(hotelRepository.findByhotelNameEng("PhimaiIn"));
+        review.setNewReservationRoomEntity(reservationRepository.findRservationById(1L));
+        review.setNewRoomTypeEntity(roomTypeRepository.findByName("Standard"));
+        review.setScore(-5);
         try {
             entityManager.persistAndFlush(review);
-            fail("Should not pass to this line");
 
+            fail("Should not pass to this line");
         } catch (javax.validation.ConstraintViolationException e) {
             Set<ConstraintViolation<?>> violations = e.getConstraintViolations();
             assertEquals(violations.isEmpty(), false);
-            assertEquals(violations.size(), 6);
+            assertEquals(violations.size(), 3);
+            System.out.println("check Score Negative");
+            System.out.println("===========================================");
+            System.out.println("=============" + e + "=========================");
+            System.out.println("===========================================");
         }
-    }
+	}
 
     @Test
     public void checkCustomerNull() {
@@ -93,7 +116,7 @@ public class ReviewTests {
         } catch (javax.validation.ConstraintViolationException e) {
             Set<ConstraintViolation<?>> violations = e.getConstraintViolations();
             assertEquals(violations.isEmpty(), false);
-            assertEquals(violations.size(), 4);
+            assertEquals(violations.size(), 2);
             System.out.println("check customer null");
             System.out.println("===========================================");
             System.out.println("=============" + e + "=========================");
@@ -118,7 +141,7 @@ public class ReviewTests {
         } catch (javax.validation.ConstraintViolationException e) {
             Set<ConstraintViolation<?>> violations = e.getConstraintViolations();
             assertEquals(violations.isEmpty(), false);
-            assertEquals(violations.size(), 5);
+            assertEquals(violations.size(), 3);
             System.out.println("check hotel null");
             System.out.println("===========================================");
             System.out.println("=============" + e + "=========================");
@@ -143,7 +166,7 @@ public class ReviewTests {
         } catch (javax.validation.ConstraintViolationException e) {
             Set<ConstraintViolation<?>> violations = e.getConstraintViolations();
             assertEquals(violations.isEmpty(), false);
-            assertEquals(violations.size(), 4);
+            assertEquals(violations.size(), 2);
             System.out.println("check reservation null");
             System.out.println("===========================================");
             System.out.println("=============" + e + "=========================");
@@ -168,7 +191,7 @@ public class ReviewTests {
         } catch (javax.validation.ConstraintViolationException e) {
             Set<ConstraintViolation<?>> violations = e.getConstraintViolations();
             assertEquals(violations.isEmpty(), false);
-            assertEquals(violations.size(), 5);
+            assertEquals(violations.size(), 3);
             System.out.println("check roomtype null");
             System.out.println("===========================================");
             System.out.println("=============" + e + "=========================");
@@ -193,7 +216,7 @@ public class ReviewTests {
         } catch (javax.validation.ConstraintViolationException e) {
             Set<ConstraintViolation<?>> violations = e.getConstraintViolations();
             assertEquals(violations.isEmpty(), false);
-            assertEquals(violations.size(), 5);
+            assertEquals(violations.size(), 3);
             System.out.println("check pattern comment");
             System.out.println("===========================================");
             System.out.println("=============" + e + "=========================");
@@ -218,7 +241,7 @@ public class ReviewTests {
         } catch (javax.validation.ConstraintViolationException e) {
             Set<ConstraintViolation<?>> violations = e.getConstraintViolations();
             assertEquals(violations.isEmpty(), false);
-            assertEquals(violations.size(), 5);
+            assertEquals(violations.size(), 3);
             System.out.println("check pattern problem");
             System.out.println("===========================================");
             System.out.println("=============" + e + "=========================");
@@ -244,7 +267,7 @@ public class ReviewTests {
         } catch (javax.validation.ConstraintViolationException e) {
             Set<ConstraintViolation<?>> violations = e.getConstraintViolations();
             assertEquals(violations.isEmpty(), false);
-            assertEquals(violations.size(), 5);
+            assertEquals(violations.size(), 3);
             System.out.println("check size comment");
             System.out.println("===========================================");
             System.out.println("=============" + e + "=========================");
@@ -269,7 +292,7 @@ public class ReviewTests {
         } catch (javax.validation.ConstraintViolationException e) {
             Set<ConstraintViolation<?>> violations = e.getConstraintViolations();
             assertEquals(violations.isEmpty(), false);
-            assertEquals(violations.size(), 4);
+            assertEquals(violations.size(), 3);
             System.out.println("check size problem");
             System.out.println("===========================================");
             System.out.println("=============" + e + "=========================");
@@ -294,7 +317,7 @@ public class ReviewTests {
         } catch (javax.validation.ConstraintViolationException e) {
             Set<ConstraintViolation<?>> violations = e.getConstraintViolations();
             assertEquals(violations.isEmpty(), false);
-            assertEquals(violations.size(), 5);
+            assertEquals(violations.size(), 3);
             System.out.println("check size under comment");
             System.out.println("===========================================");
             System.out.println("=============" + e + "=========================");
@@ -318,7 +341,7 @@ public class ReviewTests {
         } catch (javax.validation.ConstraintViolationException e) {
             Set<ConstraintViolation<?>> violations = e.getConstraintViolations();
             assertEquals(violations.isEmpty(), false);
-            assertEquals(violations.size(), 4);
+            assertEquals(violations.size(), 3);
             System.out.println("check size under problem");
             System.out.println("===========================================");
             System.out.println("=============" + e + "=========================");

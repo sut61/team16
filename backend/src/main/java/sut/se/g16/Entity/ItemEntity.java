@@ -15,6 +15,8 @@ public class ItemEntity{
     @Column(name = "itemsId", unique = true, nullable = false)
     @Id
     @NotNull private Long itemId;
+    
+    @Column(unique = true)
     @NotNull private String itemName;
     public Long getItemId() {
         return itemId;

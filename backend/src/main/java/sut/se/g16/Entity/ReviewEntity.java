@@ -11,6 +11,7 @@ import javax.validation.constraints.Max;
 import javax.validation.constraints.Min;
 import javax.validation.constraints.NotNull;
 import javax.validation.constraints.Pattern;
+import javax.validation.constraints.Positive;
 import javax.validation.constraints.Size;
 
 @NoArgsConstructor
@@ -30,11 +31,11 @@ public class ReviewEntity {
 	@Pattern(regexp="[A-Za-z]*")
 	private  String comment;
 	
-	@Min(3)
-	@Max(200)
+	@Size (min = 3,max = 200)
 	@Pattern(regexp="[A-Za-z]*")
 	private  String problem;
 
+	@Positive
 	private float score;
 	
 	@NotNull
